@@ -19,7 +19,8 @@ namespace SpendCalculator
         //Метод вызываемый при загрузке приложения
         private void Form1_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("Hello world!");
+            Console.WriteLine("App started!");
+            Console.WriteLine("Initializing!");
         }
     }
 }
