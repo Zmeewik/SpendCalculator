@@ -1,5 +1,4 @@
-﻿
-namespace SpendCalculator
+﻿namespace SpendCalculator.Classes.Architecture
 {
     internal class Presenter
     {
@@ -7,13 +6,13 @@ namespace SpendCalculator
         static Presenter instance;
 
         Presenter()
-        { 
-            
+        {
+
         }
 
         static public Presenter Instance()
         {
-            if(instance != null)
+            if (instance != null)
                 return instance;
             instance = new Presenter();
             Console.WriteLine("Presenter created!");

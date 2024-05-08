@@ -1,5 +1,6 @@
 
 using System.Runtime.InteropServices;
+using SpendCalculator.Classes.Architecture;
 
 namespace SpendCalculator
 {
