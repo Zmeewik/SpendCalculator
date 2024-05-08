@@ -8,4 +8,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\Architecture\" />
+    <Folder Include="Classes\Model\" />
+    <Folder Include="Classes\DataHandling\" />
+    <Folder Include="Classes\ListHandling\" />
+  </ItemGroup>
+
 </Project>

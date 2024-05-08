@@ -3,17 +3,25 @@ using System.Runtime.InteropServices;
 
 namespace SpendCalculator
 {
-    public partial class Form1 : Form
+    public partial class AppView : Form
     {
         //Инициализация консоли
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        public Form1()
+        Presenter presenter;
+
+        public AppView()
         {
             InitializeComponent();
             AllocConsole();
+            InitializeElements();
+        }
+
+        void InitializeElements()
+        {
+            presenter = Presenter.Instance();
         }
 
         //Метод вызываемый при загрузке приложения

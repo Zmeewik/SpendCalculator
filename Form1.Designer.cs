@@ -1,6 +1,6 @@
 ﻿namespace SpendCalculator
 {
-    partial class Form1
+    partial class AppView
     {
         /// <summary>
         ///  Required designer variable.
