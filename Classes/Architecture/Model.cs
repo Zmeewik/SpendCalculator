@@ -11,7 +11,7 @@ namespace SpendCalculator
             if(instance != null)
                 return instance;
             instance = new Model();
-            Console.WriteLine("Presenter created!");
+            Console.WriteLine("Model created!");
             return instance;
         }
 

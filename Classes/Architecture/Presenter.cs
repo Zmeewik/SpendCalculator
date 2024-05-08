@@ -1,5 +1,5 @@
 ﻿
-namespace SpendCalculator.Classes.Architecture
+namespace SpendCalculator
 {
     internal class Presenter : IPresenter
     {

@@ -22,6 +22,7 @@ namespace SpendCalculator
 
         void InitializeElements()
         {
+            Console.WriteLine("Veiw initialized!");
             presenter = Presenter.Instance();
         }
 
@@ -29,7 +30,6 @@ namespace SpendCalculator
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.WriteLine("App started!");
-            Console.WriteLine("Initializing!");
         }
     }
 }
