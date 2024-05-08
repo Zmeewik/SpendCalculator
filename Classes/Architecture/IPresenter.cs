@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SpendCalculator
 {
-    internal interface IModel
+    internal interface IPresenter
     {
         //Работа со списками
-        public Expenditure GetExpenditure(int num);
-        public List<Expenditure> GetExpenditures();
+        public void OpenStatistics();
+        public void OpenGraphics();
+        public void OpenList();
 
         //Поиск
         public void FindByCreationDate(DateOnly date);

@@ -22,5 +22,56 @@ namespace SpendCalculator
         }
 
         //реализовать взаимодействие со списком и обработчиками
+        //Работа со списками
+        public Expenditure GetExpenditure(int num)
+        {
+            return new Expenditure();
+        }
+        public List<Expenditure> GetExpenditures()
+        {
+            return new List<Expenditure>();
+        }
+
+        //Поиск
+        public void FindByCreationDate(DateOnly date)
+        { 
+        
+        }
+        public void FindByName(string name)
+        { 
+        
+        }
+        public void FindBySum(float min, float max)
+        { 
+        
+        }
+
+        //Сортировка
+        public void SortByCreation(bool inverse)
+        { 
+        
+        }
+        public void SortByDate(bool inverse)
+        { 
+            
+        }
+        public void SortByName(bool inverse)
+        { 
+        
+        }
+        public void SortBySum(bool inverse)
+        { 
+        
+        }
+
+        //Сохранение и загрузка информации с и на локальный диск
+        public void SaveData()
+        { 
+        
+        }
+        public void LoadData(string path)
+        { 
+        
+        }
     }
 }

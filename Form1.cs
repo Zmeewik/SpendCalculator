@@ -11,7 +11,7 @@ namespace SpendCalculator
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        Presenter presenter;
+        IPresenter presenter;
 
         public AppView()
         {
