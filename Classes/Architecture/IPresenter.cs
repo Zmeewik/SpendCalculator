@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SpendCalculator
 {
     internal interface IPresenter
@@ -14,7 +9,7 @@ namespace SpendCalculator
         public void OpenList();
 
         //Поиск
-        public void FindByCreationDate(DateOnly date);
+        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate);
         public void FindByName(string name);
         public void FindBySum(float min, float max);
 

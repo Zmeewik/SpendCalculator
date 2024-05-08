@@ -22,7 +22,7 @@ namespace SpendCalculator
         }
 
         //Поиск по списку
-        public void FindByCreationDate(DateOnly date)
+        public void FindByCreationDate(DateOnly date, DateOnly maxDate)
         {
 
         }

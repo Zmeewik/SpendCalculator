@@ -33,23 +33,23 @@ namespace SpendCalculator
         }
 
         //Поиск
-        public void FindByCreationDate(DateOnly date)
+        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate)
         { 
-        
+            
         }
         public void FindByName(string name)
         { 
-        
+            
         }
         public void FindBySum(float min, float max)
         { 
-        
+            
         }
 
         //Сортировка
         public void SortByCreation(bool inverse)
         { 
-        
+            
         }
         public void SortByDate(bool inverse)
         { 
@@ -57,11 +57,11 @@ namespace SpendCalculator
         }
         public void SortByName(bool inverse)
         { 
-        
+            
         }
         public void SortBySum(bool inverse)
         { 
-        
+            
         }
 
         //Сохранение и загрузка информации с и на локальный диск

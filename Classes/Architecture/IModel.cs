@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SpendCalculator
 {
     internal interface IModel
@@ -13,7 +8,7 @@ namespace SpendCalculator
         public List<Expenditure> GetExpenditures();
 
         //Поиск
-        public void FindByCreationDate(DateOnly date);
+        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate);
         public void FindByName(string name);
         public void FindBySum(float min, float max);
 
