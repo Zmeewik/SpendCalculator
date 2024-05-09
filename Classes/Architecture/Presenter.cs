@@ -21,20 +21,31 @@ namespace SpendCalculator
             return instance;
         }
 
-        //Поиск по списку
-        public void FindByCreationDate(DateOnly date, DateOnly maxDate)
+        //Работа со списками
+        public void AddElement(string name, double sum, DateOnly date)
         {
+            model.AddElement(name, sum, date);
+        }
 
+        public void DeleteElement(int ID)
+        {
+            model.DeleteElement(ID);
+        }
+
+        //Поиск по списку
+        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate)
+        {
+            model.FindByCreationDate(minDate, maxDate);
         }
 
         public void FindByName(string name)
         {
-
+            model.FindByName(name);
         }
 
-        public void FindBySum(float min, float max)
+        public void FindBySum(double min, double max)
         {
-
+            model.FindBySum(min, max);
         }
 
 
@@ -57,33 +68,33 @@ namespace SpendCalculator
         //Работа с данными
         public void LoadData(string path)
         {
-
+            model.LoadData(path);
         }
         public void SaveData()
         {
-
+            model.SaveData();
         }
 
 
         //Сортировки списка
         public void SortByCreation(bool inverse)
         {
-
+            model.SortByCreation(inverse);
         }
 
         public void SortByDate(bool inverse)
         {
-
+            model.SortByDate(inverse);
         }
 
         public void SortByName(bool inverse)
         {
-
+            model.SortByName(inverse);
         }
 
         public void SortBySum(bool inverse)
         {
-
+            model.SortBySum(inverse);
         }
     }
 }

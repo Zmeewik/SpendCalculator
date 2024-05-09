@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Classes\Model\" />
     <Folder Include="Classes\DataHandling\" />
+    <Folder Include="Classes\Новая папка\" />
   </ItemGroup>
 
 </Project>

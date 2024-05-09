@@ -11,7 +11,7 @@ namespace SpendCalculator
         //Поиск
         public void FindByCreationDate(DateOnly minDate, DateOnly maxDate);
         public void FindByName(string name);
-        public void FindBySum(float min, float max);
+        public void FindBySum(double min, double max);
 
         //Сортировка
         public void SortByCreation(bool inverse);

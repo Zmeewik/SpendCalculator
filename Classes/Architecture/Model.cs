@@ -31,6 +31,14 @@ namespace SpendCalculator
         {
             return new List<Expenditure>();
         }
+        public void AddElement(string name, double sum, DateOnly date)
+        { 
+            
+        }
+        public void DeleteElement(int id)
+        { 
+            
+        }
 
         //Поиск
         public void FindByCreationDate(DateOnly minDate, DateOnly maxDate)
@@ -41,7 +49,7 @@ namespace SpendCalculator
         { 
             
         }
-        public void FindBySum(float min, float max)
+        public void FindBySum(double min, double max)
         { 
             
         }
