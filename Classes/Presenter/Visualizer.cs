@@ -120,9 +120,10 @@ namespace SpendCalculator
                 int xChange = (int)((float)width/r);
                 for (int n = 0; n < r; n++)
                 {
+                    var distanceToX = (width - margin) * (float)(dates[n].DayNumber - minDate.DayNumber) / (float)(maxDate.DayNumber - minDate.DayNumber);
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Near;
-                    g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.Black, startX + xChange * n, startY + 10, stringFormat);
+                    g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.Black, startX + distanceToX, startY + 10, stringFormat);
                 }
 
             }
