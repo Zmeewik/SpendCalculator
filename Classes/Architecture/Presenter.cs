@@ -69,9 +69,9 @@ namespace SpendCalculator
 
         //Работа с визуалом
         //Открыть изуализацию списка в киде графиков
-        public void OpenGraphics(PictureBox pictureBox)
+        public void OpenGraphics(PictureBox pictureBox, Font font)
         {
-            Visualizer.DrawDiagrams(expenditures, pictureBox, "all");
+            Visualizer.DrawDiagrams(expenditures, pictureBox, font, "all");
         }
 
         //Открыть редактирование списка
@@ -81,9 +81,9 @@ namespace SpendCalculator
         }
 
         //Открыть изуализацию списка в киде круга
-        public void OpenStatistics(PictureBox pictureBox)
+        public void OpenStatistics(PictureBox pictureBox, Font font)
         {
-            Visualizer.DrawPieDiagram(expenditures, pictureBox);
+            Visualizer.DrawPieDiagram(expenditures, pictureBox, font);
         }
 
         //Работа с данными

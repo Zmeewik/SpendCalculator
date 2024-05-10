@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using static System.Windows.Forms.AxHost;
 
 namespace SpendCalculator
 {
@@ -10,22 +11,96 @@ namespace SpendCalculator
         static Random random = new Random();
 
         //Метод для рисования линейно-кусочной диаграммы
-        static private void DrawDiagram(List<Dictionary<DateOnly, double>> values, List<Color> color)
+        static private void DrawDiagram(List<Dictionary<DateOnly, double>> values, List<Color> color, PictureBox drawArea)
         {
+            //Получить границы рисования графиков
             GetGraphRange(out var minDate, out var maxDate, out var maxDouble, values);
 
+            //Настроить рабочую область
+            int margin = 10;
+            int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
+            int width = (int)(drawArea.Size.Width) - margin * 2;
 
         }
 
         //Метод для рисования круглой даиаграммы
-        static private void DrawPieChart(List<Dictionary<DateOnly, double>> values, List<string> types, List<Color> color)
+        static private void DrawPieChart(List<Dictionary<DateOnly, double>> values, List<string> types, List<Color> color, PictureBox drawArea)
         {
+            //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
+
+            //Настроить рабочую область
+            int margin = 10;
+            int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
+            int width = (int)(drawArea.Size.Width) - margin * 2;
 
         }
 
-        static private void DrawAdditionalInfo(List<string> names, List<Color> colors)
-        { 
+        //Метод рисования дополнительной информации
+        static private void DrawAdditionalInfo(List<string> names, List<Color> colors, PictureBox drawArea, Font font)
+        {
+            
+
+            //Настроить рабочую область
+            int margin = 10;
+            int height = (int)(drawArea.Size.Height * 0.25f) - margin * 2;
+            int width = (int)(drawArea.Size.Width) - margin * 2;
+            int startX = margin;
+            int startY = drawArea.Size.Height - margin;
+
+            int i = 0;
+
+            //Настроить объекты
+            int circleSize = 10;
+            int circleOffset = 20;
+            int circleVerticalOffset = 20;
+            int circleHorizontalOffset = 150;
+
+            //Считаем столбиик не больше чем по правилу по 30 на каждый
+            int num = height / 20;
+            int columns = names.Count / num;
+            Console.WriteLine($"{height} height, {names.Count} names count");
+            Console.WriteLine($"{num} rows, {columns} columns");
+
+            //Нарисовать информацию
+            Bitmap bmp = new Bitmap(drawArea.Width, drawArea.Height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                int x = 0; int y = 0;
+                foreach (var name in names)
+                {
+                    //Прибаляем, потому что перый цвет это цвет заднего фона
+                    Brush brush = new SolidBrush(colors[i + 1]);
+                    Pen pen = new Pen(brush);
+                    pen.Width = 3;
+
+                    //Нарисовать круги
+                    Rectangle rect1 = new Rectangle(startX + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    Rectangle rect2 = new Rectangle(startX + circleOffset + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    g.FillEllipse(brush, rect1);
+                    g.FillEllipse(brush, rect2);
+
+                    //Нарисовать линию
+                    var p1 = new Point(startX + circleHorizontalOffset * x + circleSize / 2, startY - height + circleVerticalOffset * y + circleSize / 2);
+                    var p2 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleSize /2, startY - height + circleVerticalOffset * y + circleSize /2);
+                    g.DrawLine(pen, p1, p2);
+
+                    //Нарисовать названия
+                    var p3 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
+                    g.DrawString(names[i], font, Brushes.Black, p3);
+
+                    Console.WriteLine($"rect1: {rect1} rect2: {rect2}");
+                    i++;
+                    y++;
+                    if (y >= num)
+                    {
+                        y = 0;
+                        x++;
+                    }
+                }
+            }
+            // Устанавливаем изображение в PictureBox
+            drawArea.Image = bmp;
             
         }
 
@@ -72,7 +147,7 @@ namespace SpendCalculator
         }
 
         //Публичные методы для визуализации
-        static public void DrawDiagrams(List<Expenditure> expenditures, PictureBox drawArea, string type)
+        static public void DrawDiagrams(List<Expenditure> expenditures, PictureBox drawArea, Font font, string type)
         {
             switch (type)
             {
@@ -84,12 +159,19 @@ namespace SpendCalculator
                     foreach (var expense in expenditures)
                     {
                         if (!dates.ContainsKey(expense.date))
-                            dates[expense.date] += expense.sum;
+                        {
+                            if (dates.ContainsKey(expense.date))
+                                dates[expense.date] += expense.sum;
+                            else
+                                dates.Add(expense.date, expense.sum);
+                        }
                     }
                     List<Dictionary<DateOnly, double>> graph = new List<Dictionary<DateOnly, double>>();
                     graph.Add(dates);
 
-                    DrawDiagram(graph, color);
+                    List<string> name = ["Общая сумма"];
+                    DrawDiagram(graph, color, drawArea);
+                    DrawAdditionalInfo(name, color, drawArea, font);
 
                     break;
                 case "types":
@@ -110,23 +192,29 @@ namespace SpendCalculator
                     foreach (var expense in expenditures)
                     {
                         var num = types.IndexOf(expense.type);
-                        graphs[num][expense.date] += expense.sum;
+                        if (graphs[num].ContainsKey(expense.date))
+                            graphs[num][expense.date] += expense.sum;
+                        else
+                            graphs[num].Add(expense.date, expense.sum);
                     }
 
-                    DrawDiagram(graphs, colors);
+                    DrawDiagram(graphs, colors, drawArea);
+                    DrawAdditionalInfo(types, colors, drawArea, font);
 
                     break;
             }
         }
 
-        static public void DrawPieDiagram(List<Expenditure> expenditures, PictureBox drawArea)
+        static public void DrawPieDiagram(List<Expenditure> expenditures, PictureBox drawArea, Font font)
         {
             //Получить все типы трат и их цвета
             List<string> types = new List<string>();
             foreach (var expense in expenditures)
             {
                 if (!types.Contains(expense.type))
+                {
                     types.Add(expense.type);
+                }
             }
             var colors = GetColors(types.Count, drawArea.BackColor);
 
@@ -137,10 +225,14 @@ namespace SpendCalculator
             foreach (var expense in expenditures)
             {
                 var num = types.IndexOf(expense.type);
-                graphs[num][expense.date] += expense.sum;
+                if (graphs[num].ContainsKey(expense.date))
+                    graphs[num][expense.date] += expense.sum;
+                else
+                    graphs[num].Add(expense.date, expense.sum);
             }
 
-            DrawPieChart(graphs, types, colors);
+            DrawPieChart(graphs, types, colors, drawArea);
+            DrawAdditionalInfo(types, colors, drawArea, font);
         }
 
         //Метод работы с цветами
@@ -148,7 +240,7 @@ namespace SpendCalculator
         {
             List<Color> distinctColors = [background];
 
-            while (distinctColors.Count < numOfColors)
+            while (distinctColors.Count - 1 < numOfColors)
             {
                 Color newColor = RandomColor();
                 bool isValid = true;

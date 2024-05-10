@@ -12,6 +12,8 @@ namespace SpendCalculator
 
         IPresenter presenter;
 
+        Font currentFont = new Font("Arial", 14f);
+
         public AppView()
         {
             InitializeComponent();
@@ -29,6 +31,32 @@ namespace SpendCalculator
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.WriteLine("App started!");
+        }
+
+        //Функция вызываемая при смене таба
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                //Редактирование
+                case 0:
+                    presenter.OpenList();
+                    break;
+                //Круговая диаграмма
+                case 1:
+                    presenter.OpenStatistics(pictureDiagram1, currentFont);
+                    break;
+                //Графики
+                case 2:
+                    presenter.OpenGraphics(pictureGraphs1, currentFont);
+                    break;
+                //Настройки
+                case 3:
+                    
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
