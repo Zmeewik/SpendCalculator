@@ -37,6 +37,7 @@ namespace SpendCalculator
             expenditures.Add(new Expenditure() { ID = 9, sum = 13, name = "pineapple", type = "Еда", date = new DateOnly(2024, 5, 12) });
             expenditures.Add(new Expenditure() { ID = 10, sum = 4, name = "apple", type = "Еда", date = new DateOnly(2024, 5, 12) });
             expenditures.Add(new Expenditure() { ID = 11, sum = 55, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { ID = 12, sum = 0, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 13) });
         }
 
         //Работа со списками
