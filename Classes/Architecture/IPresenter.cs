@@ -4,8 +4,8 @@ namespace SpendCalculator
     internal interface IPresenter
     {
         //Работа со списками
-        public void OpenStatistics();
-        public void OpenGraphics();
+        public void OpenStatistics(PictureBox pictureBox, Font font);
+        public void OpenGraphics(PictureBox pictureBox, Font font);
         public void OpenList();
 
         //Поиск

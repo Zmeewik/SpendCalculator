@@ -7,9 +7,12 @@ namespace SpendCalculator
         static Presenter instance;
         IModel model;
 
+        List<Expenditure> expenditures = new List<Expenditure>();
+
         Presenter()
         {
             model = Model.Instance();
+            CreateList();
         }
 
         static public Presenter Instance()
@@ -19,6 +22,22 @@ namespace SpendCalculator
             instance = new Presenter();
             Console.WriteLine("Presenter created!");
             return instance;
+        }
+
+        private void CreateList()
+        {
+            expenditures.Add(new Expenditure() { ID = 1, sum = 10, name = "fish", type = "Еда", date = new DateOnly(2024, 5, 9) });
+            expenditures.Add(new Expenditure() { ID = 2, sum = 11, name = "shorts", type = "Одежда", date = new DateOnly(2024, 5, 9) });
+            expenditures.Add(new Expenditure() { ID = 3, sum = 8, name = "glasses", type = "Одежда", date = new DateOnly(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { ID = 4, sum = 5, name = "gum", type = "Еда", date = new DateOnly(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { ID = 5, sum = 4, name = "бумага", type = "Канцелярия", date = new DateOnly(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { ID = 6, sum = 13, name = "Pencil", type = "Канцелярия", date = new DateOnly(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { ID = 7, sum = 21, name = "Phone", type = "Техника", date = new DateOnly(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { ID = 8, sum = 2, name = "Mayo", type = "Еда", date = new DateOnly(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { ID = 9, sum = 13, name = "pineapple", type = "Еда", date = new DateOnly(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { ID = 10, sum = 4, name = "apple", type = "Еда", date = new DateOnly(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { ID = 11, sum = 55, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { ID = 12, sum = 0, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 13) });
         }
 
         //Работа со списками
@@ -50,19 +69,22 @@ namespace SpendCalculator
 
 
         //Работа с визуалом
-        public void OpenGraphics()
+        //Открыть изуализацию списка в киде графиков
+        public void OpenGraphics(PictureBox pictureBox, Font font)
         {
-
+            Visualizer.DrawDiagrams(expenditures, pictureBox, font, "all");
         }
 
+        //Открыть редактирование списка
         public void OpenList()
         {
-
+            
         }
 
-        public void OpenStatistics()
+        //Открыть изуализацию списка в киде круга
+        public void OpenStatistics(PictureBox pictureBox, Font font)
         {
-
+            Visualizer.DrawPieDiagram(expenditures, pictureBox, font);
         }
 
         //Работа с данными
