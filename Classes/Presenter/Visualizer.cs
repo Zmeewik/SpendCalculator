@@ -83,6 +83,7 @@ namespace SpendCalculator
         //Метод для рисования круглой даиаграммы
         static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea)
         {
+            
             //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
 
@@ -91,7 +92,33 @@ namespace SpendCalculator
             int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
             int width = (int)(drawArea.Size.Width) - margin * 2;
 
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
 
+                // Начальный угол для рисования секторов
+                float startAngle = 0;
+                float xPieSize = 200;
+                float yPieSize = 200;
+                float xPos = width / 2 - xPieSize / 2;
+                float yPos = height / 2 - yPieSize / 2;
+
+                // Начинаем рисование секторов для каждого типа данных
+                for (int i = 0; i < values.Count; i++)
+                {
+                    // Вычисляем угол для текущего сектора
+                    float sweepAngle = (float)(360 * (double)sums[i] / (double)sum);
+                    Console.WriteLine($"{types[i]} type {360 * (double)sums[i] / (double)sum} percent, {sums[i]} sum, {sum} общая сумма");
+
+
+                    // Рисуем сектор
+                    g.FillPie(new SolidBrush(color[i + 1]), xPos, yPos, xPieSize, yPieSize, startAngle, sweepAngle);
+
+                    // Обновляем начальный угол для следующего сектора
+                    startAngle += sweepAngle;
+                }
+            }
         }
 
         //Нарисовать разметку графика
@@ -224,6 +251,12 @@ namespace SpendCalculator
                     sum += kvp.Value;
                     typeSums[y] += kvp.Value;
                 }
+                y++;
+            }
+
+            foreach (var val in typeSums)
+            {
+                Console.WriteLine(val);
             }
         }
 
