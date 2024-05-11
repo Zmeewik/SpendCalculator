@@ -43,7 +43,9 @@
             pictureGraphs2 = new PictureBox();
             settingsPage = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
-            pictureSettings1 = new PictureBox();
+            panel1 = new Panel();
+            buttonFont = new Button();
+            buttonColor = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tabControl1.SuspendLayout();
@@ -61,7 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs2).BeginInit();
             settingsPage.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureSettings1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -227,24 +229,47 @@
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.38889F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.61111F));
-            tableLayoutPanel5.Controls.Add(pictureSettings1, 0, 0);
+            tableLayoutPanel5.Controls.Add(panel1, 0, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(0, 0);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 89.3364944F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 10.6635075F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 17.45636F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 82.54364F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel5.Size = new Size(792, 422);
             tableLayoutPanel5.TabIndex = 4;
+            tableLayoutPanel5.Paint += tableLayoutPanel5_Paint;
             // 
-            // pictureSettings1
+            // panel1
             // 
-            pictureSettings1.Dock = DockStyle.Fill;
-            pictureSettings1.Location = new Point(3, 3);
-            pictureSettings1.Name = "pictureSettings1";
-            pictureSettings1.Size = new Size(786, 416);
-            pictureSettings1.TabIndex = 0;
-            pictureSettings1.TabStop = false;
+            panel1.Controls.Add(buttonFont);
+            panel1.Controls.Add(buttonColor);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(786, 416);
+            panel1.TabIndex = 0;
+            // 
+            // buttonFont
+            // 
+            buttonFont.Location = new Point(0, 53);
+            buttonFont.Name = "buttonFont";
+            buttonFont.Size = new Size(186, 50);
+            buttonFont.TabIndex = 1;
+            buttonFont.Text = "Изменить шрифт";
+            buttonFont.UseVisualStyleBackColor = true;
+            buttonFont.Click += buttonFont_Click;
+            // 
+            // buttonColor
+            // 
+            buttonColor.Location = new Point(0, 3);
+            buttonColor.Name = "buttonColor";
+            buttonColor.Size = new Size(186, 44);
+            buttonColor.TabIndex = 0;
+            buttonColor.Text = "Изменить цвет";
+            buttonColor.UseVisualStyleBackColor = true;
+            buttonColor.Click += buttonColor_Click;
             // 
             // tableLayoutPanel4
             // 
@@ -279,8 +304,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Name = "AppView";
-            Text = "Form1";
+            Text = "Expenditure calculator";
             Load += Form1_Load;
+            ResizeEnd += AppView_ResizeEnd;
             tabControl1.ResumeLayout(false);
             editTab.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -296,7 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs2).EndInit();
             settingsPage.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureSettings1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -318,6 +344,8 @@
         private PictureBox pictureDiagram2;
         private PictureBox pictureGraphs1;
         private PictureBox pictureGraphs2;
-        private PictureBox pictureSettings1;
+        private Panel panel1;
+        private Button buttonColor;
+        private Button buttonFont;
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
@@ -81,7 +82,7 @@ namespace SpendCalculator
         }
 
         //Метод для рисования круглой даиаграммы
-        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea)
+        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea, Font font)
         {
             
             //Получить границы круговой диаграммы
@@ -98,9 +99,12 @@ namespace SpendCalculator
                 g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
 
                 // Начальный угол для рисования секторов
-                float startAngle = 0;
+                float startAngle = 270;
                 float xPieSize = 200;
                 float yPieSize = 200;
+
+                float pieWidth = 20;
+
                 float xPos = width / 2 - xPieSize / 2;
                 float yPos = height / 2 - yPieSize / 2;
 
@@ -110,14 +114,32 @@ namespace SpendCalculator
                     // Вычисляем угол для текущего сектора
                     float sweepAngle = (float)(360 * (double)sums[i] / (double)sum);
                     Console.WriteLine($"{types[i]} type {360 * (double)sums[i] / (double)sum} percent, {sums[i]} sum, {sum} общая сумма");
-
+                    var brush = new SolidBrush(color[i + 1]);
 
                     // Рисуем сектор
                     g.FillPie(new SolidBrush(color[i + 1]), xPos, yPos, xPieSize, yPieSize, startAngle, sweepAngle);
 
+                    //Пишем подпись
+                    var angleSin = MathF.Sin((float)((startAngle + sweepAngle / 2) * Math.PI / 180));
+                    var angleCos = MathF.Cos((float)((startAngle + sweepAngle / 2) * Math.PI / 180));
+                    var xStringPos = xPos + xPieSize / 2 + angleCos * (xPieSize / 2 + 20);
+                    var yStringPos = yPos + yPieSize / 2 + angleSin * (xPieSize / 2 + 20);
+
+                    StringFormat stringFormat = new StringFormat();
+                    if (angleCos >= 0)
+                    {
+                        stringFormat.Alignment = StringAlignment.Near;
+                    }
+                    else
+                        stringFormat.Alignment = StringAlignment.Far;
+                    g.DrawString(types[i], font, brush, xStringPos, yStringPos, stringFormat);
+
                     // Обновляем начальный угол для следующего сектора
                     startAngle += sweepAngle;
                 }
+
+                var brushBack = new SolidBrush(color[0]);
+                g.FillEllipse(brushBack, xPos + pieWidth, yPos + pieWidth, xPieSize - pieWidth * 2, yPieSize - 2 * pieWidth);
             }
         }
 
@@ -222,7 +244,7 @@ namespace SpendCalculator
 
                     //Нарисовать названия
                     var p3 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
-                    g.DrawString(names[i], font, Brushes.Black, p3);
+                    g.DrawString(names[i], font, brush, p3);
 
                     i++;
                     y++;
@@ -419,7 +441,7 @@ namespace SpendCalculator
                     graphs[num].Add(expense.Date, expense.Amount);
             }
 
-            DrawPieChart(graphs, types, colors, drawArea);
+            DrawPieChart(graphs, types, colors, drawArea, font);
             DrawAdditionalInfo(types, colors, drawArea, font);
 
             drawArea.Image = image;

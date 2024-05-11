@@ -4,8 +4,8 @@ namespace SpendCalculator
     internal interface IPresenter
     {
         //Работа со списками
-        public void OpenStatistics(PictureBox pictureBox, Font font);
-        public void OpenGraphics(PictureBox pictureBox, Font font);
+        public void OpenStatistics(PictureBox pictureBox);
+        public void OpenGraphics(PictureBox pictureBox);
         public void OpenList();
 
         //Поиск
@@ -22,5 +22,9 @@ namespace SpendCalculator
         //Сохранение и загрузка информации с и на локальный диск
         public void SaveData();
         public void LoadData(string path);
+
+        //Констроль внешнего вида
+        public void ChangeColor(PictureBox[] pictures, Panel[] panels, Color col);
+        public void ChangeFont(Button[] buttons, Font newFont);
     }
 }
