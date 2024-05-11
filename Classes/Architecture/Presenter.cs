@@ -26,22 +26,22 @@ namespace SpendCalculator
 
         private void CreateList()
         {
-            expenditures.Add(new Expenditure() { ID = 1, sum = 10, name = "fish", type = "Еда", date = new DateOnly(2024, 5, 9) });
-            expenditures.Add(new Expenditure() { ID = 2, sum = 11, name = "shorts", type = "Одежда", date = new DateOnly(2024, 5, 9) });
-            expenditures.Add(new Expenditure() { ID = 3, sum = 8, name = "glasses", type = "Одежда", date = new DateOnly(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { ID = 4, sum = 5, name = "gum", type = "Еда", date = new DateOnly(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { ID = 5, sum = 4, name = "бумага", type = "Канцелярия", date = new DateOnly(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { ID = 6, sum = 13, name = "Pencil", type = "Канцелярия", date = new DateOnly(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { ID = 7, sum = 21, name = "Phone", type = "Техника", date = new DateOnly(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { ID = 8, sum = 2, name = "Mayo", type = "Еда", date = new DateOnly(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { ID = 9, sum = 13, name = "pineapple", type = "Еда", date = new DateOnly(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { ID = 10, sum = 4, name = "apple", type = "Еда", date = new DateOnly(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { ID = 11, sum = 55, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { ID = 12, sum = 0, name = "banana", type = "Еда", date = new DateOnly(2024, 5, 13) });
+            expenditures.Add(new Expenditure() { Id = 1, Amount = 10, Name = "fish", Category = "Еда", Date = new DateTime(2024, 5, 9) });
+            expenditures.Add(new Expenditure() { Id = 2, Amount = 11, Name = "shorts", Category = "Одежда", Date = new DateTime(2024, 5, 9) });
+            expenditures.Add(new Expenditure() { Id = 3, Amount = 8, Name = "glasses", Category = "Одежда", Date = new DateTime(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { Id = 4, Amount = 5, Name = "gum", Category = "Еда", Date = new DateTime(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { Id = 5, Amount = 4, Name = "бумага", Category = "Канцелярия", Date = new DateTime(2024, 5, 10) });
+            expenditures.Add(new Expenditure() { Id = 6, Amount = 13, Name = "Pencil", Category = "Канцелярия", Date = new DateTime(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { Id = 7, Amount = 21, Name = "Phone", Category = "Техника", Date = new DateTime(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { Id = 8, Amount = 2, Name = "Mayo", Category = "Еда", Date = new DateTime(2024, 5, 11) });
+            expenditures.Add(new Expenditure() { Id = 9, Amount = 13, Name = "pineapple", Category = "Еда", Date = new DateTime(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { Id = 10, Amount = 4, Name = "apple", Category = "Еда", Date = new DateTime(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { Id = 11, Amount = 55, Name = "banana", Category = "Еда", Date = new DateTime(2024, 5, 12) });
+            expenditures.Add(new Expenditure() { Id = 12, Amount = 0, Name = "banana", Category = "Еда", Date = new DateTime(2024, 5, 13) });
         }
 
         //Работа со списками
-        public void AddElement(string name, double sum, DateOnly date)
+        public void AddElement(string name, double sum, DateTime date)
         {
             model.AddElement(name, sum, date);
         }
@@ -52,7 +52,7 @@ namespace SpendCalculator
         }
 
         //Поиск по списку
-        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate)
+        public void FindByCreationDate(DateTime minDate, DateTime maxDate)
         {
             model.FindByCreationDate(minDate, maxDate);
         }

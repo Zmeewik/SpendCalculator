@@ -9,7 +9,7 @@ namespace SpendCalculator
         public void OpenList();
 
         //Поиск
-        public void FindByCreationDate(DateOnly minDate, DateOnly maxDate);
+        public void FindByCreationDate(DateTime minDate, DateTime maxDate);
         public void FindByName(string name);
         public void FindBySum(double min, double max);
 

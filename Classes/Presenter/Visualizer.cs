@@ -1,5 +1,8 @@
 ﻿
 
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+
 namespace SpendCalculator
 {
     internal class Visualizer
@@ -10,10 +13,10 @@ namespace SpendCalculator
         static int lastPointX, lastPointY;
 
         //Метод для рисования линейно-кусочной диаграммы
-        static private void DrawDiagram(List<Dictionary<DateOnly, double>> values, List<Color> colors, PictureBox drawArea, Font font, List<DateOnly> dates)
+        static private void DrawDiagram(List<Dictionary<DateTime, decimal>> values, List<Color> colors, PictureBox drawArea, Font font, List<DateTime> dates)
         {
             //Получить границы рисования графиков
-            GetGraphRange(out var minDate, out var maxDate, out var maxDouble, out int maxGraphValue, values);
+            GetGraphRange(out var minDate, out var maxDate, out var maxdecimal, out int maxGraphValue, values);
 
             //Настроить рабочую область
             int margin = 40;
@@ -23,20 +26,24 @@ namespace SpendCalculator
 
             DragGraphicMarkup(minDate, maxDate, maxGraphValue, margin, margin + height, width, height, margin, font, dates);
 
+            bool isAll = values.Count < 2;
+
             //Нарисовать информацию
             using (Graphics g = Graphics.FromImage(image))
             {
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 for (int i = 0; i < values.Count; i++)
                 {
                     //Настроить объекты
                     int circleSize = 10;
 
                     int r = 0;
-                    foreach (KeyValuePair<DateOnly, double> pair in values[i])
+                    foreach (KeyValuePair<DateTime, decimal> pair in values[i])
                     {
                         //Найти расстояние до точек
                         var distanceToY = (height - graphMargin * 2) * pair.Value / maxGraphValue;
-                        var distanceToX = (width - graphMargin * 2) * (float)(pair.Key.DayNumber - minDate.DayNumber) / (float)(maxDate.DayNumber - minDate.DayNumber);
+                        var distanceToX = (width - graphMargin * 2) * (float)(pair.Key.Day - minDate.Day) / (float)(maxDate.Day - minDate.Day);
                         var pointX = (int)(margin + graphMargin + distanceToX);
                         var pointY = (int)(margin + height - distanceToY);
 
@@ -45,8 +52,15 @@ namespace SpendCalculator
                         Pen pen = new Pen(brush);
                         pen.Width = 3;
 
-                        Rectangle rect1 = new Rectangle(pointX - circleSize/2, pointY - circleSize/2, circleSize, circleSize);
+                        //Рисование точки
+                        Rectangle rect1 = new Rectangle(pointX - circleSize / 2, pointY - circleSize / 2, circleSize, circleSize);
                         g.FillEllipse(brush, rect1);
+
+                        //Рисованиее строки
+                        if (isAll)
+                        {
+                            g.DrawString(pair.Value.ToString(), font, brush, pointX - circleSize, pointY - circleSize - 20);
+                        }
 
                         if (r > 0)
                         {                    
@@ -67,7 +81,7 @@ namespace SpendCalculator
         }
 
         //Метод для рисования круглой даиаграммы
-        static private void DrawPieChart(List<Dictionary<DateOnly, double>> values, List<string> types, List<Color> color, PictureBox drawArea)
+        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea)
         {
             //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
@@ -81,11 +95,13 @@ namespace SpendCalculator
         }
 
         //Нарисовать разметку графика
-        static private void DragGraphicMarkup(DateOnly minDate, DateOnly maxDate, int maxDouble, int startX, int startY, int width, int height, int margin, Font font, List<DateOnly> dates)
+        static private void DragGraphicMarkup(DateTime minDate, DateTime maxDate, int maxdecimal, int startX, int startY, int width, int height, int margin, Font font, List<DateTime> dates)
         {
             //Нарисовать информацию
             using (Graphics g = Graphics.FromImage(image))
             {
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 //Настройка рисования
                 Brush brush = new SolidBrush(Color.LightGray);
                 Pen pen = new Pen(brush);
@@ -97,7 +113,7 @@ namespace SpendCalculator
 
 
                 var count = 0;
-                if (GetFirstDigit(maxDouble) == 1)
+                if (GetFirstDigit(maxdecimal) == 1)
                 {
                     count = 10;
                 }
@@ -108,7 +124,7 @@ namespace SpendCalculator
                 pen.Width = 1;
                 for (int num = 0; num < count; num++)
                 {
-                    string text = ((int)((float)(num) / count * maxDouble)).ToString();
+                    string text = ((int)((float)(num) / count * maxdecimal)).ToString();
 
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Far;
@@ -120,7 +136,7 @@ namespace SpendCalculator
                 int xChange = (int)((float)width/r);
                 for (int n = 0; n < r; n++)
                 {
-                    var distanceToX = (width - margin) * (float)(dates[n].DayNumber - minDate.DayNumber) / (float)(maxDate.DayNumber - minDate.DayNumber);
+                    var distanceToX = (width - margin) * (float)(dates[n].Day - minDate.Day) / (float)(maxDate.Day - minDate.Day);
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Near;
                     g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.Black, startX + distanceToX, startY + 10, stringFormat);
@@ -156,6 +172,8 @@ namespace SpendCalculator
             //Bitmap bmp = new Bitmap(drawArea.Width, drawArea.Height);
             using (Graphics g = Graphics.FromImage(image))
             {
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 int x = 0; int y = 0;
                 foreach (var name in names)
                 {
@@ -192,11 +210,11 @@ namespace SpendCalculator
         }
 
         // Получить сумму всех представленных трат и сумму по каждому типу
-        static private void GetPieRange(out double sum, List<Dictionary<DateOnly, double>> data, out List<double> typeSums)
+        static private void GetPieRange(out decimal sum, List<Dictionary<DateTime, decimal>> data, out List<decimal> typeSums)
         {
             sum = 0;
             int y = 0;
-            typeSums = new List<double>();
+            typeSums = new List<decimal>();
             foreach (var dict in data)
             {
                 typeSums.Add(0);
@@ -210,12 +228,12 @@ namespace SpendCalculator
         }
 
         // Получить границы представленных графиков
-        static private void GetGraphRange(out DateOnly minDate, out DateOnly maxDate, out double maxDouble, out int range, List<Dictionary<DateOnly, double>> data)
+        static private void GetGraphRange(out DateTime minDate, out DateTime maxDate, out decimal maxdecimal, out int range, List<Dictionary<DateTime, decimal>> data)
         {
 
-            minDate = DateOnly.MaxValue;
-            maxDate = DateOnly.MinValue;
-            maxDouble = double.MinValue;
+            minDate = DateTime.MaxValue;
+            maxDate = DateTime.MinValue;
+            maxdecimal = decimal.MinValue;
 
             foreach (var dict in data)
             {
@@ -228,8 +246,8 @@ namespace SpendCalculator
                         maxDate = kvp.Key;
 
                     // Обновление максимальной суммы
-                    if (kvp.Value > maxDouble)
-                        maxDouble = kvp.Value;
+                    if (kvp.Value > maxdecimal)
+                        maxdecimal = kvp.Value;
                 }
             }
 
@@ -237,7 +255,7 @@ namespace SpendCalculator
             // Получение основной области графика
             List<int> thresholds = [5];
             int counter = 0;
-            while (thresholds.Last() < maxDouble)
+            while (thresholds.Last() < maxdecimal)
             {
                 if (counter % 2 == 0)
                 {
@@ -262,30 +280,30 @@ namespace SpendCalculator
                 case "all":
 
                     // Сортировка по дате
-                    expenditures = expenditures.OrderBy(exp => exp.date).ToList();
+                    expenditures = expenditures.OrderBy(exp => exp.Date).ToList();
 
                     //Получить цвет графика и все даты
                     var color = GetColors(1, drawArea.BackColor);
-                    Dictionary<DateOnly, double> dates = new Dictionary<DateOnly, double>();
+                    Dictionary<DateTime, decimal> dates = new Dictionary<DateTime, decimal>();
                     foreach (var expense in expenditures)
                     {
-                        if (!dates.ContainsKey(expense.date))
+                        if (!dates.ContainsKey(expense.Date))
                         {
-                            if (dates.ContainsKey(expense.date))
-                                dates[expense.date] += expense.sum;
+                            if (dates.ContainsKey(expense.Date))
+                                dates[expense.Date] += expense.Amount;
                             else
-                                dates.Add(expense.date, expense.sum);
+                                dates.Add(expense.Date, expense.Amount);
                         }
                     }
-                    List<Dictionary<DateOnly, double>> graph = new List<Dictionary<DateOnly, double>>();
+                    List<Dictionary<DateTime, decimal>> graph = new List<Dictionary<DateTime, decimal>>();
                     graph.Add(dates);
 
                     //Объединить все даты
-                    var datesComp = new List<DateOnly>();
+                    var datesComp = new List<DateTime>();
                     foreach (var expense in expenditures)
                     { 
-                        if(!datesComp.Contains(expense.date))
-                            datesComp.Add(expense.date);
+                        if(!datesComp.Contains(expense.Date))
+                            datesComp.Add(expense.Date);
                     }
                     
 
@@ -299,36 +317,36 @@ namespace SpendCalculator
                 case "types":
 
                     // Сортировка по дате
-                    expenditures = expenditures.OrderBy(exp => exp.date).ToList();
+                    expenditures = expenditures.OrderBy(exp => exp.Date).ToList();
 
                     //Получить все типы трат и их цвета
                     List<string> types = new List<string>();
                     foreach (var expense in expenditures)
                     { 
-                        if(!types.Contains(expense.type))
-                            types.Add(expense.type);
+                        if(!types.Contains(expense.Category))
+                            types.Add(expense.Category);
                     }
                     var colors = GetColors(types.Count, drawArea.BackColor);
 
                     //Получить все даты для разных графиков типов
-                    List<Dictionary<DateOnly, double>> graphs = new List<Dictionary<DateOnly, double>>();
+                    List<Dictionary<DateTime, decimal>> graphs = new List<Dictionary<DateTime, decimal>>();
                     for (int r = 0; r < types.Count; r++)
-                        graphs.Add(new Dictionary<DateOnly, double>());
+                        graphs.Add(new Dictionary<DateTime, decimal>());
                     foreach (var expense in expenditures)
                     {
-                        var num = types.IndexOf(expense.type);
-                        if (graphs[num].ContainsKey(expense.date))
-                            graphs[num][expense.date] += expense.sum;
+                        var num = types.IndexOf(expense.Category);
+                        if (graphs[num].ContainsKey(expense.Date))
+                            graphs[num][expense.Date] += expense.Amount;
                         else
-                            graphs[num].Add(expense.date, expense.sum);
+                            graphs[num].Add(expense.Date, expense.Amount);
                     }
 
                     //Объединить все даты
-                    var datesCompl = new List<DateOnly>();
+                    var datesCompl = new List<DateTime>();
                     foreach (var expense in expenditures)
                     {
-                        if (!datesCompl.Contains(expense.date))
-                            datesCompl.Add(expense.date);
+                        if (!datesCompl.Contains(expense.Date))
+                            datesCompl.Add(expense.Date);
                     }
 
                     //DrawDiagram(graphs, colors, drawArea);
@@ -348,24 +366,24 @@ namespace SpendCalculator
             List<string> types = new List<string>();
             foreach (var expense in expenditures)
             {
-                if (!types.Contains(expense.type))
+                if (!types.Contains(expense.Category))
                 {
-                    types.Add(expense.type);
+                    types.Add(expense.Category);
                 }
             }
             var colors = GetColors(types.Count, drawArea.BackColor);
 
             //Получить все даты для разных графиков типов
-            List<Dictionary<DateOnly, double>> graphs = new List<Dictionary<DateOnly, double>>();
+            List<Dictionary<DateTime, decimal>> graphs = new List<Dictionary<DateTime, decimal>>();
             for (int r = 0; r < types.Count; r++)
-                graphs.Add(new Dictionary<DateOnly, double>());
+                graphs.Add(new Dictionary<DateTime, decimal>());
             foreach (var expense in expenditures)
             {
-                var num = types.IndexOf(expense.type);
-                if (graphs[num].ContainsKey(expense.date))
-                    graphs[num][expense.date] += expense.sum;
+                var num = types.IndexOf(expense.Category);
+                if (graphs[num].ContainsKey(expense.Date))
+                    graphs[num][expense.Date] += expense.Amount;
                 else
-                    graphs[num].Add(expense.date, expense.sum);
+                    graphs[num].Add(expense.Date, expense.Amount);
             }
 
             DrawPieChart(graphs, types, colors, drawArea);
