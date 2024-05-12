@@ -3,9 +3,9 @@ namespace SpendCalculator
 {
     internal class Expenditure
     {
-        public int Id { get; set; } // Уникальный идентификатор траты
-        public string Category { get; set; } // Категория траты
+        public int Id { get; private set; } // Уникальный идентификатор траты
         public string Name { get; set; } // Название траты
+        public string Category { get; set; } // Категория траты
         public decimal Amount { get; set; } // Сумма траты
         public DateTime Date { get; set; } // Дата проведения траты
         public bool IsRecurring { get; set; } // Флаг, указывающий на то, является ли трата повторяющейся
