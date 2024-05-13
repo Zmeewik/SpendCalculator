@@ -1,11 +1,11 @@
-
+п»ї
 using System.Runtime.InteropServices;
 
 namespace SpendCalculator
 {
     public partial class AppView : Form
     {
-        //Инициализация консоли
+        //РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅСЃРѕР»Рё
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -28,32 +28,44 @@ namespace SpendCalculator
             presenter = Presenter.Instance();
             DataGridView[] views = [dataGridList, dataGridGraph, dataGridDiagram];
             presenter.Setup(views);
+            SetSortDefault();
         }
 
-        //Метод вызываемый при загрузке приложения
+        //РњРµС‚РѕРґ РІС‹Р·С‹РІР°РµРјС‹Р№ РїСЂРё Р·Р°РіСЂСѓР·РєРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.WriteLine("App started!");
         }
 
-        //Функция вызываемая при смене таба
+        private void SetSortDefault()
+        { 
+            
+        }
+
+        //Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµРјР°СЏ РїСЂРё СЃРјРµРЅРµ С‚Р°Р±Р°
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateTabs();
+        }
+
+        void UpdateTabs()
         {
             switch (tabControl1.SelectedIndex)
             {
-                //Редактирование
+                //Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
                 case 0:
                     presenter.OpenList();
                     break;
-                //Круговая диаграмма
+                //РљСЂСѓРіРѕРІР°СЏ РґРёР°РіСЂР°РјРјР°
                 case 1:
                     presenter.OpenStatistics(pictureDiagram1, currentFont);
                     break;
-                //Графики
+                //Р“СЂР°С„РёРєРё
                 case 2:
-                    presenter.OpenGraphics(pictureGraphs1, currentFont);
+                    if (graphType) presenter.OpenGraphics(pictureGraphs1, currentFont, "types");
+                    else presenter.OpenGraphics(pictureGraphs1, currentFont, "all");
                     break;
-                //Настройки
+                //РќР°СЃС‚СЂРѕР№РєРё
                 case 3:
 
                     break;
@@ -75,7 +87,7 @@ namespace SpendCalculator
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = saveFileDialog.FileName;
-                    // Сохраняем файл по выбранному пути
+                    // РЎРѕС…СЂР°РЅСЏРµРј С„Р°Р№Р» РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ РїСѓС‚Рё
                     presenter.SaveData(filePath);
                 }
             }
@@ -89,7 +101,7 @@ namespace SpendCalculator
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = saveFileDialog.FileName;
-                    // Сохраняем файл по выбранному пути
+                    // РЎРѕС…СЂР°РЅСЏРµРј С„Р°Р№Р» РїРѕ РІС‹Р±СЂР°РЅРЅРѕРјСѓ РїСѓС‚Рё
                     presenter.SaveData(filePath);
                 }
             }
@@ -103,7 +115,7 @@ namespace SpendCalculator
                 presenter.AddElement(textBoxName.Text, res, dateTimePicker.Value);
             }
             else
-                MessageBox.Show($"{res} не является числом!");
+                MessageBox.Show($"{res} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
 
 
 
@@ -114,7 +126,7 @@ namespace SpendCalculator
             if (Int32.TryParse(textBoxId.Text, out var res))
                 presenter.DeleteElement(res);
             else
-                MessageBox.Show($"{res} не является числом!");
+                MessageBox.Show($"{res} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
 
         }
 
@@ -123,45 +135,269 @@ namespace SpendCalculator
             presenter.ClearAllFind();
         }
 
-        private void textBoxFindName_TextChanged(object sender, EventArgs e)
-        {
-            presenter.FindByName(textBoxName.Text);
-        }
-
-        private void textBoMinSum_TextChanged(object sender, EventArgs e)
-        {
-            GetRange();
-        }
-
-        private void textBoxMaxSum_TextChanged(object sender, EventArgs e)
-        {
-            GetRange();
-        }
-
         void GetRange()
         {
-            if (Double.TryParse(textBoxMinSum.Text, out var res1))
-                if (Double.TryParse(textBoxMaxSum.Text, out var res2))
+
+            // Р•СЃР»Рё РїРѕР»СЏ РїС‹СЃС‚С‹Рµ РѕС‚РїСЂР°РІР»СЏС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рµ Рё РјРёРЅРёРјР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
+            double res1 = 0;
+            double res2 = 0;
+
+            if (string.IsNullOrEmpty(textBoxFindSumMin1.Text))
+                res1 = -1;
+            if(string.IsNullOrEmpty(textBoxFindSumMax1.Text))
+                res2 = -1;
+
+            Console.WriteLine($"{res1} res 1, {res2} res 2");
+
+            if (res1 == -1 && res2 == -1)
+            {
+                res1 = double.MinValue;
+                res2 = double.MaxValue;
+                presenter.FindBySum(res1, res2);
+                return;
+            }
+            else if (res1 == -1)
+            {
+                res1 = double.MinValue;
+                if (Double.TryParse(textBoxFindSumMax1.Text, out res2))
                     presenter.FindBySum(res1, res2);
                 else
-                    MessageBox.Show($"{res2} не является числом!");
+                    MessageBox.Show($"{res2} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
+                return;
+            }
+            else if (res2 == -1)
+            {
+                res2 = double.MaxValue;
+                if (Double.TryParse(textBoxFindSumMin1.Text, out res1))
+                    presenter.FindBySum(res1, res2);
+                else
+                    MessageBox.Show($"{res1} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
+                return;
+            }
+
+            //РџСЂРѕРІРµСЂСЏС‚СЊ РѕР±Р° РїРѕР»СЏ, РµСЃР»Рё РЅРµ РїСѓСЃС‚С‹Рµ РЅР° double Р·РЅР°С‡РµРЅРёСЏ
+            if (Double.TryParse(textBoxFindSumMin1.Text, out res1))
+                if (Double.TryParse(textBoxFindSumMax1.Text, out res2))
+                    presenter.FindBySum(res1, res2);
+                else
+                    MessageBox.Show($"{res2} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
             else
-                MessageBox.Show($"{res1} не является числом!");
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            presenter.FindByCreationDate(dateTimeMax2.Value, dateTimeMin2.Value);
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            presenter.FindByCreationDate(dateTimeMax2.Value, dateTimeMin2.Value);
+                MessageBox.Show($"{res1} РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј!");
         }
 
         private void tableLayoutPanel13_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        //РџРѕРёСЃРє РїРѕ СЌР»РµРјРµРЅС‚Р°Рј
+        private void buttonFind1_Click(object sender, EventArgs e)
+        {
+            presenter.FindByName(textBoxFindName1.Text);
+            presenter.FindByCategory(textBoxFindCategory1.Text);
+            presenter.FindByCreationDate(dateTimeFindMin1.Value, dateTimeFindMax1.Value);
+            GetRange();
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonClear_Click_1(object sender, EventArgs e)
+        {
+            presenter.ClearAllFind();
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void textBoxFindName1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBoxFindName1.Text = textBox.Text;
+            textBoxFindName2.Text = textBox.Text;
+            textBoxFindName3.Text = textBox.Text;
+        }
+
+        private void textBoxFindCategory1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBoxFindCategory1.Text = textBox.Text;
+            textBoxFindCategory2.Text = textBox.Text;
+            textBoxFindCategory3.Text = textBox.Text;
+        }
+
+        private void textBoxFindSumMin1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBoxFindSumMin1.Text = textBox.Text;
+            textBoxFindSumMin2.Text = textBox.Text;
+            textBoxFindSumMin3.Text = textBox.Text;
+        }
+
+        private void textBoxFindSumMax1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBoxFindSumMax1.Text = textBox.Text;
+            textBoxFindSumMax2.Text = textBox.Text;
+            textBoxFindSumMax3.Text = textBox.Text;
+        }
+
+        private void dateTimeFindMin1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker picker = sender as DateTimePicker;
+            dateTimeFindMin1.Value = picker.Value;
+            dateTimeFindMin2.Value = picker.Value;
+            dateTimeFindMin3.Value = picker.Value;
+        }
+
+        private void dateTimeFindMax1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker picker = sender as DateTimePicker;
+            dateTimeFindMax1.Value = picker.Value;
+            dateTimeFindMax2.Value = picker.Value;
+            dateTimeFindMax3.Value = picker.Value;
+        }
+
+        private void UpdateOtherButtons()
+        {
+            List<Button> buttons = [buttonIDSort1, buttonIDSort2, buttonIDSort3,
+                                    buttonNameSort1, buttonNameSort2, buttonNameSort3,
+                                    buttonSumSort1, buttonSumSort2, buttonSumSort3,
+                                    buttonCategorySort1, buttonCategorySort2, buttonCategorySort3,
+                                    buttonDateSort1, buttonDateSort2, buttonDateSort3];
+            foreach (var button in buttons)
+            {
+                if(button.Text[0] == 'в†‘' || button.Text[0] == 'в†“')
+                    button.Text = button.Text.Remove(0, 2);
+            }
+        }
+
+        bool idInversed = false;
+        bool nameInversed = false;
+        bool categoryInversed = false;
+        bool sumInversed = false;
+        bool dateInversed = false;
+
+        bool graphType = false;
+
+        private void buttonIDSort1_Click(object sender, EventArgs e)
+        {
+            UpdateOtherButtons();
+            if (idInversed)
+            {
+                buttonIDSort2.Text = "в†‘ " + buttonIDSort1.Text;
+                buttonIDSort3.Text = "в†‘ " + buttonIDSort1.Text;
+                buttonIDSort1.Text = "в†‘ " + buttonIDSort1.Text;
+            }
+            else
+            {
+                buttonIDSort2.Text = "в†“ " + buttonIDSort1.Text;
+                buttonIDSort3.Text = "в†“ " + buttonIDSort1.Text;
+                buttonIDSort1.Text = "в†“ " + buttonIDSort1.Text;
+            }
+            presenter.SortByCreation(idInversed);
+            idInversed = !idInversed;
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonNameSort1_Click(object sender, EventArgs e)
+        {
+            UpdateOtherButtons();
+            if (nameInversed)
+            {
+                buttonNameSort2.Text = "в†‘ " + buttonNameSort1.Text;
+                buttonNameSort3.Text = "в†‘ " + buttonNameSort1.Text;
+                buttonNameSort1.Text = "в†‘ " + buttonNameSort1.Text;
+            }
+            else
+            {
+                buttonNameSort2.Text = "в†“ " + buttonNameSort1.Text;
+                buttonNameSort3.Text = "в†“ " + buttonNameSort1.Text;
+                buttonNameSort1.Text = "в†“ " + buttonNameSort1.Text;
+            }
+            presenter.SortByName(nameInversed);
+            nameInversed = !nameInversed;
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonSumSort1_Click(object sender, EventArgs e)
+        {
+            UpdateOtherButtons();
+            if (sumInversed)
+            {
+                buttonSumSort2.Text = "в†‘ " + buttonSumSort1.Text;
+                buttonSumSort3.Text = "в†‘ " + buttonSumSort1.Text;
+                buttonSumSort1.Text = "в†‘ " + buttonSumSort1.Text;
+            }
+            else
+            {
+                buttonSumSort2.Text = "в†“ " + buttonSumSort1.Text;
+                buttonSumSort3.Text = "в†“ " + buttonSumSort1.Text;
+                buttonSumSort1.Text = "в†“ " + buttonSumSort1.Text;
+            }
+            presenter.SortBySum(sumInversed);
+            sumInversed = !sumInversed;
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonCategorySort1_Click(object sender, EventArgs e)
+        {
+            UpdateOtherButtons();
+            if (categoryInversed)
+            {
+                buttonCategorySort2.Text = "в†‘ " + buttonCategorySort1.Text;
+                buttonCategorySort3.Text = "в†‘ " + buttonCategorySort1.Text;
+                buttonCategorySort1.Text = "в†‘ " + buttonCategorySort1.Text;
+            }
+            else
+            {
+                buttonCategorySort2.Text = "в†“ " + buttonCategorySort1.Text;
+                buttonCategorySort3.Text = "в†“ " + buttonCategorySort1.Text;
+                buttonCategorySort1.Text = "в†“ " + buttonCategorySort1.Text;
+            }
+            presenter.SortByCategory(categoryInversed);
+            categoryInversed = !categoryInversed;
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonDateSort1_Click(object sender, EventArgs e)
+        {
+            UpdateOtherButtons();
+            if (dateInversed)
+            {
+                buttonDateSort2.Text = "в†‘ " + buttonDateSort1.Text;
+                buttonDateSort3.Text = "в†‘ " + buttonDateSort1.Text;
+                buttonDateSort1.Text = "в†‘ " + buttonDateSort1.Text;
+            }
+            else
+            {
+                buttonDateSort2.Text = "в†“ " + buttonDateSort1.Text;
+                buttonDateSort3.Text = "в†“ " + buttonDateSort1.Text;
+                buttonDateSort1.Text = "в†“ " + buttonDateSort1.Text;
+            }
+            presenter.SortByDate(dateInversed);
+            dateInversed = !dateInversed;
+            presenter.UpdateList();
+            UpdateTabs();
+        }
+
+        private void buttonAll1_Click(object sender, EventArgs e)
+        {
+            graphType = !graphType;
+            if (graphType) 
+            {
+                presenter.OpenGraphics(pictureGraphs1, currentFont, "types");
+                buttonAll3.Text = "РџРѕ С‚РёРїР°Рј";
+            }
+            else
+            {
+                presenter.OpenGraphics(pictureGraphs1, currentFont, "all");
+                buttonAll3.Text = "Р’СЃРµ С‚СЂР°С‚С‹";
+            }
+            presenter.UpdateList();
+            UpdateTabs();
         }
     }
 }

@@ -33,6 +33,26 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel7 = new TableLayoutPanel();
             dataGridList = new DataGridView();
+            tableLayoutPanel13 = new TableLayoutPanel();
+            dateTimeFindMax1 = new DateTimePicker();
+            dateTimeFindMin1 = new DateTimePicker();
+            textBoxFindSumMax1 = new TextBox();
+            textBoxFindSumMin1 = new TextBox();
+            textBoxFindCategory1 = new TextBox();
+            textBoxFindName1 = new TextBox();
+            label23 = new Label();
+            label20 = new Label();
+            label17 = new Label();
+            label14 = new Label();
+            label11 = new Label();
+            label8 = new Label();
+            buttonClear = new Button();
+            buttonIDSort1 = new Button();
+            buttonNameSort1 = new Button();
+            buttonSumSort1 = new Button();
+            buttonFind1 = new Button();
+            buttonDateSort1 = new Button();
+            buttonCategorySort1 = new Button();
             tableLayoutPanel10 = new TableLayoutPanel();
             buttonAdd = new Button();
             tableLayoutPanel11 = new TableLayoutPanel();
@@ -55,48 +75,13 @@
             diagramTab = new TabPage();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel8 = new TableLayoutPanel();
-            dataGridDiagram = new DataGridView();
-            pictureDiagram1 = new PictureBox();
-            graphTab = new TabPage();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            tableLayoutPanel9 = new TableLayoutPanel();
-            dataGridGraph = new DataGridView();
-            pictureGraphs1 = new PictureBox();
-            settingsPage = new TabPage();
-            tableLayoutPanel5 = new TableLayoutPanel();
-            buttonExit = new Button();
-            buttonSave = new Button();
-            buttonLoa = new Button();
-            tableLayoutPanel4 = new TableLayoutPanel();
-            tableLayoutPanel6 = new TableLayoutPanel();
-            label8 = new Label();
-            label11 = new Label();
-            label14 = new Label();
-            label17 = new Label();
-            label20 = new Label();
-            label23 = new Label();
-            tableLayoutPanel13 = new TableLayoutPanel();
-            buttonClear = new Button();
-            buttonIDSort1 = new Button();
-            buttonNameSort1 = new Button();
-            buttonSumSort1 = new Button();
-            buttonDateSort1 = new Button();
-            buttonAll1 = new Button();
-            buttonFind1 = new Button();
-            buttonCategorySort1 = new Button();
-            textBoxFindName1 = new TextBox();
-            textBoxFindCategory1 = new TextBox();
-            textBoxFindSumMin1 = new TextBox();
-            textBoxFindSumMax1 = new TextBox();
-            dateTimeFindMin1 = new DateTimePicker();
-            dateTimeFindMax1 = new DateTimePicker();
             tableLayoutPanel14 = new TableLayoutPanel();
-            dateTimeMax2 = new DateTimePicker();
-            dateTimeMin2 = new DateTimePicker();
+            dateTimeFindMax2 = new DateTimePicker();
+            dateTimeFindMin2 = new DateTimePicker();
             textBoxFindSumMax2 = new TextBox();
             textBoxFindSumMin2 = new TextBox();
-            textBoxCategoryFind2 = new TextBox();
-            textBoxNameFind2 = new TextBox();
+            textBoxFindCategory2 = new TextBox();
+            textBoxFindName2 = new TextBox();
             label9 = new Label();
             label10 = new Label();
             label12 = new Label();
@@ -107,16 +92,20 @@
             buttonIDSort2 = new Button();
             buttonNameSort2 = new Button();
             buttonSumSort2 = new Button();
-            buttonAll2 = new Button();
             buttonFind2 = new Button();
             buttonDateSort2 = new Button();
             buttonCategorySort2 = new Button();
+            dataGridDiagram = new DataGridView();
+            pictureDiagram1 = new PictureBox();
+            graphTab = new TabPage();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel15 = new TableLayoutPanel();
-            dateTimeMiax3 = new DateTimePicker();
-            dateTimeMin3 = new DateTimePicker();
+            dateTimeFindMax3 = new DateTimePicker();
+            dateTimeFindMin3 = new DateTimePicker();
             textBoxFindSumMax3 = new TextBox();
             textBoxFindSumMin3 = new TextBox();
-            textBoxFindCategoty3 = new TextBox();
+            textBoxFindCategory3 = new TextBox();
             textBoxFindName3 = new TextBox();
             label18 = new Label();
             label19 = new Label();
@@ -125,36 +114,45 @@
             label24 = new Label();
             label25 = new Label();
             buttonClear3 = new Button();
-            buttonIDSor3 = new Button();
+            buttonIDSort3 = new Button();
             buttonNameSort3 = new Button();
             buttonSumSort3 = new Button();
             buttonAll3 = new Button();
             buttonFind3 = new Button();
             buttonDateSort3 = new Button();
             buttonCategorySort3 = new Button();
+            dataGridGraph = new DataGridView();
+            pictureGraphs1 = new PictureBox();
+            settingsPage = new TabPage();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            buttonExit = new Button();
+            buttonSave = new Button();
+            buttonLoa = new Button();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel6 = new TableLayoutPanel();
             tabControl1.SuspendLayout();
             editTab.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridList).BeginInit();
+            tableLayoutPanel13.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             diagramTab.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
+            tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDiagram).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureDiagram1).BeginInit();
             graphTab.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
+            tableLayoutPanel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridGraph).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).BeginInit();
             settingsPage.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
-            tableLayoutPanel13.SuspendLayout();
-            tableLayoutPanel14.SuspendLayout();
-            tableLayoutPanel15.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -231,6 +229,236 @@
             dataGridList.Name = "dataGridList";
             dataGridList.Size = new Size(420, 223);
             dataGridList.TabIndex = 1;
+            // 
+            // tableLayoutPanel13
+            // 
+            tableLayoutPanel13.ColumnCount = 3;
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel13.Controls.Add(dateTimeFindMax1, 1, 5);
+            tableLayoutPanel13.Controls.Add(dateTimeFindMin1, 1, 4);
+            tableLayoutPanel13.Controls.Add(textBoxFindSumMax1, 1, 3);
+            tableLayoutPanel13.Controls.Add(textBoxFindSumMin1, 1, 2);
+            tableLayoutPanel13.Controls.Add(textBoxFindCategory1, 1, 1);
+            tableLayoutPanel13.Controls.Add(textBoxFindName1, 1, 0);
+            tableLayoutPanel13.Controls.Add(label23, 0, 5);
+            tableLayoutPanel13.Controls.Add(label20, 0, 4);
+            tableLayoutPanel13.Controls.Add(label17, 0, 3);
+            tableLayoutPanel13.Controls.Add(label14, 0, 2);
+            tableLayoutPanel13.Controls.Add(label11, 0, 1);
+            tableLayoutPanel13.Controls.Add(label8, 0, 0);
+            tableLayoutPanel13.Controls.Add(buttonClear, 0, 6);
+            tableLayoutPanel13.Controls.Add(buttonIDSort1, 2, 0);
+            tableLayoutPanel13.Controls.Add(buttonNameSort1, 2, 1);
+            tableLayoutPanel13.Controls.Add(buttonSumSort1, 2, 2);
+            tableLayoutPanel13.Controls.Add(buttonFind1, 1, 6);
+            tableLayoutPanel13.Controls.Add(buttonDateSort1, 2, 4);
+            tableLayoutPanel13.Controls.Add(buttonCategorySort1, 2, 3);
+            tableLayoutPanel13.Dock = DockStyle.Fill;
+            tableLayoutPanel13.Location = new Point(26, 257);
+            tableLayoutPanel13.Name = "tableLayoutPanel13";
+            tableLayoutPanel13.RowCount = 7;
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
+            tableLayoutPanel13.Size = new Size(420, 223);
+            tableLayoutPanel13.TabIndex = 2;
+            // 
+            // dateTimeFindMax1
+            // 
+            dateTimeFindMax1.Dock = DockStyle.Fill;
+            dateTimeFindMax1.Location = new Point(142, 158);
+            dateTimeFindMax1.Name = "dateTimeFindMax1";
+            dateTimeFindMax1.Size = new Size(133, 23);
+            dateTimeFindMax1.TabIndex = 33;
+            dateTimeFindMax1.ValueChanged += dateTimeFindMax1_ValueChanged;
+            // 
+            // dateTimeFindMin1
+            // 
+            dateTimeFindMin1.Dock = DockStyle.Fill;
+            dateTimeFindMin1.Location = new Point(142, 127);
+            dateTimeFindMin1.Name = "dateTimeFindMin1";
+            dateTimeFindMin1.Size = new Size(133, 23);
+            dateTimeFindMin1.TabIndex = 32;
+            dateTimeFindMin1.ValueChanged += dateTimeFindMin1_ValueChanged;
+            // 
+            // textBoxFindSumMax1
+            // 
+            textBoxFindSumMax1.Dock = DockStyle.Fill;
+            textBoxFindSumMax1.Location = new Point(142, 96);
+            textBoxFindSumMax1.Name = "textBoxFindSumMax1";
+            textBoxFindSumMax1.Size = new Size(133, 23);
+            textBoxFindSumMax1.TabIndex = 31;
+            textBoxFindSumMax1.TextChanged += textBoxFindSumMax1_TextChanged;
+            // 
+            // textBoxFindSumMin1
+            // 
+            textBoxFindSumMin1.Dock = DockStyle.Fill;
+            textBoxFindSumMin1.Location = new Point(142, 65);
+            textBoxFindSumMin1.Name = "textBoxFindSumMin1";
+            textBoxFindSumMin1.Size = new Size(133, 23);
+            textBoxFindSumMin1.TabIndex = 30;
+            textBoxFindSumMin1.TextChanged += textBoxFindSumMin1_TextChanged;
+            // 
+            // textBoxFindCategory1
+            // 
+            textBoxFindCategory1.Dock = DockStyle.Fill;
+            textBoxFindCategory1.Location = new Point(142, 34);
+            textBoxFindCategory1.Name = "textBoxFindCategory1";
+            textBoxFindCategory1.Size = new Size(133, 23);
+            textBoxFindCategory1.TabIndex = 29;
+            textBoxFindCategory1.TextChanged += textBoxFindCategory1_TextChanged;
+            // 
+            // textBoxFindName1
+            // 
+            textBoxFindName1.Dock = DockStyle.Fill;
+            textBoxFindName1.Location = new Point(142, 3);
+            textBoxFindName1.Name = "textBoxFindName1";
+            textBoxFindName1.Size = new Size(133, 23);
+            textBoxFindName1.TabIndex = 28;
+            textBoxFindName1.TextChanged += textBoxFindName1_TextChanged;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Dock = DockStyle.Fill;
+            label23.Location = new Point(3, 155);
+            label23.Name = "label23";
+            label23.Size = new Size(133, 31);
+            label23.TabIndex = 18;
+            label23.Text = "Макс. дата";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Dock = DockStyle.Fill;
+            label20.Location = new Point(3, 124);
+            label20.Name = "label20";
+            label20.Size = new Size(133, 31);
+            label20.TabIndex = 15;
+            label20.Text = "Мин. дата";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Dock = DockStyle.Fill;
+            label17.Location = new Point(3, 93);
+            label17.Name = "label17";
+            label17.Size = new Size(133, 31);
+            label17.TabIndex = 12;
+            label17.Text = "Макс. сумма";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Dock = DockStyle.Fill;
+            label14.Location = new Point(3, 62);
+            label14.Name = "label14";
+            label14.Size = new Size(133, 31);
+            label14.TabIndex = 9;
+            label14.Text = "Мин. сумма";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Dock = DockStyle.Fill;
+            label11.Location = new Point(3, 31);
+            label11.Name = "label11";
+            label11.Size = new Size(133, 31);
+            label11.TabIndex = 6;
+            label11.Text = "Категория";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Dock = DockStyle.Fill;
+            label8.Location = new Point(3, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(133, 31);
+            label8.TabIndex = 3;
+            label8.Text = "Название";
+            // 
+            // buttonClear
+            // 
+            buttonClear.Dock = DockStyle.Fill;
+            buttonClear.Location = new Point(3, 189);
+            buttonClear.Name = "buttonClear";
+            buttonClear.Size = new Size(133, 31);
+            buttonClear.TabIndex = 19;
+            buttonClear.Text = "Отчистить";
+            buttonClear.UseVisualStyleBackColor = true;
+            buttonClear.Click += buttonClear_Click_1;
+            // 
+            // buttonIDSort1
+            // 
+            buttonIDSort1.Dock = DockStyle.Fill;
+            buttonIDSort1.Location = new Point(281, 3);
+            buttonIDSort1.Name = "buttonIDSort1";
+            buttonIDSort1.Size = new Size(136, 25);
+            buttonIDSort1.TabIndex = 20;
+            buttonIDSort1.Text = "ID";
+            buttonIDSort1.UseVisualStyleBackColor = true;
+            buttonIDSort1.Click += buttonIDSort1_Click;
+            // 
+            // buttonNameSort1
+            // 
+            buttonNameSort1.Dock = DockStyle.Fill;
+            buttonNameSort1.Location = new Point(281, 34);
+            buttonNameSort1.Name = "buttonNameSort1";
+            buttonNameSort1.Size = new Size(136, 25);
+            buttonNameSort1.TabIndex = 21;
+            buttonNameSort1.Text = "Назание";
+            buttonNameSort1.UseVisualStyleBackColor = true;
+            buttonNameSort1.Click += buttonNameSort1_Click;
+            // 
+            // buttonSumSort1
+            // 
+            buttonSumSort1.Dock = DockStyle.Fill;
+            buttonSumSort1.Location = new Point(281, 65);
+            buttonSumSort1.Name = "buttonSumSort1";
+            buttonSumSort1.Size = new Size(136, 25);
+            buttonSumSort1.TabIndex = 22;
+            buttonSumSort1.Text = "Сумма";
+            buttonSumSort1.UseVisualStyleBackColor = true;
+            buttonSumSort1.Click += buttonSumSort1_Click;
+            // 
+            // buttonFind1
+            // 
+            buttonFind1.Dock = DockStyle.Fill;
+            buttonFind1.Location = new Point(142, 189);
+            buttonFind1.Name = "buttonFind1";
+            buttonFind1.Size = new Size(133, 31);
+            buttonFind1.TabIndex = 26;
+            buttonFind1.Text = "Поиск";
+            buttonFind1.UseVisualStyleBackColor = true;
+            buttonFind1.Click += buttonFind1_Click;
+            // 
+            // buttonDateSort1
+            // 
+            buttonDateSort1.Dock = DockStyle.Fill;
+            buttonDateSort1.Location = new Point(281, 127);
+            buttonDateSort1.Name = "buttonDateSort1";
+            buttonDateSort1.Size = new Size(136, 25);
+            buttonDateSort1.TabIndex = 23;
+            buttonDateSort1.Text = "Дата";
+            buttonDateSort1.UseVisualStyleBackColor = true;
+            buttonDateSort1.Click += buttonDateSort1_Click;
+            // 
+            // buttonCategorySort1
+            // 
+            buttonCategorySort1.Dock = DockStyle.Fill;
+            buttonCategorySort1.Location = new Point(281, 96);
+            buttonCategorySort1.Name = "buttonCategorySort1";
+            buttonCategorySort1.Size = new Size(136, 25);
+            buttonCategorySort1.TabIndex = 27;
+            buttonCategorySort1.Text = "Категория";
+            buttonCategorySort1.UseVisualStyleBackColor = true;
+            buttonCategorySort1.Click += buttonCategorySort1_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -495,421 +723,18 @@
             tableLayoutPanel8.Size = new Size(470, 511);
             tableLayoutPanel8.TabIndex = 3;
             // 
-            // dataGridDiagram
-            // 
-            dataGridDiagram.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridDiagram.Dock = DockStyle.Fill;
-            dataGridDiagram.Location = new Point(26, 28);
-            dataGridDiagram.Name = "dataGridDiagram";
-            dataGridDiagram.ReadOnly = true;
-            dataGridDiagram.Size = new Size(417, 223);
-            dataGridDiagram.TabIndex = 1;
-            // 
-            // pictureDiagram1
-            // 
-            pictureDiagram1.Dock = DockStyle.Fill;
-            pictureDiagram1.Location = new Point(3, 3);
-            pictureDiagram1.Name = "pictureDiagram1";
-            pictureDiagram1.Size = new Size(470, 511);
-            pictureDiagram1.TabIndex = 0;
-            pictureDiagram1.TabStop = false;
-            // 
-            // graphTab
-            // 
-            graphTab.Controls.Add(tableLayoutPanel3);
-            graphTab.Location = new Point(4, 24);
-            graphTab.Name = "graphTab";
-            graphTab.Size = new Size(958, 523);
-            graphTab.TabIndex = 2;
-            graphTab.Text = "Графики";
-            graphTab.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.42424F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.5757561F));
-            tableLayoutPanel3.Controls.Add(tableLayoutPanel9, 0, 0);
-            tableLayoutPanel3.Controls.Add(pictureGraphs1, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(0, 0);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 89.3364944F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10.6635075F));
-            tableLayoutPanel3.Size = new Size(958, 523);
-            tableLayoutPanel3.TabIndex = 3;
-            // 
-            // tableLayoutPanel9
-            // 
-            tableLayoutPanel9.ColumnCount = 3;
-            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.658009F));
-            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 91.34199F));
-            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel9.Controls.Add(tableLayoutPanel15, 1, 2);
-            tableLayoutPanel9.Controls.Add(dataGridGraph, 1, 1);
-            tableLayoutPanel9.Dock = DockStyle.Fill;
-            tableLayoutPanel9.Location = new Point(648, 3);
-            tableLayoutPanel9.Name = "tableLayoutPanel9";
-            tableLayoutPanel9.RowCount = 4;
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 9.803922F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 90.1960754F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 230F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel9.Size = new Size(307, 517);
-            tableLayoutPanel9.TabIndex = 3;
-            // 
-            // dataGridGraph
-            // 
-            dataGridGraph.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridGraph.Dock = DockStyle.Fill;
-            dataGridGraph.Location = new Point(27, 29);
-            dataGridGraph.Name = "dataGridGraph";
-            dataGridGraph.ReadOnly = true;
-            dataGridGraph.Size = new Size(256, 234);
-            dataGridGraph.TabIndex = 1;
-            // 
-            // pictureGraphs1
-            // 
-            pictureGraphs1.Dock = DockStyle.Fill;
-            pictureGraphs1.Location = new Point(3, 3);
-            pictureGraphs1.Name = "pictureGraphs1";
-            pictureGraphs1.Size = new Size(639, 517);
-            pictureGraphs1.TabIndex = 0;
-            pictureGraphs1.TabStop = false;
-            // 
-            // settingsPage
-            // 
-            settingsPage.BackColor = Color.Transparent;
-            settingsPage.Controls.Add(tableLayoutPanel5);
-            settingsPage.Location = new Point(4, 24);
-            settingsPage.Name = "settingsPage";
-            settingsPage.Size = new Size(792, 422);
-            settingsPage.TabIndex = 3;
-            settingsPage.Text = "Настройки";
-            // 
-            // tableLayoutPanel5
-            // 
-            tableLayoutPanel5.ColumnCount = 3;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.9999962F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.0000076F));
-            tableLayoutPanel5.Controls.Add(buttonExit, 1, 5);
-            tableLayoutPanel5.Controls.Add(buttonSave, 1, 3);
-            tableLayoutPanel5.Controls.Add(buttonLoa, 1, 4);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(0, 0);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 7;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(792, 422);
-            tableLayoutPanel5.TabIndex = 4;
-            // 
-            // buttonExit
-            // 
-            buttonExit.Dock = DockStyle.Fill;
-            buttonExit.Location = new Point(298, 289);
-            buttonExit.Name = "buttonExit";
-            buttonExit.Size = new Size(194, 44);
-            buttonExit.TabIndex = 2;
-            buttonExit.Text = "Выход";
-            buttonExit.UseVisualStyleBackColor = true;
-            buttonExit.Click += buttonExit_Click;
-            // 
-            // buttonSave
-            // 
-            buttonSave.Dock = DockStyle.Fill;
-            buttonSave.Location = new Point(298, 189);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(194, 44);
-            buttonSave.TabIndex = 0;
-            buttonSave.Text = "Сохранить...";
-            buttonSave.UseVisualStyleBackColor = true;
-            buttonSave.Click += buttonSave_Click;
-            // 
-            // buttonLoa
-            // 
-            buttonLoa.Dock = DockStyle.Fill;
-            buttonLoa.Location = new Point(298, 239);
-            buttonLoa.Name = "buttonLoa";
-            buttonLoa.Size = new Size(194, 44);
-            buttonLoa.TabIndex = 1;
-            buttonLoa.Text = "Загрузить...";
-            buttonLoa.UseVisualStyleBackColor = true;
-            buttonLoa.Click += buttonLoad_Click;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.63131F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(0, 0);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(200, 100);
-            tableLayoutPanel4.TabIndex = 0;
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.63131F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(0, 0);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 1;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel6.Size = new Size(200, 100);
-            tableLayoutPanel6.TabIndex = 0;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Dock = DockStyle.Fill;
-            label8.Location = new Point(3, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(133, 31);
-            label8.TabIndex = 3;
-            label8.Text = "Название";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Dock = DockStyle.Fill;
-            label11.Location = new Point(3, 31);
-            label11.Name = "label11";
-            label11.Size = new Size(133, 31);
-            label11.TabIndex = 6;
-            label11.Text = "Категория";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Dock = DockStyle.Fill;
-            label14.Location = new Point(3, 62);
-            label14.Name = "label14";
-            label14.Size = new Size(133, 31);
-            label14.TabIndex = 9;
-            label14.Text = "Мин. сумма";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Dock = DockStyle.Fill;
-            label17.Location = new Point(3, 93);
-            label17.Name = "label17";
-            label17.Size = new Size(133, 31);
-            label17.TabIndex = 12;
-            label17.Text = "Макс. сумма";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Dock = DockStyle.Fill;
-            label20.Location = new Point(3, 124);
-            label20.Name = "label20";
-            label20.Size = new Size(133, 31);
-            label20.TabIndex = 15;
-            label20.Text = "Мин. дата";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Dock = DockStyle.Fill;
-            label23.Location = new Point(3, 155);
-            label23.Name = "label23";
-            label23.Size = new Size(133, 31);
-            label23.TabIndex = 18;
-            label23.Text = "Макс. дата";
-            // 
-            // tableLayoutPanel13
-            // 
-            tableLayoutPanel13.ColumnCount = 3;
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel13.Controls.Add(dateTimeFindMax1, 1, 5);
-            tableLayoutPanel13.Controls.Add(dateTimeFindMin1, 1, 4);
-            tableLayoutPanel13.Controls.Add(textBoxFindSumMax1, 1, 3);
-            tableLayoutPanel13.Controls.Add(textBoxFindSumMin1, 1, 2);
-            tableLayoutPanel13.Controls.Add(textBoxFindCategory1, 1, 1);
-            tableLayoutPanel13.Controls.Add(textBoxFindName1, 1, 0);
-            tableLayoutPanel13.Controls.Add(label23, 0, 5);
-            tableLayoutPanel13.Controls.Add(label20, 0, 4);
-            tableLayoutPanel13.Controls.Add(label17, 0, 3);
-            tableLayoutPanel13.Controls.Add(label14, 0, 2);
-            tableLayoutPanel13.Controls.Add(label11, 0, 1);
-            tableLayoutPanel13.Controls.Add(label8, 0, 0);
-            tableLayoutPanel13.Controls.Add(buttonClear, 0, 6);
-            tableLayoutPanel13.Controls.Add(buttonIDSort1, 2, 0);
-            tableLayoutPanel13.Controls.Add(buttonNameSort1, 2, 1);
-            tableLayoutPanel13.Controls.Add(buttonSumSort1, 2, 2);
-            tableLayoutPanel13.Controls.Add(buttonAll1, 2, 5);
-            tableLayoutPanel13.Controls.Add(buttonFind1, 1, 6);
-            tableLayoutPanel13.Controls.Add(buttonDateSort1, 2, 4);
-            tableLayoutPanel13.Controls.Add(buttonCategorySort1, 2, 3);
-            tableLayoutPanel13.Dock = DockStyle.Fill;
-            tableLayoutPanel13.Location = new Point(26, 257);
-            tableLayoutPanel13.Name = "tableLayoutPanel13";
-            tableLayoutPanel13.RowCount = 7;
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel13.Size = new Size(420, 223);
-            tableLayoutPanel13.TabIndex = 2;
-            // 
-            // buttonClear
-            // 
-            buttonClear.Dock = DockStyle.Fill;
-            buttonClear.Location = new Point(3, 189);
-            buttonClear.Name = "buttonClear";
-            buttonClear.Size = new Size(133, 31);
-            buttonClear.TabIndex = 19;
-            buttonClear.Text = "Отчистить";
-            buttonClear.UseVisualStyleBackColor = true;
-            // 
-            // buttonIDSort1
-            // 
-            buttonIDSort1.Dock = DockStyle.Fill;
-            buttonIDSort1.Location = new Point(281, 3);
-            buttonIDSort1.Name = "buttonIDSort1";
-            buttonIDSort1.Size = new Size(136, 25);
-            buttonIDSort1.TabIndex = 20;
-            buttonIDSort1.Text = "ID";
-            buttonIDSort1.UseVisualStyleBackColor = true;
-            // 
-            // buttonNameSort1
-            // 
-            buttonNameSort1.Dock = DockStyle.Fill;
-            buttonNameSort1.Location = new Point(281, 34);
-            buttonNameSort1.Name = "buttonNameSort1";
-            buttonNameSort1.Size = new Size(136, 25);
-            buttonNameSort1.TabIndex = 21;
-            buttonNameSort1.Text = "Назание";
-            buttonNameSort1.UseVisualStyleBackColor = true;
-            // 
-            // buttonSumSort1
-            // 
-            buttonSumSort1.Dock = DockStyle.Fill;
-            buttonSumSort1.Location = new Point(281, 65);
-            buttonSumSort1.Name = "buttonSumSort1";
-            buttonSumSort1.Size = new Size(136, 25);
-            buttonSumSort1.TabIndex = 22;
-            buttonSumSort1.Text = "Сумма";
-            buttonSumSort1.UseVisualStyleBackColor = true;
-            // 
-            // buttonDateSort1
-            // 
-            buttonDateSort1.Dock = DockStyle.Fill;
-            buttonDateSort1.Location = new Point(281, 127);
-            buttonDateSort1.Name = "buttonDateSort1";
-            buttonDateSort1.Size = new Size(136, 25);
-            buttonDateSort1.TabIndex = 23;
-            buttonDateSort1.Text = "Дата";
-            buttonDateSort1.UseVisualStyleBackColor = true;
-            // 
-            // buttonAll1
-            // 
-            buttonAll1.Dock = DockStyle.Fill;
-            buttonAll1.Location = new Point(281, 158);
-            buttonAll1.Name = "buttonAll1";
-            buttonAll1.Size = new Size(136, 25);
-            buttonAll1.TabIndex = 25;
-            buttonAll1.Text = "Все";
-            buttonAll1.UseVisualStyleBackColor = true;
-            // 
-            // buttonFind1
-            // 
-            buttonFind1.Dock = DockStyle.Fill;
-            buttonFind1.Location = new Point(142, 189);
-            buttonFind1.Name = "buttonFind1";
-            buttonFind1.Size = new Size(133, 31);
-            buttonFind1.TabIndex = 26;
-            buttonFind1.Text = "Поиск";
-            buttonFind1.UseVisualStyleBackColor = true;
-            // 
-            // buttonCategorySort1
-            // 
-            buttonCategorySort1.Dock = DockStyle.Fill;
-            buttonCategorySort1.Location = new Point(281, 96);
-            buttonCategorySort1.Name = "buttonCategorySort1";
-            buttonCategorySort1.Size = new Size(136, 25);
-            buttonCategorySort1.TabIndex = 27;
-            buttonCategorySort1.Text = "Категория";
-            buttonCategorySort1.UseVisualStyleBackColor = true;
-            // 
-            // textBoxFindName1
-            // 
-            textBoxFindName1.Dock = DockStyle.Fill;
-            textBoxFindName1.Location = new Point(142, 3);
-            textBoxFindName1.Name = "textBoxFindName1";
-            textBoxFindName1.Size = new Size(133, 23);
-            textBoxFindName1.TabIndex = 28;
-            // 
-            // textBoxFindCategory1
-            // 
-            textBoxFindCategory1.Dock = DockStyle.Fill;
-            textBoxFindCategory1.Location = new Point(142, 34);
-            textBoxFindCategory1.Name = "textBoxFindCategory1";
-            textBoxFindCategory1.Size = new Size(133, 23);
-            textBoxFindCategory1.TabIndex = 29;
-            // 
-            // textBoxFindSumMin1
-            // 
-            textBoxFindSumMin1.Dock = DockStyle.Fill;
-            textBoxFindSumMin1.Location = new Point(142, 65);
-            textBoxFindSumMin1.Name = "textBoxFindSumMin1";
-            textBoxFindSumMin1.Size = new Size(133, 23);
-            textBoxFindSumMin1.TabIndex = 30;
-            // 
-            // textBoxFindSumMax1
-            // 
-            textBoxFindSumMax1.Dock = DockStyle.Fill;
-            textBoxFindSumMax1.Location = new Point(142, 96);
-            textBoxFindSumMax1.Name = "textBoxFindSumMax1";
-            textBoxFindSumMax1.Size = new Size(133, 23);
-            textBoxFindSumMax1.TabIndex = 31;
-            // 
-            // dateTimeFindMin1
-            // 
-            dateTimeFindMin1.Dock = DockStyle.Fill;
-            dateTimeFindMin1.Location = new Point(142, 127);
-            dateTimeFindMin1.Name = "dateTimeFindMin1";
-            dateTimeFindMin1.Size = new Size(133, 23);
-            dateTimeFindMin1.TabIndex = 32;
-            // 
-            // dateTimeFindMax1
-            // 
-            dateTimeFindMax1.Dock = DockStyle.Fill;
-            dateTimeFindMax1.Location = new Point(142, 158);
-            dateTimeFindMax1.Name = "dateTimeFindMax1";
-            dateTimeFindMax1.Size = new Size(133, 23);
-            dateTimeFindMax1.TabIndex = 33;
-            // 
             // tableLayoutPanel14
             // 
             tableLayoutPanel14.ColumnCount = 3;
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel14.Controls.Add(dateTimeMax2, 1, 5);
-            tableLayoutPanel14.Controls.Add(dateTimeMin2, 1, 4);
+            tableLayoutPanel14.Controls.Add(dateTimeFindMax2, 1, 5);
+            tableLayoutPanel14.Controls.Add(dateTimeFindMin2, 1, 4);
             tableLayoutPanel14.Controls.Add(textBoxFindSumMax2, 1, 3);
             tableLayoutPanel14.Controls.Add(textBoxFindSumMin2, 1, 2);
-            tableLayoutPanel14.Controls.Add(textBoxCategoryFind2, 1, 1);
-            tableLayoutPanel14.Controls.Add(textBoxNameFind2, 1, 0);
+            tableLayoutPanel14.Controls.Add(textBoxFindCategory2, 1, 1);
+            tableLayoutPanel14.Controls.Add(textBoxFindName2, 1, 0);
             tableLayoutPanel14.Controls.Add(label9, 0, 5);
             tableLayoutPanel14.Controls.Add(label10, 0, 4);
             tableLayoutPanel14.Controls.Add(label12, 0, 3);
@@ -920,7 +745,6 @@
             tableLayoutPanel14.Controls.Add(buttonIDSort2, 2, 0);
             tableLayoutPanel14.Controls.Add(buttonNameSort2, 2, 1);
             tableLayoutPanel14.Controls.Add(buttonSumSort2, 2, 2);
-            tableLayoutPanel14.Controls.Add(buttonAll2, 2, 5);
             tableLayoutPanel14.Controls.Add(buttonFind2, 1, 6);
             tableLayoutPanel14.Controls.Add(buttonDateSort2, 2, 4);
             tableLayoutPanel14.Controls.Add(buttonCategorySort2, 2, 3);
@@ -938,21 +762,23 @@
             tableLayoutPanel14.Size = new Size(417, 223);
             tableLayoutPanel14.TabIndex = 3;
             // 
-            // dateTimeMax2
+            // dateTimeFindMax2
             // 
-            dateTimeMax2.Dock = DockStyle.Fill;
-            dateTimeMax2.Location = new Point(141, 158);
-            dateTimeMax2.Name = "dateTimeMax2";
-            dateTimeMax2.Size = new Size(132, 23);
-            dateTimeMax2.TabIndex = 33;
+            dateTimeFindMax2.Dock = DockStyle.Fill;
+            dateTimeFindMax2.Location = new Point(141, 158);
+            dateTimeFindMax2.Name = "dateTimeFindMax2";
+            dateTimeFindMax2.Size = new Size(132, 23);
+            dateTimeFindMax2.TabIndex = 33;
+            dateTimeFindMax2.ValueChanged += dateTimeFindMax1_ValueChanged;
             // 
-            // dateTimeMin2
+            // dateTimeFindMin2
             // 
-            dateTimeMin2.Dock = DockStyle.Fill;
-            dateTimeMin2.Location = new Point(141, 127);
-            dateTimeMin2.Name = "dateTimeMin2";
-            dateTimeMin2.Size = new Size(132, 23);
-            dateTimeMin2.TabIndex = 32;
+            dateTimeFindMin2.Dock = DockStyle.Fill;
+            dateTimeFindMin2.Location = new Point(141, 127);
+            dateTimeFindMin2.Name = "dateTimeFindMin2";
+            dateTimeFindMin2.Size = new Size(132, 23);
+            dateTimeFindMin2.TabIndex = 32;
+            dateTimeFindMin2.ValueChanged += dateTimeFindMin1_ValueChanged;
             // 
             // textBoxFindSumMax2
             // 
@@ -961,6 +787,7 @@
             textBoxFindSumMax2.Name = "textBoxFindSumMax2";
             textBoxFindSumMax2.Size = new Size(132, 23);
             textBoxFindSumMax2.TabIndex = 31;
+            textBoxFindSumMax2.TextChanged += textBoxFindSumMax1_TextChanged;
             // 
             // textBoxFindSumMin2
             // 
@@ -969,22 +796,25 @@
             textBoxFindSumMin2.Name = "textBoxFindSumMin2";
             textBoxFindSumMin2.Size = new Size(132, 23);
             textBoxFindSumMin2.TabIndex = 30;
+            textBoxFindSumMin2.TextChanged += textBoxFindSumMin1_TextChanged;
             // 
-            // textBoxCategoryFind2
+            // textBoxFindCategory2
             // 
-            textBoxCategoryFind2.Dock = DockStyle.Fill;
-            textBoxCategoryFind2.Location = new Point(141, 34);
-            textBoxCategoryFind2.Name = "textBoxCategoryFind2";
-            textBoxCategoryFind2.Size = new Size(132, 23);
-            textBoxCategoryFind2.TabIndex = 29;
+            textBoxFindCategory2.Dock = DockStyle.Fill;
+            textBoxFindCategory2.Location = new Point(141, 34);
+            textBoxFindCategory2.Name = "textBoxFindCategory2";
+            textBoxFindCategory2.Size = new Size(132, 23);
+            textBoxFindCategory2.TabIndex = 29;
+            textBoxFindCategory2.TextChanged += textBoxFindCategory1_TextChanged;
             // 
-            // textBoxNameFind2
+            // textBoxFindName2
             // 
-            textBoxNameFind2.Dock = DockStyle.Fill;
-            textBoxNameFind2.Location = new Point(141, 3);
-            textBoxNameFind2.Name = "textBoxNameFind2";
-            textBoxNameFind2.Size = new Size(132, 23);
-            textBoxNameFind2.TabIndex = 28;
+            textBoxFindName2.Dock = DockStyle.Fill;
+            textBoxFindName2.Location = new Point(141, 3);
+            textBoxFindName2.Name = "textBoxFindName2";
+            textBoxFindName2.Size = new Size(132, 23);
+            textBoxFindName2.TabIndex = 28;
+            textBoxFindName2.TextChanged += textBoxFindName1_TextChanged;
             // 
             // label9
             // 
@@ -1065,6 +895,7 @@
             buttonIDSort2.TabIndex = 20;
             buttonIDSort2.Text = "ID";
             buttonIDSort2.UseVisualStyleBackColor = true;
+            buttonIDSort2.Click += buttonIDSort1_Click;
             // 
             // buttonNameSort2
             // 
@@ -1075,6 +906,7 @@
             buttonNameSort2.TabIndex = 21;
             buttonNameSort2.Text = "Назание";
             buttonNameSort2.UseVisualStyleBackColor = true;
+            buttonNameSort2.Click += buttonNameSort1_Click;
             // 
             // buttonSumSort2
             // 
@@ -1085,16 +917,7 @@
             buttonSumSort2.TabIndex = 22;
             buttonSumSort2.Text = "Сумма";
             buttonSumSort2.UseVisualStyleBackColor = true;
-            // 
-            // buttonAll2
-            // 
-            buttonAll2.Dock = DockStyle.Fill;
-            buttonAll2.Location = new Point(279, 158);
-            buttonAll2.Name = "buttonAll2";
-            buttonAll2.Size = new Size(135, 25);
-            buttonAll2.TabIndex = 25;
-            buttonAll2.Text = "Все";
-            buttonAll2.UseVisualStyleBackColor = true;
+            buttonSumSort2.Click += buttonSumSort1_Click;
             // 
             // buttonFind2
             // 
@@ -1115,6 +938,7 @@
             buttonDateSort2.TabIndex = 23;
             buttonDateSort2.Text = "Дата";
             buttonDateSort2.UseVisualStyleBackColor = true;
+            buttonDateSort2.Click += buttonDateSort1_Click;
             // 
             // buttonCategorySort2
             // 
@@ -1125,6 +949,71 @@
             buttonCategorySort2.TabIndex = 27;
             buttonCategorySort2.Text = "Категория";
             buttonCategorySort2.UseVisualStyleBackColor = true;
+            buttonCategorySort2.Click += buttonCategorySort1_Click;
+            // 
+            // dataGridDiagram
+            // 
+            dataGridDiagram.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridDiagram.Dock = DockStyle.Fill;
+            dataGridDiagram.Location = new Point(26, 28);
+            dataGridDiagram.Name = "dataGridDiagram";
+            dataGridDiagram.ReadOnly = true;
+            dataGridDiagram.Size = new Size(417, 223);
+            dataGridDiagram.TabIndex = 1;
+            // 
+            // pictureDiagram1
+            // 
+            pictureDiagram1.Dock = DockStyle.Fill;
+            pictureDiagram1.Location = new Point(3, 3);
+            pictureDiagram1.Name = "pictureDiagram1";
+            pictureDiagram1.Size = new Size(470, 511);
+            pictureDiagram1.TabIndex = 0;
+            pictureDiagram1.TabStop = false;
+            // 
+            // graphTab
+            // 
+            graphTab.Controls.Add(tableLayoutPanel3);
+            graphTab.Location = new Point(4, 24);
+            graphTab.Name = "graphTab";
+            graphTab.Size = new Size(958, 523);
+            graphTab.TabIndex = 2;
+            graphTab.Text = "Графики";
+            graphTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.42424F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.5757561F));
+            tableLayoutPanel3.Controls.Add(tableLayoutPanel9, 0, 0);
+            tableLayoutPanel3.Controls.Add(pictureGraphs1, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 89.3364944F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10.6635075F));
+            tableLayoutPanel3.Size = new Size(958, 523);
+            tableLayoutPanel3.TabIndex = 3;
+            // 
+            // tableLayoutPanel9
+            // 
+            tableLayoutPanel9.ColumnCount = 3;
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.658009F));
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 91.34199F));
+            tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel9.Controls.Add(tableLayoutPanel15, 1, 2);
+            tableLayoutPanel9.Controls.Add(dataGridGraph, 1, 1);
+            tableLayoutPanel9.Dock = DockStyle.Fill;
+            tableLayoutPanel9.Location = new Point(648, 3);
+            tableLayoutPanel9.Name = "tableLayoutPanel9";
+            tableLayoutPanel9.RowCount = 4;
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 9.803922F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 90.1960754F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 230F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel9.Size = new Size(307, 517);
+            tableLayoutPanel9.TabIndex = 3;
             // 
             // tableLayoutPanel15
             // 
@@ -1132,11 +1021,11 @@
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel15.Controls.Add(dateTimeMiax3, 1, 5);
-            tableLayoutPanel15.Controls.Add(dateTimeMin3, 1, 4);
+            tableLayoutPanel15.Controls.Add(dateTimeFindMax3, 1, 5);
+            tableLayoutPanel15.Controls.Add(dateTimeFindMin3, 1, 4);
             tableLayoutPanel15.Controls.Add(textBoxFindSumMax3, 1, 3);
             tableLayoutPanel15.Controls.Add(textBoxFindSumMin3, 1, 2);
-            tableLayoutPanel15.Controls.Add(textBoxFindCategoty3, 1, 1);
+            tableLayoutPanel15.Controls.Add(textBoxFindCategory3, 1, 1);
             tableLayoutPanel15.Controls.Add(textBoxFindName3, 1, 0);
             tableLayoutPanel15.Controls.Add(label18, 0, 5);
             tableLayoutPanel15.Controls.Add(label19, 0, 4);
@@ -1145,7 +1034,7 @@
             tableLayoutPanel15.Controls.Add(label24, 0, 1);
             tableLayoutPanel15.Controls.Add(label25, 0, 0);
             tableLayoutPanel15.Controls.Add(buttonClear3, 0, 6);
-            tableLayoutPanel15.Controls.Add(buttonIDSor3, 2, 0);
+            tableLayoutPanel15.Controls.Add(buttonIDSort3, 2, 0);
             tableLayoutPanel15.Controls.Add(buttonNameSort3, 2, 1);
             tableLayoutPanel15.Controls.Add(buttonSumSort3, 2, 2);
             tableLayoutPanel15.Controls.Add(buttonAll3, 2, 5);
@@ -1166,21 +1055,23 @@
             tableLayoutPanel15.Size = new Size(256, 224);
             tableLayoutPanel15.TabIndex = 3;
             // 
-            // dateTimeMiax3
+            // dateTimeFindMax3
             // 
-            dateTimeMiax3.Dock = DockStyle.Fill;
-            dateTimeMiax3.Location = new Point(88, 163);
-            dateTimeMiax3.Name = "dateTimeMiax3";
-            dateTimeMiax3.Size = new Size(79, 23);
-            dateTimeMiax3.TabIndex = 33;
+            dateTimeFindMax3.Dock = DockStyle.Fill;
+            dateTimeFindMax3.Location = new Point(88, 163);
+            dateTimeFindMax3.Name = "dateTimeFindMax3";
+            dateTimeFindMax3.Size = new Size(79, 23);
+            dateTimeFindMax3.TabIndex = 33;
+            dateTimeFindMax3.ValueChanged += dateTimeFindMax1_ValueChanged;
             // 
-            // dateTimeMin3
+            // dateTimeFindMin3
             // 
-            dateTimeMin3.Dock = DockStyle.Fill;
-            dateTimeMin3.Location = new Point(88, 131);
-            dateTimeMin3.Name = "dateTimeMin3";
-            dateTimeMin3.Size = new Size(79, 23);
-            dateTimeMin3.TabIndex = 32;
+            dateTimeFindMin3.Dock = DockStyle.Fill;
+            dateTimeFindMin3.Location = new Point(88, 131);
+            dateTimeFindMin3.Name = "dateTimeFindMin3";
+            dateTimeFindMin3.Size = new Size(79, 23);
+            dateTimeFindMin3.TabIndex = 32;
+            dateTimeFindMin3.ValueChanged += dateTimeFindMin1_ValueChanged;
             // 
             // textBoxFindSumMax3
             // 
@@ -1189,6 +1080,7 @@
             textBoxFindSumMax3.Name = "textBoxFindSumMax3";
             textBoxFindSumMax3.Size = new Size(79, 23);
             textBoxFindSumMax3.TabIndex = 31;
+            textBoxFindSumMax3.TextChanged += textBoxFindSumMax1_TextChanged;
             // 
             // textBoxFindSumMin3
             // 
@@ -1197,14 +1089,16 @@
             textBoxFindSumMin3.Name = "textBoxFindSumMin3";
             textBoxFindSumMin3.Size = new Size(79, 23);
             textBoxFindSumMin3.TabIndex = 30;
+            textBoxFindSumMin3.TextChanged += textBoxFindSumMin1_TextChanged;
             // 
-            // textBoxFindCategoty3
+            // textBoxFindCategory3
             // 
-            textBoxFindCategoty3.Dock = DockStyle.Fill;
-            textBoxFindCategoty3.Location = new Point(88, 35);
-            textBoxFindCategoty3.Name = "textBoxFindCategoty3";
-            textBoxFindCategoty3.Size = new Size(79, 23);
-            textBoxFindCategoty3.TabIndex = 29;
+            textBoxFindCategory3.Dock = DockStyle.Fill;
+            textBoxFindCategory3.Location = new Point(88, 35);
+            textBoxFindCategory3.Name = "textBoxFindCategory3";
+            textBoxFindCategory3.Size = new Size(79, 23);
+            textBoxFindCategory3.TabIndex = 29;
+            textBoxFindCategory3.TextChanged += textBoxFindCategory1_TextChanged;
             // 
             // textBoxFindName3
             // 
@@ -1213,6 +1107,7 @@
             textBoxFindName3.Name = "textBoxFindName3";
             textBoxFindName3.Size = new Size(79, 23);
             textBoxFindName3.TabIndex = 28;
+            textBoxFindName3.TextChanged += textBoxFindName1_TextChanged;
             // 
             // label18
             // 
@@ -1283,16 +1178,18 @@
             buttonClear3.TabIndex = 19;
             buttonClear3.Text = "Отчистить";
             buttonClear3.UseVisualStyleBackColor = true;
+            buttonClear3.Click += buttonClear_Click_1;
             // 
-            // buttonIDSor3
+            // buttonIDSort3
             // 
-            buttonIDSor3.Dock = DockStyle.Fill;
-            buttonIDSor3.Location = new Point(173, 3);
-            buttonIDSor3.Name = "buttonIDSor3";
-            buttonIDSor3.Size = new Size(80, 26);
-            buttonIDSor3.TabIndex = 20;
-            buttonIDSor3.Text = "ID";
-            buttonIDSor3.UseVisualStyleBackColor = true;
+            buttonIDSort3.Dock = DockStyle.Fill;
+            buttonIDSort3.Location = new Point(173, 3);
+            buttonIDSort3.Name = "buttonIDSort3";
+            buttonIDSort3.Size = new Size(80, 26);
+            buttonIDSort3.TabIndex = 20;
+            buttonIDSort3.Text = "ID";
+            buttonIDSort3.UseVisualStyleBackColor = true;
+            buttonIDSort3.Click += buttonIDSort1_Click;
             // 
             // buttonNameSort3
             // 
@@ -1303,6 +1200,7 @@
             buttonNameSort3.TabIndex = 21;
             buttonNameSort3.Text = "Назание";
             buttonNameSort3.UseVisualStyleBackColor = true;
+            buttonNameSort3.Click += buttonNameSort1_Click;
             // 
             // buttonSumSort3
             // 
@@ -1313,6 +1211,7 @@
             buttonSumSort3.TabIndex = 22;
             buttonSumSort3.Text = "Сумма";
             buttonSumSort3.UseVisualStyleBackColor = true;
+            buttonSumSort3.Click += buttonSumSort1_Click;
             // 
             // buttonAll3
             // 
@@ -1321,8 +1220,9 @@
             buttonAll3.Name = "buttonAll3";
             buttonAll3.Size = new Size(80, 26);
             buttonAll3.TabIndex = 25;
-            buttonAll3.Text = "Все";
+            buttonAll3.Text = "Все траты";
             buttonAll3.UseVisualStyleBackColor = true;
+            buttonAll3.Click += buttonAll1_Click;
             // 
             // buttonFind3
             // 
@@ -1333,6 +1233,7 @@
             buttonFind3.TabIndex = 26;
             buttonFind3.Text = "Поиск";
             buttonFind3.UseVisualStyleBackColor = true;
+            buttonFind3.Click += buttonFind1_Click;
             // 
             // buttonDateSort3
             // 
@@ -1343,6 +1244,7 @@
             buttonDateSort3.TabIndex = 23;
             buttonDateSort3.Text = "Дата";
             buttonDateSort3.UseVisualStyleBackColor = true;
+            buttonDateSort3.Click += buttonDateSort1_Click;
             // 
             // buttonCategorySort3
             // 
@@ -1353,6 +1255,118 @@
             buttonCategorySort3.TabIndex = 27;
             buttonCategorySort3.Text = "Категория";
             buttonCategorySort3.UseVisualStyleBackColor = true;
+            buttonCategorySort3.Click += buttonCategorySort1_Click;
+            // 
+            // dataGridGraph
+            // 
+            dataGridGraph.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridGraph.Dock = DockStyle.Fill;
+            dataGridGraph.Location = new Point(27, 29);
+            dataGridGraph.Name = "dataGridGraph";
+            dataGridGraph.ReadOnly = true;
+            dataGridGraph.Size = new Size(256, 234);
+            dataGridGraph.TabIndex = 1;
+            // 
+            // pictureGraphs1
+            // 
+            pictureGraphs1.Dock = DockStyle.Fill;
+            pictureGraphs1.Location = new Point(3, 3);
+            pictureGraphs1.Name = "pictureGraphs1";
+            pictureGraphs1.Size = new Size(639, 517);
+            pictureGraphs1.TabIndex = 0;
+            pictureGraphs1.TabStop = false;
+            // 
+            // settingsPage
+            // 
+            settingsPage.BackColor = Color.Transparent;
+            settingsPage.Controls.Add(tableLayoutPanel5);
+            settingsPage.Location = new Point(4, 24);
+            settingsPage.Name = "settingsPage";
+            settingsPage.Size = new Size(958, 523);
+            settingsPage.TabIndex = 3;
+            settingsPage.Text = "Настройки";
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 3;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.9999962F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.0000076F));
+            tableLayoutPanel5.Controls.Add(buttonExit, 1, 5);
+            tableLayoutPanel5.Controls.Add(buttonSave, 1, 3);
+            tableLayoutPanel5.Controls.Add(buttonLoa, 1, 4);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(0, 0);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 7;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new Size(958, 523);
+            tableLayoutPanel5.TabIndex = 4;
+            // 
+            // buttonExit
+            // 
+            buttonExit.Dock = DockStyle.Fill;
+            buttonExit.Location = new Point(381, 339);
+            buttonExit.Name = "buttonExit";
+            buttonExit.Size = new Size(194, 44);
+            buttonExit.TabIndex = 2;
+            buttonExit.Text = "Выход";
+            buttonExit.UseVisualStyleBackColor = true;
+            buttonExit.Click += buttonExit_Click;
+            // 
+            // buttonSave
+            // 
+            buttonSave.Dock = DockStyle.Fill;
+            buttonSave.Location = new Point(381, 239);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(194, 44);
+            buttonSave.TabIndex = 0;
+            buttonSave.Text = "Сохранить...";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // buttonLoa
+            // 
+            buttonLoa.Dock = DockStyle.Fill;
+            buttonLoa.Location = new Point(381, 289);
+            buttonLoa.Name = "buttonLoa";
+            buttonLoa.Size = new Size(194, 44);
+            buttonLoa.TabIndex = 1;
+            buttonLoa.Text = "Загрузить...";
+            buttonLoa.UseVisualStyleBackColor = true;
+            buttonLoa.Click += buttonLoad_Click;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.63131F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(200, 100);
+            tableLayoutPanel4.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 2;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75.63131F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(0, 0);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 1;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel6.Size = new Size(200, 100);
+            tableLayoutPanel6.TabIndex = 0;
             // 
             // AppView
             // 
@@ -1368,6 +1382,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridList).EndInit();
+            tableLayoutPanel13.ResumeLayout(false);
+            tableLayoutPanel13.PerformLayout();
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel11.PerformLayout();
@@ -1376,21 +1392,19 @@
             diagramTab.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
+            tableLayoutPanel14.ResumeLayout(false);
+            tableLayoutPanel14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridDiagram).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureDiagram1).EndInit();
             graphTab.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
+            tableLayoutPanel15.ResumeLayout(false);
+            tableLayoutPanel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridGraph).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).EndInit();
             settingsPage.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
-            tableLayoutPanel13.ResumeLayout(false);
-            tableLayoutPanel13.PerformLayout();
-            tableLayoutPanel14.ResumeLayout(false);
-            tableLayoutPanel14.PerformLayout();
-            tableLayoutPanel15.ResumeLayout(false);
-            tableLayoutPanel15.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1448,7 +1462,6 @@
         private Button buttonNameSort1;
         private Button buttonSumSort1;
         private Button buttonDateSort1;
-        private Button buttonAll1;
         private Button buttonFind1;
         private Button buttonCategorySort1;
         private TextBox textBoxFindSumMax1;
@@ -1458,12 +1471,12 @@
         private DateTimePicker dateTimeFindMax1;
         private DateTimePicker dateTimeFindMin1;
         private TableLayoutPanel tableLayoutPanel14;
-        private DateTimePicker dateTimeMax2;
-        private DateTimePicker dateTimeMin2;
+        private DateTimePicker dateTimeFindMax2;
+        private DateTimePicker dateTimeFindMin2;
         private TextBox textBoxFindSumMax2;
         private TextBox textBoxFindSumMin2;
-        private TextBox textBoxCategoryFind2;
-        private TextBox textBoxNameFind2;
+        private TextBox textBoxFindCategory2;
+        private TextBox textBoxFindName2;
         private Label label9;
         private Label label10;
         private Label label12;
@@ -1474,16 +1487,15 @@
         private Button buttonIDSort2;
         private Button buttonNameSort2;
         private Button buttonSumSort2;
-        private Button buttonAll2;
         private Button buttonFind2;
         private Button buttonDateSort2;
         private Button buttonCategorySort2;
         private TableLayoutPanel tableLayoutPanel15;
-        private DateTimePicker dateTimeMiax3;
-        private DateTimePicker dateTimeMin3;
+        private DateTimePicker dateTimeFindMax3;
+        private DateTimePicker dateTimeFindMin3;
         private TextBox textBoxFindSumMax3;
         private TextBox textBoxFindSumMin3;
-        private TextBox textBoxFindCategoty3;
+        private TextBox textBoxFindCategory3;
         private TextBox textBoxFindName3;
         private Label label18;
         private Label label19;
@@ -1492,7 +1504,7 @@
         private Label label24;
         private Label label25;
         private Button buttonClear3;
-        private Button buttonIDSor3;
+        private Button buttonIDSort3;
         private Button buttonNameSort3;
         private Button buttonSumSort3;
         private Button buttonAll3;

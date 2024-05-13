@@ -34,12 +34,7 @@ namespace SpendCalculator
         {
             Console.WriteLine("Setup start");
             this.dataGridViews = dataGridViews;
-            foreach (DataGridView view in dataGridViews)
-            {
-                //Присвоить значение списка
-                view.AutoGenerateColumns = true;
-                view.DataSource = expenditures;
-            }
+            UpdateLists();
         }
 
         private void UpdateLists()
@@ -80,6 +75,12 @@ namespace SpendCalculator
             model.DeleteElement(ID);
         }
 
+        public void UpdateList()
+        {
+            expenditures = model.GetExpenditures();
+            UpdateLists();
+        }
+
         //Поиск по списку
         public void FindByCreationDate(DateTime minDate, DateTime maxDate)
         {
@@ -103,15 +104,15 @@ namespace SpendCalculator
         //Отчистить все сортировки
         public void ClearAllFind()
         { 
-            
+            model.ClearAllFind();
         }
 
 
         //Работа с визуалом
         //Открыть изуализацию списка в киде графиков
-        public void OpenGraphics(PictureBox pictureBox, Font font)
+        public void OpenGraphics(PictureBox pictureBox, Font font, string type)
         {
-            Visualizer.DrawDiagrams(expenditures, pictureBox, font, "all");
+            Visualizer.DrawDiagrams(expenditures, pictureBox, font, type);
         }
 
         //Открыть редактирование списка
