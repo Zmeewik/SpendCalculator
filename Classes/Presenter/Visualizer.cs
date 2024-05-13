@@ -89,6 +89,28 @@ namespace SpendCalculator
             //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
 
+            //Сортировки
+            var sortedData = values.Zip(sums, (v, s) => new { Values = v, Sum = s })
+                       .OrderByDescending(x => x.Sum)
+                       .ToList();
+
+            var sortedTypes = types.Select((x, i) => new { Type = x, Index = i })
+                                    .OrderByDescending(x => sums[x.Index])
+                                    .Select(x => x.Type)
+                                    .ToList();
+
+            List<Color> newColors = new List<Color>(color);
+            newColors.RemoveAt(0);
+            var sortedColors = newColors.Select((x, i) => new { Color = x, Index = i })
+                                      .OrderByDescending(x => sums[x.Index])
+                                      .Select(x => x.Color)
+                                      .ToList();
+            sortedColors.Insert(0, color[0]);
+            Console.WriteLine($"{newColors.Count} и {values.Count}");
+
+            var sortedSums = sums.OrderByDescending(x => x)
+                         .ToList();
+
             //Настроить рабочую область
             int margin = 10;
             int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
@@ -113,12 +135,12 @@ namespace SpendCalculator
                 for (int i = 0; i < values.Count; i++)
                 {
                     // Вычисляем угол для текущего сектора
-                    float sweepAngle = (float)(360 * (double)sums[i] / (double)sum);
-                    Console.WriteLine($"{types[i]} type {360 * (double)sums[i] / (double)sum} percent, {sums[i]} sum, {sum} общая сумма");
-                    var brush = new SolidBrush(color[i + 1]);
+                    float sweepAngle = (float)(360 * (double)sortedSums[i] / (double)sum);
+                    Console.WriteLine($"{sortedTypes[i]} type {360 * (double)sortedSums[i] / (double)sum} percent, {sortedSums[i]} sum, {sum} общая сумма");
+                    var brush = new SolidBrush(sortedColors[i + 1]);
 
                     // Рисуем сектор
-                    g.FillPie(new SolidBrush(color[i + 1]), xPos, yPos, xPieSize, yPieSize, startAngle, sweepAngle);
+                    g.FillPie(new SolidBrush(sortedColors[i + 1]), xPos, yPos, xPieSize, yPieSize, startAngle, sweepAngle);
 
                     //Пишем подпись
                     var angleSin = MathF.Sin((float)((startAngle + sweepAngle / 2) * Math.PI / 180));
@@ -133,17 +155,27 @@ namespace SpendCalculator
                     }
                     else
                         stringFormat.Alignment = StringAlignment.Far;
-                    g.DrawString(types[i], font, brush, xStringPos, yStringPos, stringFormat);
-                    SizeF stringSize = g.MeasureString(types[i], font);
-
+                    g.DrawString(sortedTypes[i], font, brush, xStringPos, yStringPos, stringFormat);
+                    SizeF stringSize = g.MeasureString(sortedTypes[i], font);
+                    SizeF signSize = g.MeasureString("%", font);
                     //Написать число
                     if (angleCos >= 0)
                     {
                         xStringPos += stringSize.Width + 10;
                     }
                     else
-                        xStringPos -= stringSize.Width + 10;
-                    g.DrawString(sums[i].ToString(), font, brush, xStringPos, yStringPos, stringFormat);
+                        xStringPos -= stringSize.Width + 10 + signSize.Width;
+                    
+                    g.DrawString(sortedSums[i].ToString(), font, brush, xStringPos, yStringPos, stringFormat);
+
+                    if (angleCos >= 0)
+                    {
+                    }
+                    else
+                    {
+                        xStringPos += signSize.Width;
+                    }
+                    g.DrawString($"{(sortedSums[i] / sum * 100).ToString("0.##")} %", font, brush, xStringPos, yStringPos + 20, stringFormat);
 
                     // Обновляем начальный угол для следующего сектора
                     startAngle += sweepAngle;
