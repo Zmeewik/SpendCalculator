@@ -1,5 +1,6 @@
 ﻿
 
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -133,6 +134,16 @@ namespace SpendCalculator
                     else
                         stringFormat.Alignment = StringAlignment.Far;
                     g.DrawString(types[i], font, brush, xStringPos, yStringPos, stringFormat);
+                    SizeF stringSize = g.MeasureString(types[i], font);
+
+                    //Написать число
+                    if (angleCos >= 0)
+                    {
+                        xStringPos += stringSize.Width + 10;
+                    }
+                    else
+                        xStringPos -= stringSize.Width + 10;
+                    g.DrawString(sums[i].ToString(), font, brush, xStringPos, yStringPos, stringFormat);
 
                     // Обновляем начальный угол для следующего сектора
                     startAngle += sweepAngle;
@@ -211,7 +222,7 @@ namespace SpendCalculator
             int circleSize = 10;
             int circleOffset = 20;
             int circleVerticalOffset = 20;
-            int circleHorizontalOffset = 150;
+            int circleHorizontalOffset = 50;
 
             //Считаем столбиик не больше чем по правилу по 30 на каждый
             int num = height / 20;
@@ -224,6 +235,7 @@ namespace SpendCalculator
                 g.CompositingQuality = CompositingQuality.HighQuality;
                 g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 int x = 0; int y = 0;
+                int offsetString = 0, offsetStandart = 0;
                 foreach (var name in names)
                 {
                     //Прибаляем, потому что перый цвет это цвет заднего фона
@@ -232,19 +244,25 @@ namespace SpendCalculator
                     pen.Width = 3;
 
                     //Нарисовать круги
-                    Rectangle rect1 = new Rectangle(startX + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
-                    Rectangle rect2 = new Rectangle(startX + circleOffset + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    Rectangle rect1 = new Rectangle(startX + (circleHorizontalOffset + offsetString) * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    Rectangle rect2 = new Rectangle(startX + circleOffset + (circleHorizontalOffset + offsetString) * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
                     g.FillEllipse(brush, rect1);
                     g.FillEllipse(brush, rect2);
 
                     //Нарисовать линию
-                    var p1 = new Point(startX + circleHorizontalOffset * x + circleSize / 2, startY - height + circleVerticalOffset * y + circleSize / 2);
-                    var p2 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleSize /2, startY - height + circleVerticalOffset * y + circleSize /2);
+                    var p1 = new Point(startX + (circleHorizontalOffset + offsetString) * x + circleSize / 2, startY - height + circleVerticalOffset * y + circleSize / 2);
+                    var p2 = new Point(startX + circleOffset + (circleHorizontalOffset + offsetString) * x + circleSize /2, startY - height + circleVerticalOffset * y + circleSize /2);
                     g.DrawLine(pen, p1, p2);
 
                     //Нарисовать названия
-                    var p3 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
+                    var p3 = new Point(startX + circleOffset + (circleHorizontalOffset + offsetString) * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
                     g.DrawString(names[i], font, brush, p3);
+
+                    if (offsetStandart < (int)g.MeasureString(names[i], font).Width)
+                    {
+                        offsetStandart = (int)g.MeasureString(names[i], font).Width;
+                    }
+
 
                     i++;
                     y++;
@@ -252,6 +270,7 @@ namespace SpendCalculator
                     {
                         y = 0;
                         x++;
+                        offsetString = offsetStandart;
                     }
                 }
             }
