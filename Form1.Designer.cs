@@ -125,9 +125,14 @@
             pictureGraphs1 = new PictureBox();
             settingsPage = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
+          
             buttonExit = new Button();
             buttonSave = new Button();
             buttonLoa = new Button();
+            panel1 = new Panel();
+            buttonFont = new Button();
+            buttonColor = new Button();
+          
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tabControl1.SuspendLayout();
@@ -153,6 +158,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).BeginInit();
             settingsPage.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
+          
+            panel1.SuspendLayout();
+          
             SuspendLayout();
             // 
             // tabControl1
@@ -1288,6 +1296,7 @@
             // 
             // tableLayoutPanel5
             // 
+
             tableLayoutPanel5.ColumnCount = 3;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.9999962F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
@@ -1342,6 +1351,37 @@
             buttonLoa.UseVisualStyleBackColor = true;
             buttonLoa.Click += buttonLoad_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(buttonFont);
+            panel1.Controls.Add(buttonColor);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(786, 416);
+            panel1.TabIndex = 0;
+            // 
+            // buttonFont
+            // 
+            buttonFont.Location = new Point(0, 53);
+            buttonFont.Name = "buttonFont";
+            buttonFont.Size = new Size(186, 50);
+            buttonFont.TabIndex = 1;
+            buttonFont.Text = "Изменить шрифт";
+            buttonFont.UseVisualStyleBackColor = true;
+            buttonFont.Click += buttonFont_Click;
+            // 
+            // buttonColor
+            // 
+            buttonColor.Location = new Point(0, 3);
+            buttonColor.Name = "buttonColor";
+            buttonColor.Size = new Size(186, 44);
+            buttonColor.TabIndex = 0;
+            buttonColor.Text = "Изменить цвет";
+            buttonColor.UseVisualStyleBackColor = true;
+            buttonColor.Click += buttonColor_Click;
+
+            // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 2;
@@ -1375,8 +1415,9 @@
             ClientSize = new Size(966, 551);
             Controls.Add(tabControl1);
             Name = "AppView";
-            Text = "Form1";
+            Text = "Expenditure calculator";
             Load += Form1_Load;
+            ResizeEnd += AppView_ResizeEnd;
             tabControl1.ResumeLayout(false);
             editTab.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -1405,6 +1446,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).EndInit();
             settingsPage.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
+
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1422,6 +1465,7 @@
         private TableLayoutPanel tableLayoutPanel6;
         private PictureBox pictureDiagram1;
         private PictureBox pictureGraphs1;
+
         private DataGridView dataGridList;
         private TableLayoutPanel tableLayoutPanel7;
         private TableLayoutPanel tableLayoutPanel8;
@@ -1511,5 +1555,11 @@
         private Button buttonFind3;
         private Button buttonDateSort3;
         private Button buttonCategorySort3;
+
+        private PictureBox pictureGraphs2;
+        private Panel panel1;
+        private Button buttonColor;
+        private Button buttonFont;
+
     }
 }

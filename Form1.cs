@@ -1,5 +1,6 @@
 ﻿
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SpendCalculator
 {
@@ -14,6 +15,7 @@ namespace SpendCalculator
 
         Font currentFont = new Font("Arial", 14f);
         string defaultSavePath = "";
+
 
         public AppView()
         {
@@ -35,6 +37,8 @@ namespace SpendCalculator
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.WriteLine("App started!");
+            ChangeBackgroundColor(Color.LightCyan);
+            ChangeFont(new Font("Arial", 14f));
         }
 
         private void SetSortDefault()
@@ -58,7 +62,7 @@ namespace SpendCalculator
                     break;
                 //Круговая диаграмма
                 case 1:
-                    presenter.OpenStatistics(pictureDiagram1, currentFont);
+                    presenter.OpenStatistics(pictureDiagram1);
                     break;
                 //Графики
                 case 2:
@@ -398,6 +402,43 @@ namespace SpendCalculator
             }
             presenter.UpdateList();
             UpdateTabs();
+
+
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            var colorDialog = new ColorDialog();
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                ChangeBackgroundColor(colorDialog.Color);
+            }
+        }
+
+        private void buttonFont_Click(object sender, EventArgs e)
+        {
+            var fontDialog = new FontDialog();
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                ChangeFont(fontDialog.Font);
+            }
+        }
+
+        private void ChangeBackgroundColor(Color color)
+        {
+            var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6 };
+            var pictures = new List<PictureBox>() { pictureDiagram1, pictureDiagram2, pictureEdit1, pictureEdit2, pictureGraphs1, pictureGraphs2 };
+            presenter.ChangeColor(pictures.ToArray(), panels.ToArray(), color);
+        }
+
+        private void ChangeFont(Font font)
+        {
+            var buttons = new List<Button> { buttonColor, buttonFont };
+            presenter.ChangeFont(buttons.ToArray(), font);
+        }
+
+        private void AppView_ResizeEnd(object sender, EventArgs e)
+        {
+            RedrawInfo();
         }
     }
 }

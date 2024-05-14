@@ -9,6 +9,7 @@ namespace SpendCalculator
         //Работа со списками
         public void OpenStatistics(PictureBox pictureBox, Font font);
         public void OpenGraphics(PictureBox pictureBox, Font font, string type);
+
         public void OpenList();
         public void AddElement(string name, double sum, DateTime date);
         public void DeleteElement(int id);
@@ -31,5 +32,9 @@ namespace SpendCalculator
         //Сохранение и загрузка информации с и на локальный диск
         public void SaveData(string path);
         public void LoadData(string path);
+
+        //Констроль внешнего вида
+        public void ChangeColor(PictureBox[] pictures, Panel[] panels, Color col);
+        public void ChangeFont(Button[] buttons, Font newFont);
     }
 }

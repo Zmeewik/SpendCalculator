@@ -1,5 +1,7 @@
 ﻿
 
+using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
@@ -81,17 +83,107 @@ namespace SpendCalculator
         }
 
         //Метод для рисования круглой даиаграммы
-        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea)
+        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea, Font font)
         {
+            
             //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
+
+            //Сортировки
+            var sortedData = values.Zip(sums, (v, s) => new { Values = v, Sum = s })
+                       .OrderByDescending(x => x.Sum)
+                       .ToList();
+
+            var sortedTypes = types.Select((x, i) => new { Type = x, Index = i })
+                                    .OrderByDescending(x => sums[x.Index])
+                                    .Select(x => x.Type)
+                                    .ToList();
+
+            List<Color> newColors = new List<Color>(color);
+            newColors.RemoveAt(0);
+            var sortedColors = newColors.Select((x, i) => new { Color = x, Index = i })
+                                      .OrderByDescending(x => sums[x.Index])
+                                      .Select(x => x.Color)
+                                      .ToList();
+            sortedColors.Insert(0, color[0]);
+            Console.WriteLine($"{newColors.Count} и {values.Count}");
+
+            var sortedSums = sums.OrderByDescending(x => x)
+                         .ToList();
 
             //Настроить рабочую область
             int margin = 10;
             int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
             int width = (int)(drawArea.Size.Width) - margin * 2;
 
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
 
+                // Начальный угол для рисования секторов
+                float startAngle = 270;
+                float xPieSize = 200;
+                float yPieSize = 200;
+
+                float pieWidth = 20;
+
+                float xPos = width / 2 - xPieSize / 2;
+                float yPos = height / 2 - yPieSize / 2;
+
+                // Начинаем рисование секторов для каждого типа данных
+                for (int i = 0; i < values.Count; i++)
+                {
+                    // Вычисляем угол для текущего сектора
+                    float sweepAngle = (float)(360 * (double)sortedSums[i] / (double)sum);
+                    Console.WriteLine($"{sortedTypes[i]} type {360 * (double)sortedSums[i] / (double)sum} percent, {sortedSums[i]} sum, {sum} общая сумма");
+                    var brush = new SolidBrush(sortedColors[i + 1]);
+
+                    // Рисуем сектор
+                    g.FillPie(new SolidBrush(sortedColors[i + 1]), xPos, yPos, xPieSize, yPieSize, startAngle, sweepAngle);
+
+                    //Пишем подпись
+                    var angleSin = MathF.Sin((float)((startAngle + sweepAngle / 2) * Math.PI / 180));
+                    var angleCos = MathF.Cos((float)((startAngle + sweepAngle / 2) * Math.PI / 180));
+                    var xStringPos = xPos + xPieSize / 2 + angleCos * (xPieSize / 2 + 20);
+                    var yStringPos = yPos + yPieSize / 2 + angleSin * (xPieSize / 2 + 20);
+
+                    StringFormat stringFormat = new StringFormat();
+                    if (angleCos >= 0)
+                    {
+                        stringFormat.Alignment = StringAlignment.Near;
+                    }
+                    else
+                        stringFormat.Alignment = StringAlignment.Far;
+                    g.DrawString(sortedTypes[i], font, brush, xStringPos, yStringPos, stringFormat);
+                    SizeF stringSize = g.MeasureString(sortedTypes[i], font);
+                    SizeF signSize = g.MeasureString("%", font);
+                    //Написать число
+                    if (angleCos >= 0)
+                    {
+                        xStringPos += stringSize.Width + 10;
+                    }
+                    else
+                        xStringPos -= stringSize.Width + 10 + signSize.Width;
+                    
+                    g.DrawString(sortedSums[i].ToString(), font, brush, xStringPos, yStringPos, stringFormat);
+
+                    if (angleCos >= 0)
+                    {
+                    }
+                    else
+                    {
+                        xStringPos += signSize.Width;
+                    }
+                    g.DrawString($"{(sortedSums[i] / sum * 100).ToString("0.##")} %", font, brush, xStringPos, yStringPos + 20, stringFormat);
+
+                    // Обновляем начальный угол для следующего сектора
+                    startAngle += sweepAngle;
+                }
+
+                var brushBack = new SolidBrush(color[0]);
+                g.FillEllipse(brushBack, xPos + pieWidth, yPos + pieWidth, xPieSize - pieWidth * 2, yPieSize - 2 * pieWidth);
+            }
         }
 
         //Нарисовать разметку графика
@@ -162,7 +254,7 @@ namespace SpendCalculator
             int circleSize = 10;
             int circleOffset = 20;
             int circleVerticalOffset = 20;
-            int circleHorizontalOffset = 150;
+            int circleHorizontalOffset = 50;
 
             //Считаем столбиик не больше чем по правилу по 30 на каждый
             int num = height / 20;
@@ -175,6 +267,7 @@ namespace SpendCalculator
                 g.CompositingQuality = CompositingQuality.HighQuality;
                 g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 int x = 0; int y = 0;
+                int offsetString = 0, offsetStandart = 0;
                 foreach (var name in names)
                 {
                     //Прибаляем, потому что перый цвет это цвет заднего фона
@@ -183,19 +276,25 @@ namespace SpendCalculator
                     pen.Width = 3;
 
                     //Нарисовать круги
-                    Rectangle rect1 = new Rectangle(startX + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
-                    Rectangle rect2 = new Rectangle(startX + circleOffset + circleHorizontalOffset * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    Rectangle rect1 = new Rectangle(startX + (circleHorizontalOffset + offsetString) * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
+                    Rectangle rect2 = new Rectangle(startX + circleOffset + (circleHorizontalOffset + offsetString) * x, startY - height + circleVerticalOffset * y, circleSize, circleSize);
                     g.FillEllipse(brush, rect1);
                     g.FillEllipse(brush, rect2);
 
                     //Нарисовать линию
-                    var p1 = new Point(startX + circleHorizontalOffset * x + circleSize / 2, startY - height + circleVerticalOffset * y + circleSize / 2);
-                    var p2 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleSize /2, startY - height + circleVerticalOffset * y + circleSize /2);
+                    var p1 = new Point(startX + (circleHorizontalOffset + offsetString) * x + circleSize / 2, startY - height + circleVerticalOffset * y + circleSize / 2);
+                    var p2 = new Point(startX + circleOffset + (circleHorizontalOffset + offsetString) * x + circleSize /2, startY - height + circleVerticalOffset * y + circleSize /2);
                     g.DrawLine(pen, p1, p2);
 
                     //Нарисовать названия
-                    var p3 = new Point(startX + circleOffset + circleHorizontalOffset * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
-                    g.DrawString(names[i], font, Brushes.Black, p3);
+                    var p3 = new Point(startX + circleOffset + (circleHorizontalOffset + offsetString) * x + circleOffset, startY - height + circleVerticalOffset * y - 5);
+                    g.DrawString(names[i], font, brush, p3);
+
+                    if (offsetStandart < (int)g.MeasureString(names[i], font).Width)
+                    {
+                        offsetStandart = (int)g.MeasureString(names[i], font).Width;
+                    }
+
 
                     i++;
                     y++;
@@ -203,6 +302,7 @@ namespace SpendCalculator
                     {
                         y = 0;
                         x++;
+                        offsetString = offsetStandart;
                     }
                 }
             }
@@ -224,6 +324,12 @@ namespace SpendCalculator
                     sum += kvp.Value;
                     typeSums[y] += kvp.Value;
                 }
+                y++;
+            }
+
+            foreach (var val in typeSums)
+            {
+                Console.WriteLine(val);
             }
         }
 
@@ -386,7 +492,7 @@ namespace SpendCalculator
                     graphs[num].Add(expense.Date, expense.Amount);
             }
 
-            DrawPieChart(graphs, types, colors, drawArea);
+            DrawPieChart(graphs, types, colors, drawArea, font);
             DrawAdditionalInfo(types, colors, drawArea, font);
 
             drawArea.Image = image;
