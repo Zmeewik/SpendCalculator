@@ -45,7 +45,15 @@ namespace SpendCalculator
             Expenditure expenditureToRemove = expenditures.Find(e => e.Id == id);
             if (expenditureToRemove != null)
             {
+                int indexToRemove = expenditures.IndexOf(expenditureToRemove);
                 expenditures.Remove(expenditureToRemove);
+                // Уменьшаем nextId
+                nextId--;
+                // Уменьшаем ID всех последующих элементов в списке
+                for (int i = indexToRemove; i < expenditures.Count; i++)
+                {
+                    expenditures[i].Id--;
+                }
             }
         }
 
