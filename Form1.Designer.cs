@@ -238,6 +238,8 @@
             dataGridList.Name = "dataGridList";
             dataGridList.Size = new Size(420, 223);
             dataGridList.TabIndex = 1;
+            dataGridList.CellValueChanged += dataGridList_CellValueChanged;
+            dataGridList.SelectionChanged += dataGridList_SelectionChanged;
             // 
             // tableLayoutPanel13
             // 

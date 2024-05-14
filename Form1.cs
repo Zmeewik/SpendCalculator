@@ -433,7 +433,7 @@ namespace SpendCalculator
 
         private void ChangeBackgroundColor(Color color)
         {
-            var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6};
+            var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6 };
             foreach (var pan in panels)
             {
                 pan.BackColor = color;
@@ -468,6 +468,40 @@ namespace SpendCalculator
         {
             presenter.ChangeVisualizeColor();
             UpdateTabs();
+        }
+
+        private void dataGridList_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int columnIndex = e.ColumnIndex;
+            DataGridViewRow currentRow = dataGridList.Rows[e.RowIndex];
+            List<object> list = new List<object>(); 
+            // Проходимся по всем ячейкам текущей строки
+            foreach (DataGridViewCell cell in currentRow.Cells)
+            {
+                // Получаем значение ячейки и делаем с ним что-то
+                object cellValue = cell.Value;
+                list.Add(cellValue);
+            }
+
+            // Передаем значения в метод ChangeElement презентера
+            presenter.ChangeElement(
+                rowIndex,
+                list[1]?.ToString(),  // Здесь нужно обращаться к строковому представлению значений
+                list[2]?.ToString(),
+                Convert.ToDecimal(list[3]),  // Преобразуем в decimal, если это число
+                Convert.ToDateTime(list[4]), // Преобразуем в DateTime, если это дата
+                Convert.ToBoolean(list[5]),  // Преобразуем в bool, если это логическое значение
+                list[6]?.ToString()
+            );
+        }
+
+        private void dataGridList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridList.SelectedCells.Count > 0)
+            {
+                textBoxId.Text = dataGridList.SelectedCells[0].RowIndex.ToString();
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SpendCalculator
 
         public void OpenList();
         public void AddElement(string name, double sum, DateTime date);
+        public void ChangeElement(int index, string name, string category, decimal Amount, DateTime Date, bool IsRecurring, string RecurrenceFrequency);
         public void DeleteElement(int id);
         public void UpdateList();
 
@@ -35,7 +36,7 @@ namespace SpendCalculator
 
         //Констроль внешнего вида
         public void ChangeColor(Color col);
-        public void ChangeFont( Font newFont);
+        public void ChangeFont(Font newFont);
         public void ChangeVisualizeColor();
     }
 }

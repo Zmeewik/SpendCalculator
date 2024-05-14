@@ -74,6 +74,16 @@ namespace SpendCalculator
             model.AddElement(name, sum, date);
         }
 
+        public void ChangeElement(int index, string name, string category, decimal Amount, DateTime Date, bool IsRecurring, string RecurrenceFrequency)
+        {
+            var element = model.GetExpenditure(index);
+            element.Name = name;
+            element.Category = category;
+            element.Amount = Amount;
+            element.Date = Date;
+            element.IsRecurring = IsRecurring;
+            element.RecurrenceFrequency = RecurrenceFrequency;
+        }
         public void DeleteElement(int ID)
         {
             model.DeleteElement(ID);
