@@ -3,6 +3,8 @@ namespace SpendCalculator
 {
     internal class Model : IModel
     {
+        private List<Expenditure> expenditures; // Список трат
+        private int nextId; // Счетчик для генерации уникальных идентификаторов
 
         //Синглтон
         static Model instance;
@@ -18,26 +20,41 @@ namespace SpendCalculator
         
         Model()
         {
-
+            expenditures = new List<Expenditure>();
+            nextId = 1; // Начальное значение счетчика ID
         }
 
         //реализовать взаимодействие со списком и обработчиками
         //Работа со списками
-        public Expenditure GetExpenditure(int num)
+        public Expenditure GetExpenditure(int id)
         {
-            return new Expenditure();
+            return expenditures.Find(e => e.Id == id);
         }
         public List<Expenditure> GetExpenditures()
         {
-            return new List<Expenditure>();
+            return expenditures;
         }
-        public void AddElement(string name, double sum, DateTime date)
-        { 
-            
+        public void AddElement(string category, string name, decimal amount, DateTime date, bool isRecurring, string recurrenceFrequency)
+        {
+            Expenditure newExpenditure = new Expenditure(nextId, category, name, amount, date, isRecurring, recurrenceFrequency);
+            expenditures.Add(newExpenditure);
+            nextId++; // Увеличиваем счетчик после добавления элемента
         }
         public void DeleteElement(int id)
-        { 
-            
+        {
+            Expenditure expenditureToRemove = expenditures.Find(e => e.Id == id);
+            if (expenditureToRemove != null)
+            {
+                int indexToRemove = expenditures.IndexOf(expenditureToRemove);
+                expenditures.Remove(expenditureToRemove);
+                // Уменьшаем nextId
+                nextId--;
+                // Уменьшаем ID всех последующих элементов в списке
+                for (int i = indexToRemove; i < expenditures.Count; i++)
+                {
+                    expenditures[i].Id--;
+                }
+            }
         }
 
         //Поиск

@@ -4,9 +4,9 @@ namespace SpendCalculator
     internal interface IModel
     {
         //Работа со списками
-        public Expenditure GetExpenditure(int num);
+        public Expenditure GetExpenditure(int id);
         public List<Expenditure> GetExpenditures();
-        public void AddElement(string name, double sum, DateTime date);
+        public void AddElement(string category, string name, decimal amount, DateTime date, bool isRecurring, string recurrenceFrequency);
         public void DeleteElement(int id);
 
         //Поиск
