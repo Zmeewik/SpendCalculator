@@ -42,8 +42,8 @@ namespace SpendCalculator
         }
 
         private void SetSortDefault()
-        { 
-            
+        {
+
         }
 
         //Функция вызываемая при смене таба
@@ -148,7 +148,7 @@ namespace SpendCalculator
 
             if (string.IsNullOrEmpty(textBoxFindSumMin1.Text))
                 res1 = -1;
-            if(string.IsNullOrEmpty(textBoxFindSumMax1.Text))
+            if (string.IsNullOrEmpty(textBoxFindSumMax1.Text))
                 res2 = -1;
 
             Console.WriteLine($"{res1} res 1, {res2} res 2");
@@ -262,14 +262,24 @@ namespace SpendCalculator
 
         private void UpdateOtherButtons()
         {
-            List<Button> buttons = [buttonIDSort1, buttonIDSort2, buttonIDSort3,
-                                    buttonNameSort1, buttonNameSort2, buttonNameSort3,
-                                    buttonSumSort1, buttonSumSort2, buttonSumSort3,
-                                    buttonCategorySort1, buttonCategorySort2, buttonCategorySort3,
-                                    buttonDateSort1, buttonDateSort2, buttonDateSort3];
+            List<Button> buttons = [buttonIDSort1,
+                buttonIDSort2,
+                buttonIDSort3,
+                buttonNameSort1,
+                buttonNameSort2,
+                buttonNameSort3,
+                buttonSumSort1,
+                buttonSumSort2,
+                buttonSumSort3,
+                buttonCategorySort1,
+                buttonCategorySort2,
+                buttonCategorySort3,
+                buttonDateSort1,
+                buttonDateSort2,
+                buttonDateSort3];
             foreach (var button in buttons)
             {
-                if(button.Text[0] == '↑' || button.Text[0] == '↓')
+                if (button.Text[0] == '↑' || button.Text[0] == '↓')
                     button.Text = button.Text.Remove(0, 2);
             }
         }
@@ -438,6 +448,12 @@ namespace SpendCalculator
 
         private void AppView_ResizeEnd(object sender, EventArgs e)
         {
+            UpdateTabs();
+        }
+
+        private void buttonColor1_Click(object sender, EventArgs e)
+        {
+            presenter.ChangeVisualizeColor();
             UpdateTabs();
         }
     }

@@ -53,6 +53,7 @@
             buttonFind1 = new Button();
             buttonDateSort1 = new Button();
             buttonCategorySort1 = new Button();
+            buttonColor1 = new Button();
             tableLayoutPanel10 = new TableLayoutPanel();
             buttonAdd = new Button();
             tableLayoutPanel11 = new TableLayoutPanel();
@@ -95,12 +96,14 @@
             buttonFind2 = new Button();
             buttonDateSort2 = new Button();
             buttonCategorySort2 = new Button();
+            button1 = new Button();
             dataGridDiagram = new DataGridView();
             pictureDiagram1 = new PictureBox();
             graphTab = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel15 = new TableLayoutPanel();
+            button2 = new Button();
             dateTimeFindMax3 = new DateTimePicker();
             dateTimeFindMin3 = new DateTimePicker();
             textBoxFindSumMax3 = new TextBox();
@@ -259,6 +262,7 @@
             tableLayoutPanel13.Controls.Add(buttonFind1, 1, 6);
             tableLayoutPanel13.Controls.Add(buttonDateSort1, 2, 4);
             tableLayoutPanel13.Controls.Add(buttonCategorySort1, 2, 3);
+            tableLayoutPanel13.Controls.Add(buttonColor1, 2, 6);
             tableLayoutPanel13.Dock = DockStyle.Fill;
             tableLayoutPanel13.Location = new Point(26, 257);
             tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -463,6 +467,17 @@
             buttonCategorySort1.Text = "Категория";
             buttonCategorySort1.UseVisualStyleBackColor = true;
             buttonCategorySort1.Click += buttonCategorySort1_Click;
+            // 
+            // buttonColor1
+            // 
+            buttonColor1.Dock = DockStyle.Fill;
+            buttonColor1.Location = new Point(281, 189);
+            buttonColor1.Name = "buttonColor1";
+            buttonColor1.Size = new Size(136, 31);
+            buttonColor1.TabIndex = 34;
+            buttonColor1.Text = "Сменить цвета";
+            buttonColor1.UseVisualStyleBackColor = true;
+            buttonColor1.Click += buttonColor1_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -752,6 +767,7 @@
             tableLayoutPanel14.Controls.Add(buttonFind2, 1, 6);
             tableLayoutPanel14.Controls.Add(buttonDateSort2, 2, 4);
             tableLayoutPanel14.Controls.Add(buttonCategorySort2, 2, 3);
+            tableLayoutPanel14.Controls.Add(button1, 2, 6);
             tableLayoutPanel14.Dock = DockStyle.Fill;
             tableLayoutPanel14.Location = new Point(26, 257);
             tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -955,6 +971,17 @@
             buttonCategorySort2.UseVisualStyleBackColor = true;
             buttonCategorySort2.Click += buttonCategorySort1_Click;
             // 
+            // button1
+            // 
+            button1.Dock = DockStyle.Fill;
+            button1.Location = new Point(279, 189);
+            button1.Name = "button1";
+            button1.Size = new Size(135, 31);
+            button1.TabIndex = 35;
+            button1.Text = "Сменить цвета";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += buttonColor1_Click;
+            // 
             // dataGridDiagram
             // 
             dataGridDiagram.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -987,16 +1014,15 @@
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 67.42424F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.5757561F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(tableLayoutPanel9, 0, 0);
             tableLayoutPanel3.Controls.Add(pictureGraphs1, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 89.3364944F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 10.6635075F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Size = new Size(958, 523);
             tableLayoutPanel3.TabIndex = 3;
             // 
@@ -1009,14 +1035,14 @@
             tableLayoutPanel9.Controls.Add(tableLayoutPanel15, 1, 2);
             tableLayoutPanel9.Controls.Add(dataGridGraph, 1, 1);
             tableLayoutPanel9.Dock = DockStyle.Fill;
-            tableLayoutPanel9.Location = new Point(648, 3);
+            tableLayoutPanel9.Location = new Point(482, 3);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 4;
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 9.803922F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 90.1960754F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 230F));
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel9.Size = new Size(307, 517);
+            tableLayoutPanel9.Size = new Size(473, 517);
             tableLayoutPanel9.TabIndex = 3;
             // 
             // tableLayoutPanel15
@@ -1025,6 +1051,7 @@
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel15.Controls.Add(button2, 2, 6);
             tableLayoutPanel15.Controls.Add(dateTimeFindMax3, 1, 5);
             tableLayoutPanel15.Controls.Add(dateTimeFindMin3, 1, 4);
             tableLayoutPanel15.Controls.Add(textBoxFindSumMax3, 1, 3);
@@ -1046,7 +1073,7 @@
             tableLayoutPanel15.Controls.Add(buttonDateSort3, 2, 4);
             tableLayoutPanel15.Controls.Add(buttonCategorySort3, 2, 3);
             tableLayoutPanel15.Dock = DockStyle.Fill;
-            tableLayoutPanel15.Location = new Point(27, 269);
+            tableLayoutPanel15.Location = new Point(42, 269);
             tableLayoutPanel15.Name = "tableLayoutPanel15";
             tableLayoutPanel15.RowCount = 7;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
@@ -1056,60 +1083,71 @@
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel15.Size = new Size(256, 224);
+            tableLayoutPanel15.Size = new Size(407, 224);
             tableLayoutPanel15.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Fill;
+            button2.Location = new Point(273, 195);
+            button2.Name = "button2";
+            button2.Size = new Size(131, 26);
+            button2.TabIndex = 35;
+            button2.Text = "Сменить цвета";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += buttonColor1_Click;
             // 
             // dateTimeFindMax3
             // 
             dateTimeFindMax3.Dock = DockStyle.Fill;
-            dateTimeFindMax3.Location = new Point(88, 163);
+            dateTimeFindMax3.Location = new Point(138, 163);
             dateTimeFindMax3.Name = "dateTimeFindMax3";
-            dateTimeFindMax3.Size = new Size(79, 23);
+            dateTimeFindMax3.Size = new Size(129, 23);
             dateTimeFindMax3.TabIndex = 33;
             dateTimeFindMax3.ValueChanged += dateTimeFindMax1_ValueChanged;
             // 
             // dateTimeFindMin3
             // 
             dateTimeFindMin3.Dock = DockStyle.Fill;
-            dateTimeFindMin3.Location = new Point(88, 131);
+            dateTimeFindMin3.Location = new Point(138, 131);
             dateTimeFindMin3.Name = "dateTimeFindMin3";
-            dateTimeFindMin3.Size = new Size(79, 23);
+            dateTimeFindMin3.Size = new Size(129, 23);
             dateTimeFindMin3.TabIndex = 32;
             dateTimeFindMin3.ValueChanged += dateTimeFindMin1_ValueChanged;
             // 
             // textBoxFindSumMax3
             // 
             textBoxFindSumMax3.Dock = DockStyle.Fill;
-            textBoxFindSumMax3.Location = new Point(88, 99);
+            textBoxFindSumMax3.Location = new Point(138, 99);
             textBoxFindSumMax3.Name = "textBoxFindSumMax3";
-            textBoxFindSumMax3.Size = new Size(79, 23);
+            textBoxFindSumMax3.Size = new Size(129, 23);
             textBoxFindSumMax3.TabIndex = 31;
             textBoxFindSumMax3.TextChanged += textBoxFindSumMax1_TextChanged;
             // 
             // textBoxFindSumMin3
             // 
             textBoxFindSumMin3.Dock = DockStyle.Fill;
-            textBoxFindSumMin3.Location = new Point(88, 67);
+            textBoxFindSumMin3.Location = new Point(138, 67);
             textBoxFindSumMin3.Name = "textBoxFindSumMin3";
-            textBoxFindSumMin3.Size = new Size(79, 23);
+            textBoxFindSumMin3.Size = new Size(129, 23);
             textBoxFindSumMin3.TabIndex = 30;
             textBoxFindSumMin3.TextChanged += textBoxFindSumMin1_TextChanged;
             // 
             // textBoxFindCategory3
             // 
             textBoxFindCategory3.Dock = DockStyle.Fill;
-            textBoxFindCategory3.Location = new Point(88, 35);
+            textBoxFindCategory3.Location = new Point(138, 35);
             textBoxFindCategory3.Name = "textBoxFindCategory3";
-            textBoxFindCategory3.Size = new Size(79, 23);
+            textBoxFindCategory3.Size = new Size(129, 23);
             textBoxFindCategory3.TabIndex = 29;
             textBoxFindCategory3.TextChanged += textBoxFindCategory1_TextChanged;
             // 
             // textBoxFindName3
             // 
             textBoxFindName3.Dock = DockStyle.Fill;
-            textBoxFindName3.Location = new Point(88, 3);
+            textBoxFindName3.Location = new Point(138, 3);
             textBoxFindName3.Name = "textBoxFindName3";
-            textBoxFindName3.Size = new Size(79, 23);
+            textBoxFindName3.Size = new Size(129, 23);
             textBoxFindName3.TabIndex = 28;
             textBoxFindName3.TextChanged += textBoxFindName1_TextChanged;
             // 
@@ -1119,7 +1157,7 @@
             label18.Dock = DockStyle.Fill;
             label18.Location = new Point(3, 160);
             label18.Name = "label18";
-            label18.Size = new Size(79, 32);
+            label18.Size = new Size(129, 32);
             label18.TabIndex = 18;
             label18.Text = "Макс. дата";
             // 
@@ -1129,7 +1167,7 @@
             label19.Dock = DockStyle.Fill;
             label19.Location = new Point(3, 128);
             label19.Name = "label19";
-            label19.Size = new Size(79, 32);
+            label19.Size = new Size(129, 32);
             label19.TabIndex = 15;
             label19.Text = "Мин. дата";
             // 
@@ -1139,7 +1177,7 @@
             label21.Dock = DockStyle.Fill;
             label21.Location = new Point(3, 96);
             label21.Name = "label21";
-            label21.Size = new Size(79, 32);
+            label21.Size = new Size(129, 32);
             label21.TabIndex = 12;
             label21.Text = "Макс. сумма";
             // 
@@ -1149,7 +1187,7 @@
             label22.Dock = DockStyle.Fill;
             label22.Location = new Point(3, 64);
             label22.Name = "label22";
-            label22.Size = new Size(79, 32);
+            label22.Size = new Size(129, 32);
             label22.TabIndex = 9;
             label22.Text = "Мин. сумма";
             // 
@@ -1159,7 +1197,7 @@
             label24.Dock = DockStyle.Fill;
             label24.Location = new Point(3, 32);
             label24.Name = "label24";
-            label24.Size = new Size(79, 32);
+            label24.Size = new Size(129, 32);
             label24.TabIndex = 6;
             label24.Text = "Категория";
             // 
@@ -1169,7 +1207,7 @@
             label25.Dock = DockStyle.Fill;
             label25.Location = new Point(3, 0);
             label25.Name = "label25";
-            label25.Size = new Size(79, 32);
+            label25.Size = new Size(129, 32);
             label25.TabIndex = 3;
             label25.Text = "Название";
             // 
@@ -1178,7 +1216,7 @@
             buttonClear3.Dock = DockStyle.Fill;
             buttonClear3.Location = new Point(3, 195);
             buttonClear3.Name = "buttonClear3";
-            buttonClear3.Size = new Size(79, 26);
+            buttonClear3.Size = new Size(129, 26);
             buttonClear3.TabIndex = 19;
             buttonClear3.Text = "Отчистить";
             buttonClear3.UseVisualStyleBackColor = true;
@@ -1187,9 +1225,9 @@
             // buttonIDSort3
             // 
             buttonIDSort3.Dock = DockStyle.Fill;
-            buttonIDSort3.Location = new Point(173, 3);
+            buttonIDSort3.Location = new Point(273, 3);
             buttonIDSort3.Name = "buttonIDSort3";
-            buttonIDSort3.Size = new Size(80, 26);
+            buttonIDSort3.Size = new Size(131, 26);
             buttonIDSort3.TabIndex = 20;
             buttonIDSort3.Text = "ID";
             buttonIDSort3.UseVisualStyleBackColor = true;
@@ -1198,9 +1236,9 @@
             // buttonNameSort3
             // 
             buttonNameSort3.Dock = DockStyle.Fill;
-            buttonNameSort3.Location = new Point(173, 35);
+            buttonNameSort3.Location = new Point(273, 35);
             buttonNameSort3.Name = "buttonNameSort3";
-            buttonNameSort3.Size = new Size(80, 26);
+            buttonNameSort3.Size = new Size(131, 26);
             buttonNameSort3.TabIndex = 21;
             buttonNameSort3.Text = "Назание";
             buttonNameSort3.UseVisualStyleBackColor = true;
@@ -1209,9 +1247,9 @@
             // buttonSumSort3
             // 
             buttonSumSort3.Dock = DockStyle.Fill;
-            buttonSumSort3.Location = new Point(173, 67);
+            buttonSumSort3.Location = new Point(273, 67);
             buttonSumSort3.Name = "buttonSumSort3";
-            buttonSumSort3.Size = new Size(80, 26);
+            buttonSumSort3.Size = new Size(131, 26);
             buttonSumSort3.TabIndex = 22;
             buttonSumSort3.Text = "Сумма";
             buttonSumSort3.UseVisualStyleBackColor = true;
@@ -1220,9 +1258,9 @@
             // buttonAll3
             // 
             buttonAll3.Dock = DockStyle.Fill;
-            buttonAll3.Location = new Point(173, 163);
+            buttonAll3.Location = new Point(273, 163);
             buttonAll3.Name = "buttonAll3";
-            buttonAll3.Size = new Size(80, 26);
+            buttonAll3.Size = new Size(131, 26);
             buttonAll3.TabIndex = 25;
             buttonAll3.Text = "Все траты";
             buttonAll3.UseVisualStyleBackColor = true;
@@ -1231,9 +1269,9 @@
             // buttonFind3
             // 
             buttonFind3.Dock = DockStyle.Fill;
-            buttonFind3.Location = new Point(88, 195);
+            buttonFind3.Location = new Point(138, 195);
             buttonFind3.Name = "buttonFind3";
-            buttonFind3.Size = new Size(79, 26);
+            buttonFind3.Size = new Size(129, 26);
             buttonFind3.TabIndex = 26;
             buttonFind3.Text = "Поиск";
             buttonFind3.UseVisualStyleBackColor = true;
@@ -1242,9 +1280,9 @@
             // buttonDateSort3
             // 
             buttonDateSort3.Dock = DockStyle.Fill;
-            buttonDateSort3.Location = new Point(173, 131);
+            buttonDateSort3.Location = new Point(273, 131);
             buttonDateSort3.Name = "buttonDateSort3";
-            buttonDateSort3.Size = new Size(80, 26);
+            buttonDateSort3.Size = new Size(131, 26);
             buttonDateSort3.TabIndex = 23;
             buttonDateSort3.Text = "Дата";
             buttonDateSort3.UseVisualStyleBackColor = true;
@@ -1253,9 +1291,9 @@
             // buttonCategorySort3
             // 
             buttonCategorySort3.Dock = DockStyle.Fill;
-            buttonCategorySort3.Location = new Point(173, 99);
+            buttonCategorySort3.Location = new Point(273, 99);
             buttonCategorySort3.Name = "buttonCategorySort3";
-            buttonCategorySort3.Size = new Size(80, 26);
+            buttonCategorySort3.Size = new Size(131, 26);
             buttonCategorySort3.TabIndex = 27;
             buttonCategorySort3.Text = "Категория";
             buttonCategorySort3.UseVisualStyleBackColor = true;
@@ -1265,10 +1303,10 @@
             // 
             dataGridGraph.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridGraph.Dock = DockStyle.Fill;
-            dataGridGraph.Location = new Point(27, 29);
+            dataGridGraph.Location = new Point(42, 29);
             dataGridGraph.Name = "dataGridGraph";
             dataGridGraph.ReadOnly = true;
-            dataGridGraph.Size = new Size(256, 234);
+            dataGridGraph.Size = new Size(407, 234);
             dataGridGraph.TabIndex = 1;
             // 
             // pictureGraphs1
@@ -1276,7 +1314,7 @@
             pictureGraphs1.Dock = DockStyle.Fill;
             pictureGraphs1.Location = new Point(3, 3);
             pictureGraphs1.Name = "pictureGraphs1";
-            pictureGraphs1.Size = new Size(639, 517);
+            pictureGraphs1.Size = new Size(473, 517);
             pictureGraphs1.TabIndex = 0;
             pictureGraphs1.TabStop = false;
             // 
@@ -1553,6 +1591,8 @@
         private Panel panel1;
         private Button buttonColor;
         private Button buttonFont;
-
+        private Button buttonColor1;
+        private Button button1;
+        private Button button2;
     }
 }

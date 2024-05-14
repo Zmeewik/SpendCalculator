@@ -11,11 +11,23 @@ namespace SpendCalculator
     {
         static Random random = new Random();
         static Bitmap image;
+        static List<Color> colors;
 
         static int lastPointX, lastPointY;
 
+        static public void ChangeColor(List<Expenditure> expenditures, Color col)
+        {
+            List<string> types = new List<string>();
+            foreach (var expense in expenditures)
+            {
+                if (!types.Contains(expense.Category))
+                    types.Add(expense.Category);
+            }
+            colors = GetColors(types.Count, col);
+        }
+
         //Метод для рисования линейно-кусочной диаграммы
-        static private void DrawDiagram(List<Dictionary<DateTime, decimal>> values, List<Color> colors, PictureBox drawArea, Font font, List<DateTime> dates)
+        static private void DrawDiagram(List<Dictionary<DateTime, decimal>> values, PictureBox drawArea, Font font, List<DateTime> dates)
         {
             //Получить границы рисования графиков
             GetGraphRange(out var minDate, out var maxDate, out var maxdecimal, out int maxGraphValue, values);
@@ -83,7 +95,7 @@ namespace SpendCalculator
         }
 
         //Метод для рисования круглой даиаграммы
-        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, List<Color> color, PictureBox drawArea, Font font)
+        static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, PictureBox drawArea, Font font)
         {
             
             //Получить границы круговой диаграммы
@@ -99,13 +111,13 @@ namespace SpendCalculator
                                     .Select(x => x.Type)
                                     .ToList();
 
-            List<Color> newColors = new List<Color>(color);
+            List<Color> newColors = new List<Color>(colors);
             newColors.RemoveAt(0);
             var sortedColors = newColors.Select((x, i) => new { Color = x, Index = i })
                                       .OrderByDescending(x => sums[x.Index])
                                       .Select(x => x.Color)
                                       .ToList();
-            sortedColors.Insert(0, color[0]);
+            sortedColors.Insert(0, colors[0]);
             Console.WriteLine($"{newColors.Count} и {values.Count}");
 
             var sortedSums = sums.OrderByDescending(x => x)
@@ -181,7 +193,7 @@ namespace SpendCalculator
                     startAngle += sweepAngle;
                 }
 
-                var brushBack = new SolidBrush(color[0]);
+                var brushBack = new SolidBrush(colors[0]);
                 g.FillEllipse(brushBack, xPos + pieWidth, yPos + pieWidth, xPieSize - pieWidth * 2, yPieSize - 2 * pieWidth);
             }
         }
@@ -238,7 +250,7 @@ namespace SpendCalculator
         }
 
         //Метод рисования дополнительной информации
-        static private void DrawAdditionalInfo(List<string> names, List<Color> colors, PictureBox drawArea, Font font)
+        static private void DrawAdditionalInfo(List<string> names, PictureBox drawArea, Font font)
         {
 
             //Настроить рабочую область
@@ -414,8 +426,8 @@ namespace SpendCalculator
                     
 
                     List<string> name = ["Общая сумма"];
-                    DrawDiagram(graph, color, drawArea, font, datesComp);
-                    DrawAdditionalInfo(name, color, drawArea, font);
+                    DrawDiagram(graph, drawArea, font, datesComp);
+                    DrawAdditionalInfo(name, drawArea, font);
 
                     drawArea.Image = image;
 
@@ -456,8 +468,8 @@ namespace SpendCalculator
                     }
 
                     //DrawDiagram(graphs, colors, drawArea);
-                    DrawDiagram(graphs, colors, drawArea, font, datesCompl);
-                    DrawAdditionalInfo(types, colors, drawArea, font);
+                    DrawDiagram(graphs, drawArea, font, datesCompl);
+                    DrawAdditionalInfo(types, drawArea, font);
 
                     drawArea.Image = image;
 
@@ -477,7 +489,6 @@ namespace SpendCalculator
                     types.Add(expense.Category);
                 }
             }
-            var colors = GetColors(types.Count, drawArea.BackColor);
 
             //Получить все даты для разных графиков типов
             List<Dictionary<DateTime, decimal>> graphs = new List<Dictionary<DateTime, decimal>>();
@@ -492,8 +503,8 @@ namespace SpendCalculator
                     graphs[num].Add(expense.Date, expense.Amount);
             }
 
-            DrawPieChart(graphs, types, colors, drawArea, font);
-            DrawAdditionalInfo(types, colors, drawArea, font);
+            DrawPieChart(graphs, types, drawArea, font);
+            DrawAdditionalInfo(types, drawArea, font);
 
             drawArea.Image = image;
         }

@@ -36,5 +36,6 @@ namespace SpendCalculator
         //Констроль внешнего вида
         public void ChangeColor(PictureBox[] pictures, Panel[] panels, Color col);
         public void ChangeFont(Button[] buttons, Font newFont);
+        public void ChangeVisualizeColor();
     }
 }

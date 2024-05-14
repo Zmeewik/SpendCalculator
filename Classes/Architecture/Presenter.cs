@@ -182,6 +182,12 @@ namespace SpendCalculator
             { 
                 pan.BackColor = backColor;
             }
+            ChangeVisualizeColor();
+        }
+
+        public void ChangeVisualizeColor()
+        {
+            Visualizer.ChangeColor(expenditures, backColor);
         }
 
         //Изменение всех шрифтов
