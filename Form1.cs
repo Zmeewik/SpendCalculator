@@ -438,7 +438,7 @@ namespace SpendCalculator
 
         private void AppView_ResizeEnd(object sender, EventArgs e)
         {
-            
+            UpdateTabs();
         }
     }
 }
