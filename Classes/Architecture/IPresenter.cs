@@ -7,8 +7,8 @@ namespace SpendCalculator
         public void Setup(DataGridView[] view);
 
         //Работа со списками
-        public void OpenStatistics(PictureBox pictureBox, Font font);
-        public void OpenGraphics(PictureBox pictureBox, Font font, string type);
+        public void OpenStatistics(PictureBox pictureBox);
+        public void OpenGraphics(PictureBox pictureBox, string type);
 
         public void OpenList();
         public void AddElement(string name, double sum, DateTime date);
@@ -34,8 +34,8 @@ namespace SpendCalculator
         public void LoadData(string path);
 
         //Констроль внешнего вида
-        public void ChangeColor(PictureBox[] pictures, Panel[] panels, Color col);
-        public void ChangeFont(Button[] buttons, Font newFont);
+        public void ChangeColor(Color col);
+        public void ChangeFont( Font newFont);
         public void ChangeVisualizeColor();
     }
 }

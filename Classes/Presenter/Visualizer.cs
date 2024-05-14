@@ -29,6 +29,8 @@ namespace SpendCalculator
         //Метод для рисования линейно-кусочной диаграммы
         static private void DrawDiagram(List<Dictionary<DateTime, decimal>> values, PictureBox drawArea, Font font, List<DateTime> dates)
         {
+
+
             //Получить границы рисования графиков
             GetGraphRange(out var minDate, out var maxDate, out var maxdecimal, out int maxGraphValue, values);
 
@@ -97,7 +99,6 @@ namespace SpendCalculator
         //Метод для рисования круглой даиаграммы
         static private void DrawPieChart(List<Dictionary<DateTime, decimal>> values, List<string> types, PictureBox drawArea, Font font)
         {
-            
             //Получить границы круговой диаграммы
             GetPieRange(out var sum, values, out var sums);
 
@@ -232,7 +233,7 @@ namespace SpendCalculator
 
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Far;
-                    g.DrawString(text, font, Brushes.Black, startX - margin + 30, startY - num * sizeChange - 10, stringFormat);
+                    g.DrawString(text, font, Brushes.LightGray, startX - margin + 30, startY - num * sizeChange - 10, stringFormat);
                     g.DrawLine(pen, new Point(startX, startY - num * sizeChange), new Point(startX + width, startY - num * sizeChange));
                 }
 
@@ -243,7 +244,7 @@ namespace SpendCalculator
                     var distanceToX = (width - margin) * (float)(dates[n].Day - minDate.Day) / (float)(maxDate.Day - minDate.Day);
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Near;
-                    g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.Black, startX + distanceToX, startY + 10, stringFormat);
+                    g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.LightGray, startX + distanceToX, startY + 10, stringFormat);
                 }
 
             }
@@ -392,6 +393,8 @@ namespace SpendCalculator
         //Публичные методы для визуализации
         static public void DrawDiagrams(List<Expenditure> expenditures, PictureBox drawArea, Font font, string type)
         {
+            if (expenditures.Count <= 0)
+                return;
             image = new Bitmap(drawArea.Width, drawArea.Height);
             switch (type)
             {
@@ -479,6 +482,8 @@ namespace SpendCalculator
 
         static public void DrawPieDiagram(List<Expenditure> expenditures, PictureBox drawArea, Font font)
         {
+            if (expenditures.Count <= 0)
+                return;
             image = new Bitmap(drawArea.Width, drawArea.Height);
             //Получить все типы трат и их цвета
             List<string> types = new List<string>();

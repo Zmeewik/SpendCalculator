@@ -1475,7 +1475,7 @@
             Name = "AppView";
             Text = "Expenditure calculator";
             Load += Form1_Load;
-            ResizeEnd += AppView_ResizeEnd;
+            Resize += AppView_Resize;
             tabControl1.ResumeLayout(false);
             editTab.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);

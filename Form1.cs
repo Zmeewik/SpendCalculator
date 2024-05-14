@@ -13,9 +13,6 @@ namespace SpendCalculator
 
         IPresenter presenter;
 
-        Font currentFont = new Font("Arial", 14f);
-        string defaultSavePath = "";
-
 
         public AppView()
         {
@@ -37,8 +34,10 @@ namespace SpendCalculator
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.WriteLine("App started!");
-            ChangeBackgroundColor(Color.LightCyan);
+            ChangeBackgroundColor(Color.White);
             ChangeFont(new Font("Arial", 14f));
+
+
         }
 
         private void SetSortDefault()
@@ -62,12 +61,12 @@ namespace SpendCalculator
                     break;
                 //Круговая диаграмма
                 case 1:
-                    presenter.OpenStatistics(pictureDiagram1, currentFont);
+                    presenter.OpenStatistics(pictureDiagram1);
                     break;
                 //Графики
                 case 2:
-                    if (graphType) presenter.OpenGraphics(pictureGraphs1, currentFont, "types");
-                    else presenter.OpenGraphics(pictureGraphs1, currentFont, "all");
+                    if (graphType) presenter.OpenGraphics(pictureGraphs1, "types");
+                    else presenter.OpenGraphics(pictureGraphs1, "all");
                     break;
                 //Настройки
                 case 3:
@@ -402,15 +401,14 @@ namespace SpendCalculator
             graphType = !graphType;
             if (graphType)
             {
-                presenter.OpenGraphics(pictureGraphs1, currentFont, "types");
+                presenter.OpenGraphics(pictureGraphs1, "types");
                 buttonAll3.Text = "По типам";
             }
             else
             {
-                presenter.OpenGraphics(pictureGraphs1, currentFont, "all");
+                presenter.OpenGraphics(pictureGraphs1, "all");
                 buttonAll3.Text = "Все траты";
             }
-            presenter.UpdateList();
             UpdateTabs();
         }
 
@@ -435,18 +433,33 @@ namespace SpendCalculator
 
         private void ChangeBackgroundColor(Color color)
         {
-            var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6 };
+            var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6};
+            foreach (var pan in panels)
+            {
+                pan.BackColor = color;
+            }
+            var grids = new List<DataGridView>() { dataGridDiagram, dataGridGraph, dataGridList };
+            foreach (var grid in grids)
+            {
+                grid.BackColor = color;
+            }
             var pictures = new List<PictureBox>() { pictureDiagram1, pictureGraphs1 };
-            presenter.ChangeColor(pictures.ToArray(), panels.ToArray(), color);
+            foreach (var pic in pictures)
+            {
+                pic.BackColor = color;
+            }
+            presenter.ChangeColor(color);
         }
 
         private void ChangeFont(Font font)
         {
-            var buttons = new List<Button> { buttonColor, buttonFont };
-            presenter.ChangeFont(buttons.ToArray(), font);
+            foreach (Control control in this.Controls)
+                control.Font = font;
+
+            presenter.ChangeFont(font);
         }
 
-        private void AppView_ResizeEnd(object sender, EventArgs e)
+        private void AppView_Resize(object sender, EventArgs e)
         {
             UpdateTabs();
         }
