@@ -49,9 +49,18 @@ namespace SpendCalculator
         { 
             
         }
+        public void FindByCategory(string name)
+        { 
+            
+        }
         public void FindBySum(double min, double max)
         { 
             
+        }
+        //Отчистить весь поиск
+        public void ClearAllFind()
+        {
+
         }
 
         //Сортировка
@@ -71,9 +80,13 @@ namespace SpendCalculator
         { 
             
         }
+        public void SortByCategory(bool inverse)
+        {
+
+        }
 
         //Сохранение и загрузка информации с и на локальный диск
-        public void SaveData()
+        public void SaveData(string path)
         { 
         
         }
