@@ -62,7 +62,7 @@ namespace SpendCalculator
                     break;
                 //Круговая диаграмма
                 case 1:
-                    presenter.OpenStatistics(pictureDiagram1);
+                    presenter.OpenStatistics(pictureDiagram1, currentFont);
                     break;
                 //Графики
                 case 2:
@@ -390,7 +390,7 @@ namespace SpendCalculator
         private void buttonAll1_Click(object sender, EventArgs e)
         {
             graphType = !graphType;
-            if (graphType) 
+            if (graphType)
             {
                 presenter.OpenGraphics(pictureGraphs1, currentFont, "types");
                 buttonAll3.Text = "По типам";
@@ -402,7 +402,7 @@ namespace SpendCalculator
             }
             presenter.UpdateList();
             UpdateTabs();
-
+        }
 
         private void buttonColor_Click(object sender, EventArgs e)
         {
@@ -426,7 +426,7 @@ namespace SpendCalculator
         private void ChangeBackgroundColor(Color color)
         {
             var panels = new List<Panel>() { panel1, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6 };
-            var pictures = new List<PictureBox>() { pictureDiagram1, pictureDiagram2, pictureEdit1, pictureEdit2, pictureGraphs1, pictureGraphs2 };
+            var pictures = new List<PictureBox>() { pictureDiagram1, pictureGraphs1 };
             presenter.ChangeColor(pictures.ToArray(), panels.ToArray(), color);
         }
 
@@ -438,7 +438,7 @@ namespace SpendCalculator
 
         private void AppView_ResizeEnd(object sender, EventArgs e)
         {
-            RedrawInfo();
+            
         }
     }
 }

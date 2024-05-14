@@ -127,9 +127,9 @@ namespace SpendCalculator
 
 
         //Открыть изуализацию списка в киде круга
-        public void OpenStatistics(PictureBox pictureBox)
+        public void OpenStatistics(PictureBox pictureBox, Font font)
         {
-            Visualizer.DrawPieDiagram(expenditures, pictureBox, currentFont);
+            Visualizer.DrawPieDiagram(expenditures, pictureBox, font);
         }
 
         //Работа с данными

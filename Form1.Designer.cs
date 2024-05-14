@@ -125,14 +125,12 @@
             pictureGraphs1 = new PictureBox();
             settingsPage = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
-          
             buttonExit = new Button();
             buttonSave = new Button();
             buttonLoa = new Button();
             panel1 = new Panel();
             buttonFont = new Button();
             buttonColor = new Button();
-          
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
             tabControl1.SuspendLayout();
@@ -158,9 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).BeginInit();
             settingsPage.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
-          
             panel1.SuspendLayout();
-          
             SuspendLayout();
             // 
             // tabControl1
@@ -1296,7 +1292,6 @@
             // 
             // tableLayoutPanel5
             // 
-
             tableLayoutPanel5.ColumnCount = 3;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.9999962F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
@@ -1380,7 +1375,6 @@
             buttonColor.Text = "Изменить цвет";
             buttonColor.UseVisualStyleBackColor = true;
             buttonColor.Click += buttonColor_Click;
-
             // 
             // tableLayoutPanel4
             // 
@@ -1446,7 +1440,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureGraphs1).EndInit();
             settingsPage.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
-
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
