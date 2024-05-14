@@ -9,6 +9,10 @@ namespace SpendCalculator
 
         List<Expenditure> expenditures = new List<Expenditure>();
 
+        //Settings
+        Font currentFont = new Font("Arial", 14f);
+        Color backColor = Color.LightCyan;
+
         Presenter()
         {
             model = Model.Instance();
@@ -70,9 +74,9 @@ namespace SpendCalculator
 
         //Работа с визуалом
         //Открыть изуализацию списка в киде графиков
-        public void OpenGraphics(PictureBox pictureBox, Font font)
+        public void OpenGraphics(PictureBox pictureBox)
         {
-            Visualizer.DrawDiagrams(expenditures, pictureBox, font, "all");
+            Visualizer.DrawDiagrams(expenditures, pictureBox, currentFont, "all");
         }
 
         //Открыть редактирование списка
@@ -82,9 +86,9 @@ namespace SpendCalculator
         }
 
         //Открыть изуализацию списка в киде круга
-        public void OpenStatistics(PictureBox pictureBox, Font font)
+        public void OpenStatistics(PictureBox pictureBox)
         {
-            Visualizer.DrawPieDiagram(expenditures, pictureBox, font);
+            Visualizer.DrawPieDiagram(expenditures, pictureBox, currentFont);
         }
 
         //Работа с данными
@@ -117,6 +121,32 @@ namespace SpendCalculator
         public void SortBySum(bool inverse)
         {
             model.SortBySum(inverse);
+        }
+
+
+        //Констроль внешнего вида
+        //Изменение фона всех панелей
+        public void ChangeColor(PictureBox[] pictures, Panel[] panels, Color col)
+        {
+            backColor = col;
+            foreach (var pic in pictures)
+            {
+                pic.BackColor = backColor;
+            }
+            foreach (var pan in panels)
+            { 
+                pan.BackColor = backColor;
+            }
+        }
+
+        //Изменение всех шрифтов
+        public void ChangeFont(Button[] buttons, Font newFont)
+        { 
+            currentFont = newFont;
+            foreach (var button in buttons)
+            { 
+                button.Font = currentFont;
+            }
         }
     }
 }
