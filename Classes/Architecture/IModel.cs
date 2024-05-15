@@ -6,6 +6,7 @@ namespace SpendCalculator
         //Работа со списками
         public Expenditure GetExpenditure(int id);
         public List<Expenditure> GetExpenditures();
+        public void CreateDefaultList();
         public void AddElement(string category, string name, decimal amount, DateTime date, bool isRecurring, string recurrenceFrequency);
         public void DeleteElement(int id);
 
@@ -13,7 +14,7 @@ namespace SpendCalculator
         public void FindByCreationDate(DateTime minDate, DateTime maxDate);
         public void FindByName(string name);
         public void FindByCategory(string name);
-        public void FindBySum(double min, double max);
+        public void FindBySum(decimal min, decimal max);
         public void ClearAllFind();
 
         //Сортировка

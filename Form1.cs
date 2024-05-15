@@ -28,6 +28,8 @@ namespace SpendCalculator
             DataGridView[] views = [dataGridList, dataGridGraph, dataGridDiagram];
             presenter.Setup(views);
             SetSortDefault();
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         //Метод вызываемый при загрузке приложения
@@ -94,6 +96,8 @@ namespace SpendCalculator
                     presenter.SaveData(filePath);
                 }
             }
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
@@ -108,20 +112,24 @@ namespace SpendCalculator
                     presenter.SaveData(filePath);
                 }
             }
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(textBoxPrice.Text, out var res))
+            if (Decimal.TryParse(textBoxPrice.Text, out var res))
             {
-                presenter.AddElement(textBoxName.Text, res, dateTimePicker.Value);
+                presenter.AddElement(textBoxCategory.Text, textBoxName.Text, res, dateTimePicker.Value, checkBoxRepeat.Checked, comboBoxRecurrence.Text);
+            }
+            else if (String.IsNullOrEmpty(textBoxPrice.Text))
+            {
+                presenter.AddElement(textBoxCategory.Text, textBoxName.Text, 0, dateTimePicker.Value, checkBoxRepeat.Checked, comboBoxRecurrence.Text);
             }
             else
                 MessageBox.Show($"{res} не является числом!");
-
-
-
+            presenter.UpdateList();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -130,20 +138,23 @@ namespace SpendCalculator
                 presenter.DeleteElement(res);
             else
                 MessageBox.Show($"{res} не является числом!");
-
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
             presenter.ClearAllFind();
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         void GetRange()
         {
 
             // Если поля пыстые отправлять максимальные и минимальные значения
-            double res1 = 0;
-            double res2 = 0;
+            decimal res1 = 0;
+            decimal res2 = 0;
 
             if (string.IsNullOrEmpty(textBoxFindSumMin1.Text))
                 res1 = -1;
@@ -154,15 +165,15 @@ namespace SpendCalculator
 
             if (res1 == -1 && res2 == -1)
             {
-                res1 = double.MinValue;
-                res2 = double.MaxValue;
+                res1 = decimal.MinValue;
+                res2 = decimal.MaxValue;
                 presenter.FindBySum(res1, res2);
                 return;
             }
             else if (res1 == -1)
             {
-                res1 = double.MinValue;
-                if (Double.TryParse(textBoxFindSumMax1.Text, out res2))
+                res1 = decimal.MinValue;
+                if (Decimal.TryParse(textBoxFindSumMax1.Text, out res2))
                     presenter.FindBySum(res1, res2);
                 else
                     MessageBox.Show($"{res2} не является числом!");
@@ -170,8 +181,8 @@ namespace SpendCalculator
             }
             else if (res2 == -1)
             {
-                res2 = double.MaxValue;
-                if (Double.TryParse(textBoxFindSumMin1.Text, out res1))
+                res2 = decimal.MaxValue;
+                if (Decimal.TryParse(textBoxFindSumMin1.Text, out res1))
                     presenter.FindBySum(res1, res2);
                 else
                     MessageBox.Show($"{res1} не является числом!");
@@ -179,8 +190,8 @@ namespace SpendCalculator
             }
 
             //Проверять оба поля, если не пустые на double значения
-            if (Double.TryParse(textBoxFindSumMin1.Text, out res1))
-                if (Double.TryParse(textBoxFindSumMax1.Text, out res2))
+            if (Decimal.TryParse(textBoxFindSumMin1.Text, out res1))
+                if (Decimal.TryParse(textBoxFindSumMax1.Text, out res2))
                     presenter.FindBySum(res1, res2);
                 else
                     MessageBox.Show($"{res2} не является числом!");
@@ -475,7 +486,7 @@ namespace SpendCalculator
             int rowIndex = e.RowIndex;
             int columnIndex = e.ColumnIndex;
             DataGridViewRow currentRow = dataGridList.Rows[e.RowIndex];
-            List<object> list = new List<object>(); 
+            List<object> list = new List<object>();
             // Проходимся по всем ячейкам текущей строки
             foreach (DataGridViewCell cell in currentRow.Cells)
             {
@@ -486,7 +497,7 @@ namespace SpendCalculator
 
             // Передаем значения в метод ChangeElement презентера
             presenter.ChangeElement(
-                rowIndex,
+                Convert.ToInt32(list[0]),
                 list[1]?.ToString(),  // Здесь нужно обращаться к строковому представлению значений
                 list[2]?.ToString(),
                 Convert.ToDecimal(list[3]),  // Преобразуем в decimal, если это число
@@ -494,14 +505,24 @@ namespace SpendCalculator
                 Convert.ToBoolean(list[5]),  // Преобразуем в bool, если это логическое значение
                 list[6]?.ToString()
             );
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         private void dataGridList_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridList.SelectedCells.Count > 0)
             {
-                textBoxId.Text = dataGridList.SelectedCells[0].RowIndex.ToString();
+                var row = dataGridList.SelectedCells[0].RowIndex;
+                textBoxId.Text = dataGridList.Rows[row].Cells[0].Value.ToString();
             }
+        }
+
+        private void buttonStandart_Click(object sender, EventArgs e)
+        {
+            presenter.CreateList();
+            presenter.UpdateList();
+            UpdateTabs();
         }
     }
 }

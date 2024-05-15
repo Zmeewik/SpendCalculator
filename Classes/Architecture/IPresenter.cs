@@ -11,16 +11,17 @@ namespace SpendCalculator
         public void OpenGraphics(PictureBox pictureBox, string type);
 
         public void OpenList();
-        public void AddElement(string name, double sum, DateTime date);
+        public void AddElement(string category, string name, decimal sum, DateTime date, bool IsRecurring, string RecurrenceFrequency);
         public void ChangeElement(int index, string name, string category, decimal Amount, DateTime Date, bool IsRecurring, string RecurrenceFrequency);
         public void DeleteElement(int id);
         public void UpdateList();
+        public void CreateList();
 
         //Поиск
         public void FindByCreationDate(DateTime minDate, DateTime maxDate);
         public void FindByName(string name);
         public void FindByCategory(string name);
-        public void FindBySum(double min, double max);
+        public void FindBySum(decimal min, decimal max);
         public void ClearAllFind();
 
         //Сортировка

@@ -68,10 +68,11 @@
             textBoxCategory = new TextBox();
             textBoxPrice = new TextBox();
             textBoxName = new TextBox();
-            comboBox1 = new ComboBox();
+            comboBoxRecurrence = new ComboBox();
             tableLayoutPanel12 = new TableLayoutPanel();
             textBoxId = new TextBox();
             label1 = new Label();
+            buttonStandart = new Button();
             buttonDelete = new Button();
             diagramTab = new TabPage();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -529,7 +530,7 @@
             tableLayoutPanel11.Controls.Add(textBoxCategory, 0, 3);
             tableLayoutPanel11.Controls.Add(textBoxPrice, 1, 1);
             tableLayoutPanel11.Controls.Add(textBoxName, 0, 1);
-            tableLayoutPanel11.Controls.Add(comboBox1, 1, 5);
+            tableLayoutPanel11.Controls.Add(comboBoxRecurrence, 1, 5);
             tableLayoutPanel11.Dock = DockStyle.Fill;
             tableLayoutPanel11.Location = new Point(3, 3);
             tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -645,15 +646,15 @@
             textBoxName.Size = new Size(226, 23);
             textBoxName.TabIndex = 13;
             // 
-            // comboBox1
+            // comboBoxRecurrence
             // 
-            comboBox1.Dock = DockStyle.Fill;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Ежедневно", "Еженедельно", "Ежемесячно", "Ежегодно" });
-            comboBox1.Location = new Point(235, 168);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(226, 23);
-            comboBox1.TabIndex = 14;
+            comboBoxRecurrence.Dock = DockStyle.Fill;
+            comboBoxRecurrence.FormattingEnabled = true;
+            comboBoxRecurrence.Items.AddRange(new object[] { "Ежедневно", "Еженедельно", "Ежемесячно", "Ежегодно" });
+            comboBoxRecurrence.Location = new Point(235, 168);
+            comboBoxRecurrence.Name = "comboBoxRecurrence";
+            comboBoxRecurrence.Size = new Size(226, 23);
+            comboBoxRecurrence.TabIndex = 14;
             // 
             // tableLayoutPanel12
             // 
@@ -662,6 +663,7 @@
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel12.Controls.Add(textBoxId, 0, 1);
             tableLayoutPanel12.Controls.Add(label1, 0, 0);
+            tableLayoutPanel12.Controls.Add(buttonStandart, 1, 1);
             tableLayoutPanel12.Dock = DockStyle.Fill;
             tableLayoutPanel12.Location = new Point(3, 258);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -688,6 +690,17 @@
             label1.Size = new Size(226, 15);
             label1.TabIndex = 1;
             label1.Text = "Номер";
+            // 
+            // buttonStandart
+            // 
+            buttonStandart.Dock = DockStyle.Fill;
+            buttonStandart.Location = new Point(235, 102);
+            buttonStandart.Name = "buttonStandart";
+            buttonStandart.Size = new Size(226, 93);
+            buttonStandart.TabIndex = 2;
+            buttonStandart.Text = "Стандартные значения";
+            buttonStandart.UseVisualStyleBackColor = true;
+            buttonStandart.Click += buttonStandart_Click;
             // 
             // buttonDelete
             // 
@@ -1042,10 +1055,10 @@
             tableLayoutPanel9.Location = new Point(482, 3);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
             tableLayoutPanel9.RowCount = 4;
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 9.803922F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 90.1960754F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 230F));
-            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel9.Size = new Size(473, 517);
             tableLayoutPanel9.TabIndex = 3;
             // 
@@ -1077,7 +1090,7 @@
             tableLayoutPanel15.Controls.Add(buttonDateSort3, 2, 4);
             tableLayoutPanel15.Controls.Add(buttonCategorySort3, 2, 3);
             tableLayoutPanel15.Dock = DockStyle.Fill;
-            tableLayoutPanel15.Location = new Point(26, 269);
+            tableLayoutPanel15.Location = new Point(26, 260);
             tableLayoutPanel15.Name = "tableLayoutPanel15";
             tableLayoutPanel15.RowCount = 7;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
@@ -1087,7 +1100,7 @@
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
-            tableLayoutPanel15.Size = new Size(419, 224);
+            tableLayoutPanel15.Size = new Size(419, 226);
             tableLayoutPanel15.TabIndex = 3;
             // 
             // button2
@@ -1095,7 +1108,7 @@
             button2.Dock = DockStyle.Fill;
             button2.Location = new Point(281, 195);
             button2.Name = "button2";
-            button2.Size = new Size(135, 26);
+            button2.Size = new Size(135, 28);
             button2.TabIndex = 35;
             button2.Text = "Сменить цвета";
             button2.UseVisualStyleBackColor = true;
@@ -1220,7 +1233,7 @@
             buttonClear3.Dock = DockStyle.Fill;
             buttonClear3.Location = new Point(3, 195);
             buttonClear3.Name = "buttonClear3";
-            buttonClear3.Size = new Size(133, 26);
+            buttonClear3.Size = new Size(133, 28);
             buttonClear3.TabIndex = 19;
             buttonClear3.Text = "Отчистить";
             buttonClear3.UseVisualStyleBackColor = true;
@@ -1275,7 +1288,7 @@
             buttonFind3.Dock = DockStyle.Fill;
             buttonFind3.Location = new Point(142, 195);
             buttonFind3.Name = "buttonFind3";
-            buttonFind3.Size = new Size(133, 26);
+            buttonFind3.Size = new Size(133, 28);
             buttonFind3.TabIndex = 26;
             buttonFind3.Text = "Поиск";
             buttonFind3.UseVisualStyleBackColor = true;
@@ -1307,10 +1320,10 @@
             // 
             dataGridGraph.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridGraph.Dock = DockStyle.Fill;
-            dataGridGraph.Location = new Point(26, 29);
+            dataGridGraph.Location = new Point(26, 28);
             dataGridGraph.Name = "dataGridGraph";
             dataGridGraph.ReadOnly = true;
-            dataGridGraph.Size = new Size(419, 234);
+            dataGridGraph.Size = new Size(419, 226);
             dataGridGraph.TabIndex = 1;
             // 
             // pictureGraphs1
@@ -1552,7 +1565,7 @@
         private TextBox textBoxCategory;
         private TextBox textBoxPrice;
         private TextBox textBoxName;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxRecurrence;
         private TableLayoutPanel tableLayoutPanel13;
         private Label label23;
         private Label label20;
@@ -1624,5 +1637,6 @@
         private Button buttonFont1;
         private Button buttonFont;
         private Button buttonColorGraph;
+        private Button buttonStandart;
     }
 }

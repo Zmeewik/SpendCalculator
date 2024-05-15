@@ -1,7 +1,4 @@
 ﻿
-
-using System.Diagnostics;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
@@ -30,7 +27,6 @@ namespace SpendCalculator
         static private void DrawDiagram(List<Dictionary<DateTime, decimal>> values, PictureBox drawArea, Font font, List<DateTime> dates)
         {
 
-
             //Получить границы рисования графиков
             GetGraphRange(out var minDate, out var maxDate, out var maxdecimal, out int maxGraphValue, values);
 
@@ -40,7 +36,9 @@ namespace SpendCalculator
             int height = (int)(drawArea.Size.Height * 0.75f) - margin * 2;
             int width = (int)(drawArea.Size.Width) - margin * 2;
 
-            DragGraphicMarkup(minDate, maxDate, maxGraphValue, margin, margin + height, width, height, margin, font, dates);
+            DragGraphicMarkup(minDate, maxDate, maxGraphValue, margin, margin + height, width, height, margin, font, dates, out var offsetX);
+
+            width = (int)(drawArea.Size.Width) - margin * 2 - offsetX;
 
             bool isAll = values.Count < 2;
 
@@ -57,10 +55,12 @@ namespace SpendCalculator
                     int r = 0;
                     foreach (KeyValuePair<DateTime, decimal> pair in values[i])
                     {
+                        Console.WriteLine(maxGraphValue);
+
                         //Найти расстояние до точек
-                        var distanceToY = (height - graphMargin * 2) * pair.Value / maxGraphValue;
+                        var distanceToY = (height) * pair.Value / maxGraphValue;
                         var distanceToX = (width - graphMargin * 2) * (float)(pair.Key.Day - minDate.Day) / (float)(maxDate.Day - minDate.Day);
-                        var pointX = (int)(margin + graphMargin + distanceToX);
+                        var pointX = (int)(margin + graphMargin + distanceToX + offsetX);
                         var pointY = (int)(margin + height - distanceToY);
 
                         //Прибаляем, потому что перый цвет это цвет заднего фона
@@ -71,6 +71,9 @@ namespace SpendCalculator
                         //Рисование точки
                         Rectangle rect1 = new Rectangle(pointX - circleSize / 2, pointY - circleSize / 2, circleSize, circleSize);
                         g.FillEllipse(brush, rect1);
+
+                        int dateOffset = (int)g.MeasureString($"{pair.Key.Day}/{pair.Key.Month}", font).Width;
+                        g.DrawString($"{pair.Key.Day}/{pair.Key.Month}", font, Brushes.LightGray, pointX - circleSize / 2 - dateOffset / 2, margin + height);
 
                         //Рисованиее строки
                         if (isAll)
@@ -114,10 +117,14 @@ namespace SpendCalculator
 
             List<Color> newColors = new List<Color>(colors);
             newColors.RemoveAt(0);
+            /*            var sortedColors = newColors.Select((x, i) => new { Color = x, Index = i })
+                                                  .OrderByDescending(x => sums[x.Index])
+                                                  .Select(x => x.Color)
+                                                  .ToList();*/
             var sortedColors = newColors.Select((x, i) => new { Color = x, Index = i })
-                                      .OrderByDescending(x => sums[x.Index])
-                                      .Select(x => x.Color)
-                                      .ToList();
+                                         .OrderByDescending(x => x.Index < sums.Count ? sums[x.Index] : 0)
+                                         .Select(x => x.Color)
+                                         .ToList();
             sortedColors.Insert(0, colors[0]);
             Console.WriteLine($"{newColors.Count} и {values.Count}");
 
@@ -136,10 +143,10 @@ namespace SpendCalculator
 
                 // Начальный угол для рисования секторов
                 float startAngle = 270;
-                float xPieSize = 200;
-                float yPieSize = 200;
+                float xPieSize = height / 2;
+                float yPieSize = height / 2;
 
-                float pieWidth = 20;
+                float pieWidth = height / 20;
 
                 float xPos = width / 2 - xPieSize / 2;
                 float yPos = height / 2 - yPieSize / 2;
@@ -188,7 +195,10 @@ namespace SpendCalculator
                     {
                         xStringPos += signSize.Width;
                     }
-                    g.DrawString($"{(sortedSums[i] / sum * 100).ToString("0.##")} %", font, brush, xStringPos, yStringPos + 20, stringFormat);
+                    if(sum != 0)
+                        g.DrawString($"{(sortedSums[i] / sum * 100).ToString("0.##")} %", font, brush, xStringPos, yStringPos + 20, stringFormat);
+                    else
+                        g.DrawString($"{(0).ToString("0.##")} %", font, brush, xStringPos, yStringPos + 20, stringFormat);
 
                     // Обновляем начальный угол для следующего сектора
                     startAngle += sweepAngle;
@@ -200,7 +210,7 @@ namespace SpendCalculator
         }
 
         //Нарисовать разметку графика
-        static private void DragGraphicMarkup(DateTime minDate, DateTime maxDate, int maxdecimal, int startX, int startY, int width, int height, int margin, Font font, List<DateTime> dates)
+        static private void DragGraphicMarkup(DateTime minDate, DateTime maxDate, int maxdecimal, int startX, int startY, int width, int height, int margin, Font font, List<DateTime> dates, out int offsetX)
         {
             //Нарисовать информацию
             using (Graphics g = Graphics.FromImage(image))
@@ -212,10 +222,15 @@ namespace SpendCalculator
                 Pen pen = new Pen(brush);
                 pen.Width = 2;
 
+                var neededOffset = g.MeasureString(maxdecimal.ToString(), font);
+                startX += (int)neededOffset.Width;
+                offsetX = (int)neededOffset.Width;
+
                 //Рисование линий и разметки
                 g.DrawLine(pen, new Point(startX, startY), new Point(startX + width, startY));
                 g.DrawLine(pen, new Point(startX, startY), new Point(startX, startY - height));
 
+                
 
                 var count = 0;
                 if (GetFirstDigit(maxdecimal) == 1)
@@ -237,15 +252,15 @@ namespace SpendCalculator
                     g.DrawLine(pen, new Point(startX, startY - num * sizeChange), new Point(startX + width, startY - num * sizeChange));
                 }
 
-                int r = dates.Count;
-                int xChange = (int)((float)width/r);
+/*                int r = dates.Count;
+                int xChange = (int)((float)width / r);
                 for (int n = 0; n < r; n++)
                 {
                     var distanceToX = (width - margin) * (float)(dates[n].Day - minDate.Day) / (float)(maxDate.Day - minDate.Day);
                     StringFormat stringFormat = new StringFormat();
                     stringFormat.Alignment = StringAlignment.Near;
                     g.DrawString($"{dates[n].Day}/{dates[n].Month}", font, Brushes.LightGray, startX + distanceToX, startY + 10, stringFormat);
-                }
+                }*/
 
             }
         }
@@ -370,6 +385,19 @@ namespace SpendCalculator
                 }
             }
 
+            //Если нет дат, то выделяется сегодняшняя
+            if (minDate == DateTime.MaxValue && maxDate == DateTime.MinValue)
+            {
+                minDate = DateTime.Now;
+                maxDate = DateTime.Now;
+            }
+
+            //Если нет дат, то выделяется сегодняшняя
+            if (minDate == maxDate)
+            {
+                maxDate = DateTime.Now.AddDays(1);
+            }
+
 
             // Получение основной области графика
             List<int> thresholds = [5];
@@ -401,27 +429,24 @@ namespace SpendCalculator
                 case "all":
 
                     // Сортировка по дате
-                    expenditures = expenditures.OrderBy(exp => exp.Date).ToList();
+                    var newExpenditures = expenditures.OrderBy(exp => exp.Date).ToList();
 
                     //Получить цвет графика и все даты
                     var color = GetColors(1, drawArea.BackColor);
                     Dictionary<DateTime, decimal> dates = new Dictionary<DateTime, decimal>();
-                    foreach (var expense in expenditures)
+                    foreach (var expense in newExpenditures)
                     {
-                        if (!dates.ContainsKey(expense.Date))
-                        {
-                            if (dates.ContainsKey(expense.Date))
-                                dates[expense.Date] += expense.Amount;
-                            else
-                                dates.Add(expense.Date, expense.Amount);
-                        }
+                        if (dates.ContainsKey(expense.Date))
+                            dates[expense.Date] += expense.Amount;
+                        else
+                            dates.Add(expense.Date, expense.Amount);
                     }
                     List<Dictionary<DateTime, decimal>> graph = new List<Dictionary<DateTime, decimal>>();
                     graph.Add(dates);
 
                     //Объединить все даты
                     var datesComp = new List<DateTime>();
-                    foreach (var expense in expenditures)
+                    foreach (var expense in newExpenditures)
                     { 
                         if(!datesComp.Contains(expense.Date))
                             datesComp.Add(expense.Date);
