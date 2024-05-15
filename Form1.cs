@@ -44,7 +44,23 @@ namespace SpendCalculator
 
         private void SetSortDefault()
         {
-
+            UpdateOtherButtons();
+            if (idInversed)
+            {
+                buttonIDSort2.Text = "↓ " + buttonIDSort1.Text;
+                buttonIDSort3.Text = "↓ " + buttonIDSort1.Text;
+                buttonIDSort1.Text = "↓ " + buttonIDSort1.Text;
+            }
+            else
+            {
+                buttonIDSort2.Text = "↑ " + buttonIDSort1.Text;
+                buttonIDSort3.Text = "↑ " + buttonIDSort1.Text;
+                buttonIDSort1.Text = "↑ " + buttonIDSort1.Text;
+            }
+            presenter.SortByCreation(idInversed);
+            idInversed = !idInversed;
+            presenter.UpdateList();
+            UpdateTabs();
         }
 
         //Функция вызываемая при смене таба
@@ -307,15 +323,15 @@ namespace SpendCalculator
             UpdateOtherButtons();
             if (idInversed)
             {
-                buttonIDSort2.Text = "↑ " + buttonIDSort1.Text;
-                buttonIDSort3.Text = "↑ " + buttonIDSort1.Text;
-                buttonIDSort1.Text = "↑ " + buttonIDSort1.Text;
-            }
-            else
-            {
                 buttonIDSort2.Text = "↓ " + buttonIDSort1.Text;
                 buttonIDSort3.Text = "↓ " + buttonIDSort1.Text;
                 buttonIDSort1.Text = "↓ " + buttonIDSort1.Text;
+            }
+            else
+            {
+                buttonIDSort2.Text = "↑ " + buttonIDSort1.Text;
+                buttonIDSort3.Text = "↑ " + buttonIDSort1.Text;
+                buttonIDSort1.Text = "↑ " + buttonIDSort1.Text;
             }
             presenter.SortByCreation(idInversed);
             idInversed = !idInversed;
@@ -328,15 +344,15 @@ namespace SpendCalculator
             UpdateOtherButtons();
             if (nameInversed)
             {
-                buttonNameSort2.Text = "↑ " + buttonNameSort1.Text;
-                buttonNameSort3.Text = "↑ " + buttonNameSort1.Text;
-                buttonNameSort1.Text = "↑ " + buttonNameSort1.Text;
-            }
-            else
-            {
                 buttonNameSort2.Text = "↓ " + buttonNameSort1.Text;
                 buttonNameSort3.Text = "↓ " + buttonNameSort1.Text;
                 buttonNameSort1.Text = "↓ " + buttonNameSort1.Text;
+            }
+            else
+            {
+                buttonNameSort2.Text = "↑ " + buttonNameSort1.Text;
+                buttonNameSort3.Text = "↑ " + buttonNameSort1.Text;
+                buttonNameSort1.Text = "↑ " + buttonNameSort1.Text;
             }
             presenter.SortByName(nameInversed);
             nameInversed = !nameInversed;
@@ -349,15 +365,15 @@ namespace SpendCalculator
             UpdateOtherButtons();
             if (sumInversed)
             {
-                buttonSumSort2.Text = "↑ " + buttonSumSort1.Text;
-                buttonSumSort3.Text = "↑ " + buttonSumSort1.Text;
-                buttonSumSort1.Text = "↑ " + buttonSumSort1.Text;
-            }
-            else
-            {
                 buttonSumSort2.Text = "↓ " + buttonSumSort1.Text;
                 buttonSumSort3.Text = "↓ " + buttonSumSort1.Text;
                 buttonSumSort1.Text = "↓ " + buttonSumSort1.Text;
+            }
+            else
+            {
+                buttonSumSort2.Text = "↑ " + buttonSumSort1.Text;
+                buttonSumSort3.Text = "↑ " + buttonSumSort1.Text;
+                buttonSumSort1.Text = "↑ " + buttonSumSort1.Text;
             }
             presenter.SortBySum(sumInversed);
             sumInversed = !sumInversed;
@@ -370,15 +386,15 @@ namespace SpendCalculator
             UpdateOtherButtons();
             if (categoryInversed)
             {
-                buttonCategorySort2.Text = "↑ " + buttonCategorySort1.Text;
-                buttonCategorySort3.Text = "↑ " + buttonCategorySort1.Text;
-                buttonCategorySort1.Text = "↑ " + buttonCategorySort1.Text;
-            }
-            else
-            {
                 buttonCategorySort2.Text = "↓ " + buttonCategorySort1.Text;
                 buttonCategorySort3.Text = "↓ " + buttonCategorySort1.Text;
                 buttonCategorySort1.Text = "↓ " + buttonCategorySort1.Text;
+            }
+            else
+            {
+                buttonCategorySort2.Text = "↑ " + buttonCategorySort1.Text;
+                buttonCategorySort3.Text = "↑ " + buttonCategorySort1.Text;
+                buttonCategorySort1.Text = "↑ " + buttonCategorySort1.Text;
             }
             presenter.SortByCategory(categoryInversed);
             categoryInversed = !categoryInversed;
@@ -391,15 +407,15 @@ namespace SpendCalculator
             UpdateOtherButtons();
             if (dateInversed)
             {
-                buttonDateSort2.Text = "↑ " + buttonDateSort1.Text;
-                buttonDateSort3.Text = "↑ " + buttonDateSort1.Text;
-                buttonDateSort1.Text = "↑ " + buttonDateSort1.Text;
-            }
-            else
-            {
                 buttonDateSort2.Text = "↓ " + buttonDateSort1.Text;
                 buttonDateSort3.Text = "↓ " + buttonDateSort1.Text;
                 buttonDateSort1.Text = "↓ " + buttonDateSort1.Text;
+            }
+            else
+            {
+                buttonDateSort2.Text = "↑ " + buttonDateSort1.Text;
+                buttonDateSort3.Text = "↑ " + buttonDateSort1.Text;
+                buttonDateSort1.Text = "↑ " + buttonDateSort1.Text;
             }
             presenter.SortByDate(dateInversed);
             dateInversed = !dateInversed;
