@@ -922,6 +922,7 @@
             buttonClear2.TabIndex = 19;
             buttonClear2.Text = "Отчистить";
             buttonClear2.UseVisualStyleBackColor = true;
+            buttonClear2.Click += buttonClear_Click_1;
             // 
             // buttonIDSort2
             // 
@@ -965,6 +966,7 @@
             buttonFind2.TabIndex = 26;
             buttonFind2.Text = "Поиск";
             buttonFind2.UseVisualStyleBackColor = true;
+            buttonFind2.Click += buttonFind1_Click;
             // 
             // buttonDateSort2
             // 
