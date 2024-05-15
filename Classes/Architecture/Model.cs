@@ -120,37 +120,47 @@ namespace SpendCalculator
         //Сортировка
         public void SortByCreation(bool inverse)
         {
-            tempList = inverse ?
-                tempList.OrderBy(e => e.Id).ToList() :
-                tempList.OrderByDescending(e => e.Id).ToList();
+            expenditures = inverse ?
+                expenditures.OrderBy(e => e.Id).ToList() :
+                expenditures.OrderByDescending(e => e.Id).ToList();
+
+            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
         }
 
         public void SortByDate(bool inverse)
         {
-            tempList = inverse ?
-                tempList.OrderBy(e => e.Date).ToList() :
-                tempList.OrderByDescending(e => e.Date).ToList();
+            expenditures = inverse ?
+                expenditures.OrderBy(e => e.Date).ToList() :
+                expenditures.OrderByDescending(e => e.Date).ToList();
+
+            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
         }
 
         public void SortByName(bool inverse)
         {
-            tempList = inverse ?
-                tempList.OrderBy(e => e.Name).ToList() :
-                tempList.OrderByDescending(e => e.Name).ToList();
+            expenditures = inverse ?
+                expenditures.OrderBy(e => e.Name).ToList() :
+                expenditures.OrderByDescending(e => e.Name).ToList();
+
+            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
         }
 
         public void SortBySum(bool inverse)
         {
-            tempList = inverse ?
-                tempList.OrderBy(e => e.Amount).ToList() :
-                tempList.OrderByDescending(e => e.Amount).ToList();
+            expenditures = inverse ?
+                expenditures.OrderBy(e => e.Amount).ToList() :
+                expenditures.OrderByDescending(e => e.Amount).ToList();
+
+            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
         }
 
         public void SortByCategory(bool inverse)
         {
-            tempList = inverse ?
-                tempList.OrderBy(e => e.Category).ToList() :
-                tempList.OrderByDescending(e => e.Category).ToList();
+            expenditures = inverse ?
+                expenditures.OrderBy(e => e.Category).ToList() :
+                expenditures.OrderByDescending(e => e.Category).ToList();
+
+            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
         }
 
         //Сохранение и загрузка информации с и на локальный диск
