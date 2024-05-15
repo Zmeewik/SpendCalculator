@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using System.IO;
 
 namespace SpendCalculator
@@ -91,7 +91,7 @@ namespace SpendCalculator
             tempList = tempList.Where(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
             searchPerformed = true;
         }
-        public void FindByCategory(string name)
+        public void FindByCategory(string category)
         {
             tempList = tempList.Where(e => e.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
             searchPerformed = true;
@@ -115,7 +115,9 @@ namespace SpendCalculator
                 expenditures.OrderBy(e => e.Id).ToList() :
                 expenditures.OrderByDescending(e => e.Id).ToList();
 
-            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Id).ToList() :
+                tempList.OrderByDescending(e => e.Id).ToList();
         }
 
         public void SortByDate(bool inverse)
@@ -124,7 +126,9 @@ namespace SpendCalculator
                 expenditures.OrderBy(e => e.Date).ToList() :
                 expenditures.OrderByDescending(e => e.Date).ToList();
 
-            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Date).ToList() :
+                tempList.OrderByDescending(e => e.Date).ToList();
         }
 
         public void SortByName(bool inverse)
@@ -133,7 +137,9 @@ namespace SpendCalculator
                 expenditures.OrderBy(e => e.Name).ToList() :
                 expenditures.OrderByDescending(e => e.Name).ToList();
 
-            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Name).ToList() :
+                tempList.OrderByDescending(e => e.Name).ToList();
         }
 
         public void SortBySum(bool inverse)
@@ -142,7 +148,9 @@ namespace SpendCalculator
                 expenditures.OrderBy(e => e.Amount).ToList() :
                 expenditures.OrderByDescending(e => e.Amount).ToList();
 
-            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Amount).ToList() :
+                tempList.OrderByDescending(e => e.Amount).ToList();
         }
 
         public void SortByCategory(bool inverse)
@@ -151,7 +159,9 @@ namespace SpendCalculator
                 expenditures.OrderBy(e => e.Category).ToList() :
                 expenditures.OrderByDescending(e => e.Category).ToList();
 
-            tempList = searchPerformed ? expenditures : new List<Expenditure>(expenditures);
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Category).ToList() :
+                tempList.OrderByDescending(e => e.Category).ToList();
         }
 
         //Сохранение и загрузка информации с и на локальный диск
@@ -159,7 +169,7 @@ namespace SpendCalculator
         {
             try
             {
-                string json = JsonConvert.SerializeObject(expenditures, Formatting.Indented);
+                string json = JsonSerializer.Serialize(expenditures, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(path, json);
                 Console.WriteLine("Data saved successfully.");
             }
@@ -176,7 +186,7 @@ namespace SpendCalculator
                 if (File.Exists(path))
                 {
                     string json = File.ReadAllText(path);
-                    expenditures = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+                    expenditures = JsonSerializer.Deserialize<List<Expenditure>>(json);
                     Console.WriteLine("Data loaded successfully.");
                 }
                 else
