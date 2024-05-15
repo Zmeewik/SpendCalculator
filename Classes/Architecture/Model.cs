@@ -108,24 +108,38 @@ namespace SpendCalculator
 
         //Сортировка
         public void SortByCreation(bool inverse)
-        { 
-            
+        {
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Id).ToList() :
+                tempList.OrderByDescending(e => e.Id).ToList();
         }
+
         public void SortByDate(bool inverse)
-        { 
-            
+        {
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Date).ToList() :
+                tempList.OrderByDescending(e => e.Date).ToList();
         }
+
         public void SortByName(bool inverse)
-        { 
-            
+        {
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Name).ToList() :
+                tempList.OrderByDescending(e => e.Name).ToList();
         }
+
         public void SortBySum(bool inverse)
-        { 
-            
+        {
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Amount).ToList() :
+                tempList.OrderByDescending(e => e.Amount).ToList();
         }
+
         public void SortByCategory(bool inverse)
         {
-
+            tempList = inverse ?
+                tempList.OrderBy(e => e.Category).ToList() :
+                tempList.OrderByDescending(e => e.Category).ToList();
         }
 
         //Сохранение и загрузка информации с и на локальный диск
