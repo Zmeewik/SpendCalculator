@@ -310,11 +310,11 @@ namespace SpendCalculator
             }
         }
 
-        bool idInversed = false;
-        bool nameInversed = false;
-        bool categoryInversed = false;
-        bool sumInversed = false;
-        bool dateInversed = false;
+        bool idInversed = true;
+        bool nameInversed = true;
+        bool categoryInversed = true;
+        bool sumInversed = true;
+        bool dateInversed = true;
 
         bool graphType = false;
 
