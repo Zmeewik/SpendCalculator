@@ -63,6 +63,7 @@ namespace SpendCalculator
         }
         public void DeleteElement(int id)
         {
+            // Удаляем элемент из списка expenditures
             Expenditure expenditureToRemove = expenditures.Find(e => e.Id == id);
             if (expenditureToRemove != null)
             {
@@ -76,6 +77,14 @@ namespace SpendCalculator
                     expenditures[i].Id--;
                 }
             }
+
+            // Удаляем элемент из списка tempList
+            expenditureToRemove = tempList.Find(e => e.Id == id);
+            if (expenditureToRemove != null)
+            {
+                int indexToRemove = tempList.IndexOf(expenditureToRemove);
+                tempList.Remove(expenditureToRemove);
+            }
         }
 
         //Поиск
@@ -86,12 +95,12 @@ namespace SpendCalculator
         }
         public void FindByName(string name)
         {
-            tempList = tempList.Where(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            tempList = tempList.Where(e => e.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
             searchPerformed = true;
         }
-        public void FindByCategory(string name)
+        public void FindByCategory(string category)
         {
-            tempList = tempList.Where(e => e.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+            tempList = tempList.Where(e => e.Category.Contains(category, StringComparison.OrdinalIgnoreCase)).ToList();
             searchPerformed = true;
         }
         public void FindBySum(decimal min, decimal max)

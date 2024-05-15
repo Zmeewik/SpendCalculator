@@ -55,7 +55,6 @@ namespace SpendCalculator
                     int r = 0;
                     foreach (KeyValuePair<DateTime, decimal> pair in values[i])
                     {
-                        Console.WriteLine(maxGraphValue);
 
                         //Найти расстояние до точек
                         var distanceToY = (height) * pair.Value / maxGraphValue;
@@ -126,7 +125,6 @@ namespace SpendCalculator
                                          .Select(x => x.Color)
                                          .ToList();
             sortedColors.Insert(0, colors[0]);
-            Console.WriteLine($"{newColors.Count} и {values.Count}");
 
             var sortedSums = sums.OrderByDescending(x => x)
                          .ToList();
@@ -156,7 +154,6 @@ namespace SpendCalculator
                 {
                     // Вычисляем угол для текущего сектора
                     float sweepAngle = (float)(360 * (double)sortedSums[i] / (double)sum);
-                    Console.WriteLine($"{sortedTypes[i]} type {360 * (double)sortedSums[i] / (double)sum} percent, {sortedSums[i]} sum, {sum} общая сумма");
                     var brush = new SolidBrush(sortedColors[i + 1]);
 
                     // Рисуем сектор

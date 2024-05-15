@@ -1,6 +1,4 @@
 ﻿
-using System.Data;
-using System.Windows.Forms;
 
 namespace SpendCalculator
 {

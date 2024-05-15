@@ -161,8 +161,6 @@ namespace SpendCalculator
             if (string.IsNullOrEmpty(textBoxFindSumMax1.Text))
                 res2 = -1;
 
-            Console.WriteLine($"{res1} res 1, {res2} res 2");
-
             if (res1 == -1 && res2 == -1)
             {
                 res1 = decimal.MinValue;
@@ -207,8 +205,10 @@ namespace SpendCalculator
         //Поиск по элементам
         private void buttonFind1_Click(object sender, EventArgs e)
         {
-            presenter.FindByName(textBoxFindName1.Text);
-            presenter.FindByCategory(textBoxFindCategory1.Text);
+            if(!string.IsNullOrEmpty(textBoxFindName1.Text))
+                presenter.FindByName(textBoxFindName1.Text);
+            if (!string.IsNullOrEmpty(textBoxFindCategory1.Text))
+                presenter.FindByCategory(textBoxFindCategory1.Text);
             presenter.FindByCreationDate(dateTimeFindMin1.Value, dateTimeFindMax1.Value);
             GetRange();
             presenter.UpdateList();
