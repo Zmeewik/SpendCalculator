@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using System.IO;
 
 namespace SpendCalculator
@@ -158,7 +158,7 @@ namespace SpendCalculator
         {
             try
             {
-                string json = JsonConvert.SerializeObject(expenditures, Formatting.Indented);
+                string json = JsonSerializer.Serialize(expenditures, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(path, json);
                 Console.WriteLine("Data saved successfully.");
             }
@@ -175,7 +175,7 @@ namespace SpendCalculator
                 if (File.Exists(path))
                 {
                     string json = File.ReadAllText(path);
-                    expenditures = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+                    expenditures = JsonSerializer.Deserialize<List<Expenditure>>(json);
                     Console.WriteLine("Data loaded successfully.");
                 }
                 else

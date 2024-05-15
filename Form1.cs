@@ -125,7 +125,7 @@ namespace SpendCalculator
                 {
                     string filePath = saveFileDialog.FileName;
                     // Сохраняем файл по выбранному пути
-                    presenter.SaveData(filePath);
+                    presenter.LoadData(filePath);
                 }
             }
             presenter.UpdateList();
