@@ -3,7 +3,7 @@ namespace SpendCalculator
 {
     internal class Expenditure
     {
-        public int Id { get; private set; } // Уникальный идентификатор траты
+        public int Id { get; set; } // Уникальный идентификатор траты
         public string Name { get; set; } // Название траты
         public string Category { get; set; } // Категория траты
         public decimal Amount { get; set; } // Сумма траты

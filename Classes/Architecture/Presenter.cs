@@ -49,34 +49,26 @@ namespace SpendCalculator
                 view.AutoGenerateColumns = true;
                 view.DataSource = null;
                 view.DataSource = expenditures;
+                view.Columns[0].ReadOnly = true;
             }
         }
 
-        private void CreateList()
+        public void CreateList()
         {
-            expenditures.Add(new Expenditure() { Amount = 10, Name = "fish", Category = "Еда", Date = new DateTime(2024, 5, 9) });
-            expenditures.Add(new Expenditure() { Amount = 11, Name = "shorts", Category = "Одежда", Date = new DateTime(2024, 5, 9) });
-            expenditures.Add(new Expenditure() { Amount = 8, Name = "glasses", Category = "Одежда", Date = new DateTime(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { Amount = 5, Name = "gum", Category = "Еда", Date = new DateTime(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { Amount = 4, Name = "бумага", Category = "Канцелярия", Date = new DateTime(2024, 5, 10) });
-            expenditures.Add(new Expenditure() { Amount = 13, Name = "Pencil", Category = "Канцелярия", Date = new DateTime(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { Amount = 21, Name = "Phone", Category = "Техника", Date = new DateTime(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { Amount = 2, Name = "Mayo", Category = "Еда", Date = new DateTime(2024, 5, 11) });
-            expenditures.Add(new Expenditure() { Amount = 13, Name = "pineapple", Category = "Еда", Date = new DateTime(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { Amount = 4, Name = "apple", Category = "Еда", Date = new DateTime(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { Amount = 55, Name = "banana", Category = "Еда", Date = new DateTime(2024, 5, 12) });
-            expenditures.Add(new Expenditure() { Amount = 0, Name = "banana", Category = "Еда", Date = new DateTime(2024, 5, 13) });
+            model.CreateDefaultList();
         }
 
         //Работа со списками
-        public void AddElement(string name, double sum, DateTime date)
+        public void AddElement(string category, string name, decimal sum, DateTime date, bool IsRecurring, string RecurrenceFrequency)
         {
-            model.AddElement(name, sum, date);
+            model.AddElement(category, name, sum, date, IsRecurring, RecurrenceFrequency);
         }
 
         public void ChangeElement(int index, string name, string category, decimal Amount, DateTime Date, bool IsRecurring, string RecurrenceFrequency)
         {
             var element = model.GetExpenditure(index);
+            if (element == null)
+                return;
             element.Name = name;
             element.Category = category;
             element.Amount = Amount;
@@ -92,6 +84,7 @@ namespace SpendCalculator
         public void UpdateList()
         {
             expenditures = model.GetExpenditures();
+            Visualizer.ChangeColor(expenditures, backColor);
             UpdateLists();
         }
 
@@ -110,7 +103,7 @@ namespace SpendCalculator
             model.FindByCategory(name);
         }
 
-        public void FindBySum(double min, double max)
+        public void FindBySum(decimal min, decimal max)
         {
             model.FindBySum(min, max);
         }
