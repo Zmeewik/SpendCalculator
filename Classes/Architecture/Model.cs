@@ -5,7 +5,8 @@ namespace SpendCalculator
     {
         private List<Expenditure> expenditures; // Список трат
         private int nextId; // Счетчик для генерации уникальных идентификаторов
-
+        private List<Expenditure> tempList; // Временный список для поиска
+        private bool searchPerformed; // Флаг для отслеживания выполнения поиска
         //Синглтон
         static Model instance;
         static public Model Instance()
@@ -21,7 +22,9 @@ namespace SpendCalculator
         Model()
         {
             expenditures = new List<Expenditure>();
+            tempList = new List<Expenditure>(expenditures);
             nextId = 1; // Начальное значение счетчика ID
+            searchPerformed = false;
         }
 
         //реализовать взаимодействие со списком и обработчиками
@@ -32,7 +35,7 @@ namespace SpendCalculator
         }
         public List<Expenditure> GetExpenditures()
         {
-            return expenditures;
+            return searchPerformed ? tempList : expenditures;
         }
         public void AddElement(string category, string name, decimal amount, DateTime date, bool isRecurring, string recurrenceFrequency)
         {
@@ -59,25 +62,30 @@ namespace SpendCalculator
 
         //Поиск
         public void FindByCreationDate(DateTime minDate, DateTime maxDate)
-        { 
-            
+        {
+            tempList = tempList.Where(e => e.Date >= minDate && e.Date <= maxDate).ToList();
+            searchPerformed = true;
         }
         public void FindByName(string name)
-        { 
-            
+        {
+            tempList = tempList.Where(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            searchPerformed = true;
         }
         public void FindByCategory(string name)
-        { 
-            
+        {
+            tempList = tempList.Where(e => e.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+            searchPerformed = true;
         }
         public void FindBySum(double min, double max)
-        { 
-            
+        {
+            tempList = tempList.Where(e => e.Amount >= min && e.Amount <= max).ToList();
+            searchPerformed = true;
         }
         //Отчистить весь поиск
         public void ClearAllFind()
         {
-
+            tempList = new List<Expenditure>(expenditures); // Сбрасываем временный список к основному
+            searchPerformed = false; // Сбрасываем флаг поиска
         }
 
         //Сортировка
