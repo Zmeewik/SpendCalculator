@@ -1,4 +1,6 @@
-﻿
+﻿using Newtonsoft.Json;
+using System.IO;
+
 namespace SpendCalculator
 {
     internal class Model : IModel
@@ -144,12 +146,39 @@ namespace SpendCalculator
 
         //Сохранение и загрузка информации с и на локальный диск
         public void SaveData(string path)
-        { 
-        
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(expenditures, Formatting.Indented);
+                File.WriteAllText(path, json);
+                Console.WriteLine("Data saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving data: {ex.Message}");
+            }
         }
+
         public void LoadData(string path)
-        { 
-        
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    string json = File.ReadAllText(path);
+                    expenditures = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+                    Console.WriteLine("Data loaded successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("File not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading data: {ex.Message}");
+            }
         }
+
     }
 }
